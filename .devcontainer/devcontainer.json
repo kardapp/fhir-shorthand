@@ -1,0 +1,17 @@
+{
+  "name": "FHIR Shorthand Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "FHIR-Shorthand.vscode-fsh"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install -g fsh-sushi",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  }
+}
