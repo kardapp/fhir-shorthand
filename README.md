@@ -2,7 +2,7 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/kardapp/fhir-shorthand)
 
-Repo for health-informaticians to develop workflows with FHIR Shorthand instead of Forge FHIR
+Repo for health-informaticians to develop workflows with FHIR Shorthand instead of Forge FHIR test test
 
 ## Getting Started
 
