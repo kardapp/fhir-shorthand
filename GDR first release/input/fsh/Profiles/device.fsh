@@ -53,3 +53,4 @@ Id: karolinska-device
 * parent 0..0
 * specialization 0..0
 * url 0..0
+//this is a test.
