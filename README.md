@@ -28,3 +28,40 @@ If you prefer to work locally, follow these steps:
 ## About FHIR Shorthand
 
 FHIR Shorthand (FSH) is a domain-specific language for defining FHIR artifacts involved in creation of FHIR Implementation Guides (IG). The goal of FSH is to allow Implementation Guide developers to author FHIR profiles, extensions, and implementation guides more efficiently and intuitively.
+
+# Arbetsätt: FHIR-profilering med GitHub, VS Code, FSH/SUSHI, Forge & Simplifier
+
+## 1. Versionshantering och samarbete (GitHub & VS Code)
+- All kod och konfiguration (FSH-filer, sushi-config.yaml, mm) lagras i ett gemensamt GitHub-repo.
+- Vi arbetar i VS Code, där vi redigerar FSH-filer och hanterar versioner via Git-integrationen.
+- Ändringar comittas och pushas regelbundet till GitHub för spårbarhet och samarbete.
+
+## 2. Modellering och konvertering (Forge & Simplifier → GoFSH)
+- FHIR-resurser och profiler som har modellerats initialt i Forge och är publicerade till Simplifier.net kan laddas ner som JSON och placeras initialt i mappen `simplifier-json/` i projektet.
+- För att konvertera till FSH-filer flyttas först json-filerna till mappen ‘GoFSH-input’
+- Kommandot GoFSH används sedan för att konvertera dessa JSON-resurser till FSH-filer, som sparas i `input/fsh/` (eller underkataloger). 
+- Konvertering av enskild fil kan göras genom att högerklicka på filen och välja FHIR to FSH.
+- Annars kan kommandot GoFSH användas för att konvertera alla filer i en mapp. Det görs via följande kommando gofsh "GDR first release\GoFSH-input" -o "GDR first release\input\fsh"
+
+## 3. FSH-utveckling och SUSHI
+- FSH-filerna redigeras och vidareutvecklas i VS Code.
+- SUSHI körs för att generera FHIR-resurser (JSON) från FSH-filerna. Dessa hamnar i `output/`-mappen.
+- `sushi-config.yaml` används för att konfigurera IG:t och deklarera dependencies till externa IG:n.
+
+## 4. Implementation Guide och validering (IG Publisher)
+- IG Publisher används för att bygga och validera Implementation Guide (IG) baserat på `output/`-mappen.
+- Eventuella fel eller varningar åtgärdas genom att justera FSH-filer eller konfiguration.
+
+## 5. Best Practices och konflikthantering
+- `simplifier-json` används endast för att packa upp zip-filer från simplifier. json-filerna flyttas sedan till ‘GoFSH-input’ där de konverteras till FSH-filer.
+- `output/` innehåller alltid de resurser som genereras av SUSHI och används av IG Publisher.
+- All utveckling sker i FSH-filer för spårbarhet och enkel versionshantering.
+- Dependencies till externa IG:n deklareras i `sushi-config.yaml`.
+
+## 6. Samarbete och kunskapsdelning
+- All dokumentation, arbetsflöden och lärdomar sparas i README.md eller motsvarande dokument i repot.
+- Regelbundna kodgranskningar och gemensamma genomgångar för att sprida kunskap i teamet.
+
+---
+
+> Denna README kan även kopieras till Confluence för vidare kunskapsdelning.
