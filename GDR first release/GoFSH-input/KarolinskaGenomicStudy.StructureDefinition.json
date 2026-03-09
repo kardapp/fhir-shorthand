@@ -1,0 +1,300 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudy",
+  "version": "1.0.0-alpha.1",
+  "name": "KarolinskaGenomicStudy",
+  "title": "Karolinska Genomic Study",
+  "status": "draft",
+  "description": "The core resource of the Genomic study which holds the genomic study and related profiles together. . Its the main procedure resource to represent a Genomic case. The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile.",
+  "purpose": "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of making this evaluation. The information model is therefore not ready for implementation in a production environment and ready to be used to store resource data.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Procedure.extension:genomic-laboratory-process",
+        "path": "Procedure.extension",
+        "sliceName": "genomic-laboratory-process",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcessExtension"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Procedure.identifier",
+        "path": "Procedure.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "type.coding.code"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Procedure.identifier.value",
+        "path": "Procedure.identifier.value",
+        "requirements": "Used for CaseID"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier",
+        "path": "Procedure.identifier",
+        "sliceName": "requester-case-identifier",
+        "definition": "Business identifiers assigned to this procedure by the requester",
+        "max": "1"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.type",
+        "path": "Procedure.identifier.type",
+        "min": 1
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.type.coding",
+        "path": "Procedure.identifier.type.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.type.coding.system",
+        "path": "Procedure.identifier.type.coding.system",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.type.coding.code",
+        "path": "Procedure.identifier.type.coding.code",
+        "definition": "An identifier for a request where the identifier is issued by the person or service making the request.",
+        "min": 1,
+        "fixedCode": "PLAC"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.type.coding.display",
+        "path": "Procedure.identifier.type.coding.display",
+        "min": 1,
+        "fixedString": "Placer Identifier"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.system",
+        "path": "Procedure.identifier.system",
+        "min": 1,
+        "fixedUri": "http://mdk.regionstockholm.se/starlims/kliniskgenetik/id"
+      },
+      {
+        "id": "Procedure.identifier:requester-case-identifier.value",
+        "path": "Procedure.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier",
+        "path": "Procedure.identifier",
+        "sliceName": "laboratory-case-identifier",
+        "definition": "Business identifiers assigned to this procedure by the performer/laboratory",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.type",
+        "path": "Procedure.identifier.type",
+        "min": 1
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.type.coding",
+        "path": "Procedure.identifier.type.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.type.coding.system",
+        "path": "Procedure.identifier.type.coding.system",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.type.coding.code",
+        "path": "Procedure.identifier.type.coding.code",
+        "definition": "An identifier for a request where the identifier is issued by the person, or service, that produces the observations or fulfills the request.",
+        "min": 1,
+        "fixedCode": "FILL"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.type.coding.display",
+        "path": "Procedure.identifier.type.coding.display",
+        "min": 1,
+        "fixedString": "Filler Identifier"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.system",
+        "path": "Procedure.identifier.system",
+        "min": 1,
+        "fixedUri": "http://mdk.regionstockholm.se/gmck/clarity-lims/id"
+      },
+      {
+        "id": "Procedure.identifier:laboratory-case-identifier.value",
+        "path": "Procedure.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Procedure.instantiatesCanonical",
+        "path": "Procedure.instantiatesCanonical",
+        "requirements": "Removed for this MVP.",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.instantiatesUri",
+        "path": "Procedure.instantiatesUri",
+        "requirements": "Removed for this MVP",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.basedOn",
+        "path": "Procedure.basedOn",
+        "comment": "Placeholder for future use. \r\nCan be used to point to a referral (serviceRequest instance), or to hold a logical reference (Referral ID) to link the case to the referral(s) and referral data.",
+        "requirements": "Not used in MVP but is kept as a placeholder to show the possibility to connect this Genomic Study to a service request."
+      },
+      {
+        "id": "Procedure.status",
+        "path": "Procedure.status",
+        "comment": "The following statuses can be used to represent the status of the procedure: \r\npreparation\r\nin-progress\r\nnot-done\r\non-hold\r\nstopped\r\ncompleted\r\nentered-in-error\r\nunknown",
+        "requirements": "We only use completed in MVP - The use case of the GDR is to store completed analyses. Not to store analysis thats still in progress etc.",
+        "fixedCode": "completed"
+      },
+      {
+        "id": "Procedure.category.coding.system",
+        "path": "Procedure.category.coding.system",
+        "min": 1,
+        "fixedUri": "http://snomed.info/sct"
+      },
+      {
+        "id": "Procedure.category.coding.code",
+        "path": "Procedure.category.coding.code",
+        "min": 1,
+        "fixedCode": "405824009"
+      },
+      {
+        "id": "Procedure.category.coding.display",
+        "path": "Procedure.category.coding.display",
+        "min": 1,
+        "fixedString": "Genetic test (procedure)"
+      },
+      {
+        "id": "Procedure.code",
+        "path": "Procedure.code",
+        "definition": "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.).",
+        "comment": "Should be used to represent the type of Genomic study performed. Preferably a code from a defined value set should be used. If not applivable the text element can be used.",
+        "requirements": "Used to specify the type of analysis. WGS, Exome, Panel etc.\r\nShould use snomed CT"
+      },
+      {
+        "id": "Procedure.subject",
+        "path": "Procedure.subject",
+        "comment": "Should be used to point to the Karolinska Patient resource. We do not want to create a seperate patient-resource.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.encounter",
+        "path": "Procedure.encounter",
+        "requirements": "Could be used to connect the analysis to the encounter in which the analysis was ordered. Karolinska PAS-ID and at which unit and at which time the encounter occurred.",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.performed[x]",
+        "path": "Procedure.performed[x]",
+        "requirements": "dateTime of when the case was started."
+      },
+      {
+        "id": "Procedure.asserter",
+        "path": "Procedure.asserter",
+        "definition": "Individual who is making the procedure statement. https",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.performer.actor",
+        "path": "Procedure.performer.actor",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performer.actor.type",
+        "path": "Procedure.performer.actor.type",
+        "fixedUri": "Organization"
+      },
+      {
+        "id": "Procedure.performer.actor.identifier.system",
+        "path": "Procedure.performer.actor.identifier.system",
+        "min": 1,
+        "fixedUri": "http://gmck.se/clarity-lims"
+      },
+      {
+        "id": "Procedure.performer.actor.identifier.value",
+        "path": "Procedure.performer.actor.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Procedure.performer.actor.display",
+        "path": "Procedure.performer.actor.display",
+        "min": 1
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf",
+        "path": "Procedure.performer.onBehalfOf",
+        "min": 1
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.type",
+        "path": "Procedure.performer.onBehalfOf.type",
+        "fixedUri": "Organization"
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.identifier.system",
+        "path": "Procedure.performer.onBehalfOf.identifier.system",
+        "min": 1,
+        "fixedUri": "http://gmck.se/clarity-lims"
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.identifier.value",
+        "path": "Procedure.performer.onBehalfOf.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.display",
+        "path": "Procedure.performer.onBehalfOf.display",
+        "min": 1
+      },
+      {
+        "id": "Procedure.reasonCode",
+        "path": "Procedure.reasonCode",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.reasonReference",
+        "path": "Procedure.reasonReference",
+        "requirements": "Not used in MVP - But in future can be used to categorize the ptotential diagnosis as the reason to perform the service.",
+        "max": "0"
+      }
+    ]
+  }
+}

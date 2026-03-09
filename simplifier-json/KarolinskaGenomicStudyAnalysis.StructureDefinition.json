@@ -1,0 +1,259 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudyAnalysis",
+  "version": "1.0.0-alpha",
+  "name": "KarolinskaGenomicStudyAnalysis",
+  "title": "Karolinska Genomic Study Analysis",
+  "status": "draft",
+  "description": "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure.",
+  "purpose": "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Procedure.extension:method-type",
+        "path": "Procedure.extension",
+        "sliceName": "method-type",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:change-type",
+        "path": "Procedure.extension",
+        "sliceName": "change-type",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:genome-build",
+        "path": "Procedure.extension",
+        "sliceName": "genome-build",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:title",
+        "path": "Procedure.extension",
+        "sliceName": "title",
+        "definition": "Defines a title for a genomic analysis - PipeLine name"
+      },
+      {
+        "id": "Procedure.extension:focus",
+        "path": "Procedure.extension",
+        "sliceName": "focus",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:metrics",
+        "path": "Procedure.extension",
+        "sliceName": "metrics",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:regions",
+        "path": "Procedure.extension",
+        "sliceName": "regions"
+      },
+      {
+        "id": "Procedure.extension:regions.extension:studied",
+        "path": "Procedure.extension.extension",
+        "sliceName": "studied"
+      },
+      {
+        "id": "Procedure.extension:regions.extension:studied.value[x]",
+        "path": "Procedure.extension.extension.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.extension:regions.extension:called",
+        "path": "Procedure.extension.extension",
+        "sliceName": "called",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:regions.extension:uncalled",
+        "path": "Procedure.extension.extension",
+        "sliceName": "uncalled",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:device",
+        "path": "Procedure.extension",
+        "sliceName": "device",
+        "definition": "Genomic Study Analysis Device - Kan anvöndas istället för attributen titel och version som nu används för titeln/namnet på den bioinformatiska pipeline som körs samt versionen av den.",
+        "max": "1"
+      },
+      {
+        "id": "Procedure.extension:protocol-performed",
+        "path": "Procedure.extension",
+        "sliceName": "protocol-performed",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:genomic-source-class",
+        "path": "Procedure.extension",
+        "sliceName": "genomic-source-class",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.extension:version",
+        "path": "Procedure.extension",
+        "sliceName": "version",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudyAnalysisVersion"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Procedure.extension:pedigree",
+        "path": "Procedure.extension",
+        "sliceName": "pedigree",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaGenomicAnalysisPedigreeExtension"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Procedure.identifier",
+        "path": "Procedure.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.instantiatesCanonical",
+        "path": "Procedure.instantiatesCanonical",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.instantiatesUri",
+        "path": "Procedure.instantiatesUri",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.partOf",
+        "path": "Procedure.partOf",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Procedure",
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudy"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.status",
+        "path": "Procedure.status",
+        "comment": "The following statuses can be used to represent the status of the procedure: \r\npreparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown",
+        "fixedCode": "completed"
+      },
+      {
+        "id": "Procedure.category.coding.system",
+        "path": "Procedure.category.coding.system",
+        "min": 1,
+        "fixedUri": "http://snomed.info/sct"
+      },
+      {
+        "id": "Procedure.category.coding.code",
+        "path": "Procedure.category.coding.code",
+        "min": 1,
+        "fixedCode": "118117001"
+      },
+      {
+        "id": "Procedure.category.coding.display",
+        "path": "Procedure.category.coding.display",
+        "min": 1,
+        "fixedString": "Gene mutation analysis (procedure)"
+      },
+      {
+        "id": "Procedure.code.coding",
+        "path": "Procedure.code.coding",
+        "max": "0"
+      },
+      {
+        "id": "Procedure.subject",
+        "path": "Procedure.subject",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performer.actor",
+        "path": "Procedure.performer.actor",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performer.actor.type",
+        "path": "Procedure.performer.actor.type",
+        "fixedUri": "Organization"
+      },
+      {
+        "id": "Procedure.performer.actor.identifier.system",
+        "path": "Procedure.performer.actor.identifier.system",
+        "min": 1,
+        "fixedUri": "http://gmck.se/clarity-lims"
+      },
+      {
+        "id": "Procedure.performer.actor.identifier.value",
+        "path": "Procedure.performer.actor.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Procedure.performer.actor.display",
+        "path": "Procedure.performer.actor.display",
+        "min": 1,
+        "fixedString": "GMCK"
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.type",
+        "path": "Procedure.performer.onBehalfOf.type",
+        "fixedUri": "Organization"
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.identifier.system",
+        "path": "Procedure.performer.onBehalfOf.identifier.system",
+        "min": 1,
+        "fixedUri": "http://gmck.se/clarity-lims"
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf.identifier.value",
+        "path": "Procedure.performer.onBehalfOf.identifier.value",
+        "min": 1
+      }
+    ]
+  }
+}

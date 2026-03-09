@@ -1,0 +1,1549 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Procedure/temp-genomic-study-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-genomic-study-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudy"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "requester-case-identifier",
+                  "display": "Requester Case Identifier"
+                }
+              ]
+            },
+            "system": "http://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "F000XXX2"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "laboratory-case-identifier",
+                  "display": "Laboratory Case Identifier"
+                }
+              ]
+            },
+            "system": "http://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "sealingeagle"
+          }
+        ],
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "405824009",
+              "display": "Genetic test (Procedure)"
+            }
+          ]
+        },
+        "coding": [
+          {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "wgs",
+            "display": "Whole Genome Sequencing"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "http://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust003"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-ext",
+            "valueReference": {
+              "reference": "Procedure/temp-genomic-study-analysis-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcessExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-laboratory-process-1"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Specimen/temp-genomic-study-analysis-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-genomic-study-analysis-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudyAnalysis"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "118117001",
+              "display": "Gene mutation analysis (procedure)"
+            }
+          ]
+        },
+        "performedDateTime": "2024-12-02T07:45:00+00:00",
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "http://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-specimen",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudyAnalysisVersion",
+            "valueString": "12.1.1"
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-title",
+            "valueString": "RNA-Fusion"
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-regions",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-bed-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "BED"
+              },
+              {
+                "url": "description",
+                "valueString": "OMIM-AUTO"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-input",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-input",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-2"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-input",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-3"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-output",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-vcf-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "VCF"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-output",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-cram-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "CRAM"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-output",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-cram-2"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "CRAM"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-output",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-cram-3"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "CRAM"
+              }
+            ]
+          },
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaGenomicAnalysisPedigreeExtension",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-ped-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "PEDIGREE"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "ResourceName/temp-laboratory-process-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-laboratory-process-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLaboratoryProcess"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "108252007",
+              "display": "Laboratory procedure (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLibraryPreperationExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-library-preparation-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-gene-sequencing-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-library-preparation-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-library-preparation-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLibraryPreperation"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "56245008",
+              "display": "Specimen preparation (procedure)"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+              "code": "Watchmaker-WGS",
+              "display": "Watchmaker WGS"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaPanelName",
+            "valueString": "exome 10"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-gene-sequencing-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-gene-sequencing-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencing"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "117040002",
+              "display": "Nucleic acid sequencing (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingResult",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-1"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingPlatformExtension",
+            "valueString": "NovaSeq X"
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingNumberOfReads",
+            "valueInteger": 650000000
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Patient/temp-patient-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "temp-patient-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics"
+          ]
+        },
+        "identifier": {
+          "use": "temp",
+          "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+          "value": "32121"
+        },
+        "gender": "female"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Specimen/temp-specimen-1",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "temp-specimen-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimen"
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/specimen-type",
+              "code": "RNA",
+              "display": "RNA"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "requester-sample-identifier",
+                  "display": "Requester Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "2023-32121-3"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "laboratory-sample-identifier",
+                  "display": "Laboratory Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "ACC32121A1"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenSource",
+            "valueString": "cerebrospinal fluid"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Specimen"
+      }
+    },
+    {
+      "fullUrl": "ResourceName/temp-laboratory-process-2",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-laboratory-process-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLaboratoryProcess"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "108252007",
+              "display": "Laboratory procedure (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust003"
+              },
+              "display": "Klinisk Mikrobiologi"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLibraryPreperationExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-library-preparation-2"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-gene-sequencing-2"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-2"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-library-preparation-2",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-library-preparation-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLibraryPreperation"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "56245008",
+              "display": "Specimen preparation (procedure)"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+              "code": "truseq-wgs",
+              "display": "Truseq WGS"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust003"
+              },
+              "display": "Klinisk Mikrobiologi"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-2"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-gene-sequencing-2",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-gene-sequencing-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencing"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "117040002",
+              "display": "Nucleic acid sequencing (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Mikrobiologi"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-2"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingResult",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-2"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingPlatformExtension",
+            "valueString": "PacBio Revio"
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingNumberOfReads",
+            "valueInteger": 26500000
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Patient/temp-patient-2",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "temp-patient-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics"
+          ]
+        },
+        "identifier": {
+          "use": "temp",
+          "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+          "value": "56789"
+        },
+        "gender": "female"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Specimen/temp-specimen-2",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "temp-specimen-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimen"
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/specimen-type",
+              "code": "RNA",
+              "display": "RNA"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "requester-sample-identifier",
+                  "display": "Requester Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "1202-72629p"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "laboratory-sample-identifier",
+                  "display": "Laboratory Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "ACC56789A2"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenSource",
+            "valueString": "blood"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Specimen"
+      }
+    },
+    {
+      "fullUrl": "ResourceName/temp-laboratory-process-3",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-laboratory-process-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLaboratoryProcess"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "108252007",
+              "display": "Laboratory procedure (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLibraryPreperationExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-library-preparation-3"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingExtension",
+            "valueReference": {
+              "reference": "Procedure/temp-gene-sequencing-3"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-3"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-library-preparation-3",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-library-preparation-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaLibraryPreperation"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "56245008",
+              "display": "Specimen preparation (procedure)"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+              "code": "truseq-wgs",
+              "display": "TruSeq WGS"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-3"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Procedure/temp-gene-sequencing-3",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "temp-gene-sequencing-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencing"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "117040002",
+              "display": "Nucleic acid sequencing (procedure)"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "performer": [
+          {
+            "actor": {
+              "display": "GMCK"
+            },
+            "onBehalfOf": {
+              "identifier": {
+                "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                "value": "Cust002"
+              },
+              "display": "Klinisk Genetik"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-3"
+            }
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingResult",
+            "extension": [
+              {
+                "url": "file",
+                "valueReference": {
+                  "reference": "DocumentReference/temp-fastq-3"
+                }
+              },
+              {
+                "url": "type",
+                "valueCode": "FASTQ"
+              }
+            ]
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingPlatformExtension",
+            "valueString": "Oxford Nanopore Promethion"
+          },
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingNumberOfReads",
+            "valueInteger": 350000000
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Procedure"
+      }
+    },
+    {
+      "fullUrl": "Patient/temp-patient-3",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "temp-patient-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics"
+          ]
+        },
+        "identifier": {
+          "use": "temp",
+          "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+          "value": "45656"
+        },
+        "gender": "male"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Specimen/temp-specimen-3",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "temp-specimen-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimen"
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/specimen-type",
+              "code": "RNA",
+              "display": "RNA"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "requester-sample-identifier",
+                  "display": "Requester Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "op-123"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+                  "code": "laboratory-sample-identifier",
+                  "display": "Laboratory Sample Identifier"
+                }
+              ]
+            },
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "value": "ACC45656A3"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenSource",
+            "valueString": "blood"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Specimen"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-fastq-1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-fastq-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "fastq",
+            "display": "FASTQ"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][FASTQ]",
+              "size": 58970,
+              "title": "fastq1-exampleName-sampleID-filetype",
+              "creation": "2024-11-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-cram-1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-cram-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "cram",
+            "display": "CRAM"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][cram]",
+              "size": 500,
+              "title": "CRAM1-exampleName-sampleID-filetype",
+              "creation": "2024-11-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-ped-1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-ped-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "ped",
+            "display": "PEDIGREE"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][PED]",
+              "size": 8450,
+              "title": "PED1-exampleName-sampleID-filetype",
+              "creation": "2024-11-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-vcf-1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-vcf-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "vcf",
+            "display": "VCF"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][VCF]",
+              "size": 25277,
+              "title": "VCF1-exampleName-sampleID-filetype",
+              "creation": "2024-11-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-bed-1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-bed-1",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "bed",
+            "display": "BED"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-1"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-1"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][BED]",
+              "size": 5000,
+              "title": "BED1-exampleName-sampleID-filetype",
+              "creation": "2024-11-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-fastq-2",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-fastq-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "fastq",
+            "display": "FASTQ"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-2"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][FASTQ]",
+              "size": 43620,
+              "title": "fastq2-exampleName-sampleID-filetype",
+              "creation": "2025-01-20T12:00:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-fastq-3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-fastq-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "fastq",
+            "display": "FASTQ"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-3"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][FASTQ]",
+              "size": 71170,
+              "title": "fastq3-exampleName-sampleID-filetype",
+              "creation": "2025-01-19T08:35:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-cram-2",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-cram-2",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "cram",
+            "display": "CRAM"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-2"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-2"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][cram]",
+              "size": 39223,
+              "title": "CRAM2-exampleName-sampleID-filetype",
+              "creation": "2025-02-21T07:11:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "DocumentReference/temp-cram-3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "temp-cram-3",
+        "meta": {
+          "profile": [
+            "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": {
+            "system": "https://ExampleKarolinskaBaseURL/unspecified-system",
+            "code": "cram",
+            "display": "CRAM"
+          }
+        },
+        "subject": {
+          "reference": "Patient/temp-patient-3"
+        },
+        "extension": [
+          {
+            "url": "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimenExtension",
+            "valueReference": {
+              "reference": "Specimen/temp-specimen-3"
+            }
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "url": "https://databaseName[example-specimen][cram]",
+              "size": 53761,
+              "title": "CRAM3-exampleName-sampleID-filetype",
+              "creation": "2025-01-20T11:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    }
+  ]
+}
