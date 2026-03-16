@@ -1,23 +1,23 @@
-Alias: $KarolinskaGenomicLaboratoryProcessExtension = https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcessExtension
-Alias: $KarolinskaPatientGenomics = https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaPatientGenomics
+Alias: $KarolinskaGenomicLaboratoryProcessExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcessExtension
+Alias: $KarolinskaPatientGenomics = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaPatientGenomics
 
-Profile: KarolinskaGenomicStudy
+Profile: KarolinskaGenomicsProcedureGenomicStudy
 Parent: GenomicStudy
-Id: KarolinskaGenomicStudy
+Id: karolinska-genomic-study
 Title: "Karolinska Genomic Study"
-Description: "The core resource of the Genomic study which holds the genomic study and related profiles together. . Its the main procedure resource to represent a Genomic case. The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
-* ^url = "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicStudy"
+Description: "The core resource of the Genomic study which holds the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
+* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicStudy"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of making this evaluation. The information model is therefore not ready for implementation in a production environment and ready to be used to store resource data."
-* extension contains $KarolinskaGenomicLaboratoryProcessExtension named genomic-laboratory-process 0..*
+* //^purpose = ""
+* extension contains $KarolinskaGenomicLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
 * extension[genomic-laboratory-process] ^isModifier = false
 * identifier ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "type.coding.code"
-  * ^slicing.rules = #open
+  * ^slicing.rules = #closed
 * identifier contains
     requester-case-identifier 0..1 and
-    laboratory-case-identifier 1..1
+    laboratory-case-identifier 0..1
   * value ^requirements = "Used for CaseID"
 * identifier[requester-case-identifier] ^definition = "Business identifiers assigned to this procedure by the requester"
   * type 1..
