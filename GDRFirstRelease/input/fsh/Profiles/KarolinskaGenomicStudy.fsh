@@ -9,7 +9,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicStudy"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* //^purpose = ""
+* ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
 * extension contains $KarolinskaGenomicLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
 * extension[genomic-laboratory-process] ^isModifier = false
 * identifier ^slicing.discriminator.type = #value
