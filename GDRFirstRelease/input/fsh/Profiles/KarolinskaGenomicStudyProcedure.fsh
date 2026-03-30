@@ -1,12 +1,12 @@
 Alias: $KarolinskaGenomicLaboratoryProcessExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcessExtension
 Alias: $KarolinskaPatientGenomics = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaPatientGenomics
 
-Profile: KarolinskaGenomicProcedureGenomicStudy
+Profile: KarolinskaGenomicStudyProcedure
 Parent: GenomicStudy
-Id: karolinska-genomic-procedure-genomic-study
+Id: karolinska-genomic-study-procedure
 Title: "Karolinska Genomic Study"
 Description: "The core resource of the Genomic study which holds the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
-* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicProcedureGenomicStudy"
+* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicStudyProcedure"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."

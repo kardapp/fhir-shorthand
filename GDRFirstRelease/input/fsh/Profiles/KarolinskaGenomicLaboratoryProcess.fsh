@@ -35,19 +35,20 @@ Description: "Used to represent and hold together the laboratory process, includ
   * display 1..
   * display = "Laboratory procedure (procedure)" (exactly)
 * code ..0
-* subject only Reference(KarolinskaPatientGenomics)
+* subject only Reference(Patient)
 * encounter ..0
 * recorder ..0
 * asserter ..0
 * performer
-  * actor only Reference(Organization)
-    * ^definition = "The practitioner who was involved in the procedure. Note that if this element is empty, the perfomer Genomic Study profile is used."
+  * actor MS
+    * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the genomic analysis." 
+    * type = "Organization" (exactly)
     * identifier
       * system 1..
-      * system = "http://gmck.se/clarity-lims" (exactly)
       * value 1..
+      * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
     * display 1..
-    * display = "GMCK" (exactly)
+    * ^comment = "Can be set automatically to the laboratory's organization when possible. Otherwise, it may be left blank."
   * onBehalfOf ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
     * identifier
       * system 1..
