@@ -10,7 +10,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
-* extension contains $KarolinskaGenomicLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
+* extension contains KarolinskaGenomicLaboratoryProcessExt named genomic-laboratory-process 0..* MS
 * extension[genomic-laboratory-process] ^isModifier = false
 * identifier ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "type.coding.code"
@@ -54,13 +54,6 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * status = #completed (exactly)
   * ^comment = "The following statuses can be used to represent the status of the procedure: \r\npreparation\r\nin-progress\r\nnot-done\r\non-hold\r\nstopped\r\ncompleted\r\nentered-in-error\r\nunknown"
   * ^requirements = "We only use completed in MVP - The use case of the GDR is to store completed analyses. Not to store analysis thats still in progress etc."
-* category.coding
-  * system 1..
-  * system = "http://snomed.info/sct" (exactly)
-  * code 1..
-  * code = #405824009 (exactly)
-  * display 1..
-  * display = "Genetic test (procedure)" (exactly)
 * code ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
   * ^comment = "Should be used to represent the type of Genomic study performed. Preferably a code from a defined value set should be used. If not applivable the text element can be used."
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc.\r\nShould use snomed CT"
