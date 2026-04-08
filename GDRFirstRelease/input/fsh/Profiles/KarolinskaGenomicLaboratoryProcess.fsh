@@ -1,13 +1,13 @@
-Alias: $KarolinskaGenomicLibraryPreperationExtension = https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLibraryPreperationExtension
-Alias: $KarolinskaGeneSequencingExtension = https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGeneSequencingExtension
-Alias: $KarolinskaFocusExtension = https://karolinskafhirserver/fhir/StructureDefinition/KarolinskaFocusExtension
+Alias: $KarolinskaGenomicLibraryPreperationExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicLibraryPreperationExtension
+Alias: $KarolinskaGeneSequencingExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGeneSequencingExtension
+Alias: $KarolinskaFocusExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaFocusExtension
 
 Profile: KarolinskaGenomicLaboratoryProcess
 Parent: Procedure
 Id: KarolinskaGenomicLaboratoryProcess
 Title: "Karolinska Genomic Laboratory Process"
 Description: "Used to represent and hold together the laboratory process, including library preperation and the gene sequencing. Each GenomicStudy can include several laboratory processes, one for each sample connected to the genomic study.."
-* ^url = "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcess"
+* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicLaboratoryProcess"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
@@ -19,10 +19,8 @@ Description: "Used to represent and hold together the laboratory process, includ
 * extension[genomic-library-preperation] ^isModifier = false
 * extension[gene-sequencing] ^isModifier = false
 * extension[focus] ^isModifier = false
-* identifier ..0
 * instantiatesCanonical ..0
 * instantiatesUri ..0
-* basedOn ..0
 * partOf only Reference(KarolinskaGenomicStudy or Procedure)
 * status = #completed (exactly)
   * ^comment = "The following statuses can be used to represent the status of the procedure: \r\npreparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown"
@@ -36,9 +34,6 @@ Description: "Used to represent and hold together the laboratory process, includ
   * display = "Laboratory procedure (procedure)" (exactly)
 * code ..0
 * subject only Reference(Patient)
-* encounter ..0
-* recorder ..0
-* asserter ..0
 * performer
   * actor MS
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the genomic analysis." 
@@ -49,19 +44,13 @@ Description: "Used to represent and hold together the laboratory process, includ
       * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
     * display 1..
     * ^comment = "Can be set automatically to the laboratory's organization when possible. Otherwise, it may be left blank."
-  * onBehalfOf ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
-    * identifier
-      * system 1..
-      * value 1..
-* location ..0
-* reasonCode ..0
-* reasonReference ..0
-* bodySite ..0
-* outcome ..0
-* report ..0
-* complication ..0
-* complicationDetail ..0
-* followUp ..0
-* focalDevice ..0
-* usedReference ..0
-* usedCode ..0
+  * onBehalfOf MS
+    * type = "Organization" (exactly)
+      * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
+      * identifier
+        * system 1..
+        * value 1..
+        * system 
+        * ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."
+
+    

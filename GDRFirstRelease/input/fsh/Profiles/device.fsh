@@ -5,13 +5,13 @@ Profile: KarolinskaDevice
 Parent: Device
 Description: "A profile of the Device resource."
 Id: karolinska-device
+Description: "Device profile with strict element suppression except key fields."
+* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicDevice"
+* ^version = "1.0.0-alpha.1"
+* ^status = #draft
+* ^purpose = "The purpose of this devvice profile is to store structured information about devices used to perform the Genomic Test"
+* ^title = "Karolinska Device"
 
-// Title: "Karolinska Device"
-//Description: "Device profile with strict element suppression except key fields."
-
-// Close down all elements (0..0)
-// * * 0..0   // applies to the whole structure
-// Re-enable allowed elements with correct cardinality + rules
 
 * identifier 0..* MS
 
