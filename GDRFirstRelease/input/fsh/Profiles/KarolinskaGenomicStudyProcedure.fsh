@@ -33,7 +33,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * instantiatesUri ..0
   * ^requirements = "No identified need for GDR"
 * basedOn ^comment = "Placeholder for future use. Can be used to point to a referral (serviceRequest instance), or to hold a logical reference (Referral ID) to link the case to the referral(s) and referral data."
-  * ^requirements = "Not used in MVP but is kept as a placeholder to show the possibility to connect this Genomic Study to a service request."
+  * ^requirements = "No current need identified for GDR. Placeholder for future use."
 * status from KarolinskaGenomicProcedureStatusVS (required) MS
   * ^comment = "The following statuses can be used: in-progress, completed."
 * code from KarolinskaGenomicStudyTypeVS (required) MS
@@ -41,28 +41,32 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc" 
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
 * subject only Reference(Patient) MS
- * ^requirements = "Should be used to point to the Karolinska Patient resource(KarolinskaGenomicPatient)"
+ * ^requirements = "A Case must be linked to a Patient resource(KarolinskaGenomicPatient)"
   * ^comment = "Should be used to point to the Karolinska Patient resource(KarolinskaGenomicPatient) in this release. In future releases, it can point to the Region Stockholm Patient resource."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Karolinska PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
 * performed[x] MS 
-  *^requirements = "dateTime of when the case was started."
+  *^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
 * asserter ..1
   * ^definition = "No need identified for GDR. Placeholder for future use"
 * performer
   * actor MS
+    * ^requirements = "The Genomic Study procedure must be linked to the organization that performed the analysis, typically a laboratory. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the genomic analysis." 
     * type = "Organization" (exactly)
     * identifier
-    * ^requirements = "Identifier must be used as long as a reference to an organisation resource is not possible"
+    * ^comment = "Identifier must be used as long as a reference to an organisation resource is not possible"
       * system 1..1
       * value 1..1
       * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
     * display ^comment = "Can be set automatically to the laboratory's organization when possible. Otherwise, it may be left blank."
   * onBehalfOf MS
+    * ^requirements = "The Genomic Study procedure should be linked to the organization that requested the analysis, typically another diagnostic unit. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
+    * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
+    * ^comment = "onBehalfOf should be used to point to the requester of the genomic analysis, as long as no structured referral is available. If there is a reference to a serviceRequest, then the requester should be described in the serviceRequest instead."
     * type = "Organization" (exactly)
     * identifier
-    * ^requirements = "Identifier must be used as long as a reference to an organisation resource is not possible"
+      * ^comment = "Identifier must be used as long as a reference to an organisation resource is not possible"
       * system 1..1
       * value 1..1
       * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. A system URL representing the requester should be used"
