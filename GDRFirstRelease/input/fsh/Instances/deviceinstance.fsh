@@ -1,5 +1,5 @@
 Instance: BioinformaticsPipelineDevice-Example
-InstanceOf: KarolinskaDevice
+InstanceOf: StockholmDevice
 Usage: #example
 Title: "Bioinformatic pipeline device - example"
 Description: "Example Device instance representing a bioinformatic analysis pipeline used for genomic variant calling."
@@ -9,7 +9,7 @@ Description: "Example Device instance representing a bioinformatic analysis pipe
 * identifier[0].system = "urn:ietf:rfc:3986"
 * identifier[0].value = "urn:uuid:1b6b25f0-1a1f-4b66-9c3e-9df2a9c6d0a1"
 
-* manufacturer = "Karolinska University Laboratory - Bioinformatics"
+* manufacturer = "Stockholm University Laboratory - Bioinformatics"
 * serialNumber = "BIOINF-PIPELINE-0001"
 
 * deviceName[0].name = "GDR Bioinformatic Variant Calling Pipeline"

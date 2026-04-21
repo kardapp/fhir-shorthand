@@ -460,7 +460,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+              "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicDataFile"
             ]
           }
         ],
@@ -1012,7 +1012,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaGenomicDataFile"
+              "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicDataFile"
             ]
           }
         ]

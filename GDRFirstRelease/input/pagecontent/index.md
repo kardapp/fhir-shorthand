@@ -1,10 +1,10 @@
-# Karolinska Device Implementation Guide
+# Stockholm Device Implementation Guide
 
 ## Introduktion
 
 Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av medicinska enheter (devices) inom GDR-MVP (General Data Repository - Minimum Viable Product).
 
-Specifikationen är utformad för användning inom Karolinska sjukhuset och säkerställer konsistent representation av devicedata i elektroniska patientjournaler och kliniska system.
+Specifikationen är utformad för användning inom Stockholm sjukhuset och säkerställer konsistent representation av devicedata i elektroniska patientjournaler och kliniska system.
 
 ## Omfattning
 
@@ -27,7 +27,7 @@ Denna guide omfattar:
 - **FHIR Version**: 4.0.1
 - **Status**: Draft
 - **Version**: 0.1.2
-- **Canonical URL**: https://simplifier.net/gdr-mvp/karolinskadevice
+- **Canonical URL**: https://simplifier.net/gdr-mvp/Stockholmdevice
 - **Publisher**: Simplifier
 
 ## Hur man använder denna guide

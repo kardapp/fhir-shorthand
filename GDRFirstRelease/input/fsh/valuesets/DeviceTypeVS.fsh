@@ -1,5 +1,5 @@
 ValueSet: DeviceTypeVS
 Id: device-type-vs
-Title: "Karolinska Device Types"
-Description: "Allowed types of devices at Karolinska."
+Title: "Stockholm Device Types"
+Description: "Allowed types of devices at Stockholm."
 * include codes from system DeviceTypeCS

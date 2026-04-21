@@ -1,0 +1,157 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicReport",
+  "name": "StockholmGenomicReport",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.extension:workflow-relatedArtifact",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "workflow-relatedArtifact",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "definition": "Laboratory Case ID - Assigned by the performer of the report"
+      },
+      {
+        "id": "DiagnosticReport.basedOn",
+        "path": "DiagnosticReport.basedOn",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/ServiceRequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.basedOn.type",
+        "path": "DiagnosticReport.basedOn.type",
+        "fixedUri": "ServiceRequest"
+      },
+      {
+        "id": "DiagnosticReport.basedOn.identifier.value",
+        "path": "DiagnosticReport.basedOn.identifier.value",
+        "definition": "Reference to the referral using the referral ID. Might be relevant when the report is part of the total genomic flow, from referral to referral answer.",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.basedOn.identifier.period",
+        "path": "DiagnosticReport.basedOn.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.status",
+        "path": "DiagnosticReport.status",
+        "fixedCode": "Completed"
+      },
+      {
+        "id": "DiagnosticReport.category:Genetics",
+        "path": "DiagnosticReport.category",
+        "sliceName": "Genetics"
+      },
+      {
+        "id": "DiagnosticReport.category:Genetics.coding.code",
+        "path": "DiagnosticReport.category.coding.code",
+        "min": 1,
+        "fixedCode": "Clinical Genomic"
+      },
+      {
+        "id": "DiagnosticReport.code.coding",
+        "path": "DiagnosticReport.code.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "DiagnosticReport.code.coding.code",
+        "path": "DiagnosticReport.code.coding.code",
+        "definition": "405824009 | genetiskt test |\r\n\r\nA symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1,
+        "fixedCode": "405824009"
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmPatient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.subject.identifier.value",
+        "path": "DiagnosticReport.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.encounter",
+        "path": "DiagnosticReport.encounter",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.effective[x]",
+        "path": "DiagnosticReport.effective[x]",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.performer",
+        "path": "DiagnosticReport.performer",
+        "definition": "The diagnostic service that is responsible for issuing the report.\r\n\r\nIf resultInterpreter is used. Then the performer should be the organisation who performed the analysis."
+      },
+      {
+        "id": "DiagnosticReport.resultsInterpreter",
+        "path": "DiagnosticReport.resultsInterpreter",
+        "comment": "Might not be the same entity that takes responsibility for the clinical report.\r\n\r\nThis report can include the interpreted variants. If so, it is probably the interpreter of the Genomic Study who is the performer of the Genomic Report."
+      },
+      {
+        "id": "DiagnosticReport.specimen",
+        "path": "DiagnosticReport.specimen",
+        "requirements": "Not used since the specimen is described in the GenomicStudy profile.",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.result",
+        "path": "DiagnosticReport.result",
+        "requirements": "Not used in MVP but might be used in future if the full result, including interpreted variants, should be represented using FHIR."
+      },
+      {
+        "id": "DiagnosticReport.imagingStudy",
+        "path": "DiagnosticReport.imagingStudy",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.media",
+        "path": "DiagnosticReport.media",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.conclusion",
+        "path": "DiagnosticReport.conclusion",
+        "comment": "Not used in MVP but might be included if the scope is growing to include the result."
+      },
+      {
+        "id": "DiagnosticReport.conclusionCode",
+        "path": "DiagnosticReport.conclusionCode",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.presentedForm",
+        "path": "DiagnosticReport.presentedForm",
+        "max": "0"
+      }
+    ]
+  }
+}

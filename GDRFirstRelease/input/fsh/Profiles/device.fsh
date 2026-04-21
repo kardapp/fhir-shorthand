@@ -1,16 +1,16 @@
 // This is a simple example of a FSH file.
 // This file can be renamed, and additional FSH files can be added.
 // SUSHI will look for definitions in any file using the .fsh ending.
-Profile: KarolinskaDevice 
+Profile: StockholmDevice 
 Parent: Device
 Description: "A profile of the Device resource."
-Id: karolinska-device
+Id: Stockholm-device
 Description: "Device profile with strict element suppression except key fields."
-* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/KarolinskaGenomicDevice"
+* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicDevice"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this devvice profile is to store structured information about devices used to perform the Genomic Test"
-* ^title = "Karolinska Device"
+* ^title = "Stockholm Device"
 
 
 * identifier 0..* MS

@@ -288,7 +288,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimen"
+              "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmSpecimen"
             ]
           }
         ],
@@ -339,7 +339,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://karolinskafhirserver.org/fhir/StructureDefinition/KarolinskaSpecimen"
+              "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmSpecimen"
             ]
           }
         ]

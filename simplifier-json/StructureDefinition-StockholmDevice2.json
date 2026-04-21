@@ -1,0 +1,184 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "StockholmDevice",
+  "url": "https://simplifier.net/gdr-mvp/Stockholmdevice/StructureDefinition/StockholmDevice",
+  "name": "StockholmDevice",
+  "status": "draft",
+  "description": "A profile of the Device resource.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Device",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Device",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Device.extension",
+        "path": "Device.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Device.extension:deviceDocumentation",
+        "path": "Device.extension",
+        "sliceName": "deviceDocumentation",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://simplifier.net/gdr-mvp/Stockholmdevice/StructureDefinition/device-documentation"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Device.identifier",
+        "path": "Device.identifier",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.definition",
+        "path": "Device.definition",
+        "max": "0"
+      },
+      {
+        "id": "Device.udiCarrier",
+        "path": "Device.udiCarrier",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.status",
+        "path": "Device.status",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/gdr-mvp/Stockholmdevice/ValueSet/device-status-vs"
+        }
+      },
+      {
+        "id": "Device.statusReason",
+        "path": "Device.statusReason",
+        "max": "0"
+      },
+      {
+        "id": "Device.distinctIdentifier",
+        "path": "Device.distinctIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "Device.manufacturer",
+        "path": "Device.manufacturer",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.manufactureDate",
+        "path": "Device.manufactureDate",
+        "max": "0"
+      },
+      {
+        "id": "Device.expirationDate",
+        "path": "Device.expirationDate",
+        "max": "0"
+      },
+      {
+        "id": "Device.lotNumber",
+        "path": "Device.lotNumber",
+        "max": "0"
+      },
+      {
+        "id": "Device.serialNumber",
+        "path": "Device.serialNumber",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.deviceName",
+        "path": "Device.deviceName",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.modelNumber",
+        "path": "Device.modelNumber",
+        "max": "0"
+      },
+      {
+        "id": "Device.partNumber",
+        "path": "Device.partNumber",
+        "max": "0"
+      },
+      {
+        "id": "Device.type",
+        "path": "Device.type",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/gdr-mvp/Stockholmdevice/ValueSet/device-type-vs"
+        }
+      },
+      {
+        "id": "Device.specialization",
+        "path": "Device.specialization",
+        "max": "0"
+      },
+      {
+        "id": "Device.version",
+        "path": "Device.version",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.property",
+        "path": "Device.property",
+        "max": "0"
+      },
+      {
+        "id": "Device.patient",
+        "path": "Device.patient",
+        "max": "0"
+      },
+      {
+        "id": "Device.owner",
+        "path": "Device.owner",
+        "max": "0"
+      },
+      {
+        "id": "Device.contact",
+        "path": "Device.contact",
+        "max": "0"
+      },
+      {
+        "id": "Device.location",
+        "path": "Device.location",
+        "max": "0"
+      },
+      {
+        "id": "Device.url",
+        "path": "Device.url",
+        "max": "0"
+      },
+      {
+        "id": "Device.note",
+        "path": "Device.note",
+        "max": "0"
+      },
+      {
+        "id": "Device.safety",
+        "path": "Device.safety",
+        "max": "0"
+      },
+      {
+        "id": "Device.parent",
+        "path": "Device.parent",
+        "max": "0"
+      }
+    ]
+  }
+}

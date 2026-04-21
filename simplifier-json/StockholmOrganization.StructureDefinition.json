@@ -1,0 +1,55 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://Stockholmfhirsarver/fhir/StructureDefinition/StockholmOrganization",
+  "version": "1.0.0",
+  "name": "StockholmOrganizationGenomic",
+  "status": "draft",
+  "date": "2023-09-29T08:27:02.2118763+00:00",
+  "description": "StockholmOrganization-profile based on OrganizationSEVendorLite-profile.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "https://commonprofiles.care/fhir/StructureDefinition/OrganizationSEVendorLite",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.identifier:kombika",
+        "path": "Organization.identifier",
+        "sliceName": "kombika",
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:kombika.system",
+        "path": "Organization.identifier.system",
+        "short": "URI for kombika codes",
+        "min": 1,
+        "fixedUri": "https://uid.regionstockholm.se/kombika"
+      },
+      {
+        "id": "Organization.identifier:kombika.value",
+        "path": "Organization.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:takecareUnitIdentifier",
+        "path": "Organization.identifier",
+        "sliceName": "takecareUnitIdentifier",
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:takecareUnitIdentifier.system",
+        "path": "Organization.identifier.system",
+        "short": "URI for TakeCare unit identifier.",
+        "min": 1,
+        "fixedUri": "https://uid.regionstockholm.se/takecare/unitid"
+      },
+      {
+        "id": "Organization.identifier:takecareUnitIdentifier.value",
+        "path": "Organization.identifier.value",
+        "min": 1
+      }
+    ]
+  }
+}
