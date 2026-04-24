@@ -9,9 +9,8 @@ Title: "Stockholm Genomic Study Analysis"
 Description: "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure."
 * ^url = "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicStudyAnalysis"
 * ^status = #draft
-* extension[genome-build] ..0extension[title] ^definition = "Defines a title for a genomic analysis - PipeLine name"
 * extension[regions].extension[studied].value[x] only CodeableConcept or Reference($StockholmGenomicDataFile)
-* extension[device] only Reference($StockholmGenomicDevice) MS
+* extension[device].valueReference only Reference($StockholmGenomicDevice) MS
   * ^comment = "Genomic Study Analysis Device - Kan användas istället för attributen titel och version som nu används för titeln/namnet på den bioinformatiska pipeline som körs samt versionen av den."
 * extension[protocol-performed] ..0
 * extension[genomic-source-class] ..0
