@@ -1,7 +1,3 @@
-Alias: $StockholmGenomicLibraryPreperationExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicLibraryPreperationExtension
-Alias: $StockholmGeneSequencingExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGeneSequencingExtension
-Alias: $StockholmFocusExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmFocusExtension
-
 Profile: StockholmGenomicLaboratoryProcess
 Parent: Procedure
 Id: StockholmGenomicLaboratoryProcess
@@ -11,14 +7,11 @@ Description: "Used to represent and hold together the laboratory process, includ
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
-* extension 3..
+* extension 3..*
 * extension contains
     $StockholmGenomicLibraryPreperationExtension named genomic-library-preperation 1..1 and
     $StockholmGeneSequencingExtension named gene-sequencing 1..1 and
-    $StockholmFocusExtension named focus 1..1
-* extension[genomic-library-preperation] ^isModifier = false
-* extension[gene-sequencing] ^isModifier = false
-* extension[focus] ^isModifier = false
+    $StockholmFocusExtension named focus 1..1    
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(StockholmGenomicStudy or Procedure)
@@ -34,7 +27,7 @@ Description: "Used to represent and hold together the laboratory process, includ
   * display = "Laboratory procedure (procedure)" (exactly)
 * code ..0
 * subject only Reference(Patient)
-* performer
+* performer 
   * actor MS
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the genomic analysis." 
     * type = "Organization" (exactly)

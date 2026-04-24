@@ -6,3 +6,5 @@ Alias: $StockholmGenomicDevice = https://pub.regionstockholm.se/fhir/StructureDe
 Alias: $StockholmGenomicDataFile = https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicDataFile
 Alias: $StockholmGenomicStudyAnalysisVersion = https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicStudyAnalysisVersion
 Alias: $StockholmGenomicAnalysisPedigreeExtension = https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicAnalysisPedigreeExtension
+Alias: $StockholmLaboratoryProcess = https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmLaboratoryProcess
+Alias: $StockholmGenomicProcedureLaboratoryProcessExtension = https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGenomicProcedureLaboratoryProcessExtension

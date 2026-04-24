@@ -41,14 +41,12 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc" 
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
 * subject only Reference(Patient) MS
- * ^requirements = "A Case must be linked to a Patient resource(StockholmGenomicPatient)"
-  * ^comment = "Should be used to point to the Stockholm Patient resource(StockholmGenomicPatient) in this release. In future releases, it can point to the Region Stockholm Patient resource."
+ * ^requirements = "A Genomic Study must be linked to a Patient resource"
+  * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Stockholm PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
 * performed[x] MS 
   *^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
-* asserter ..1
-  * ^definition = "No need identified for GDR. Placeholder for future use"
 * performer
   * actor MS
     * ^requirements = "The Genomic Study procedure must be linked to the organization that performed the analysis, typically a laboratory. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
