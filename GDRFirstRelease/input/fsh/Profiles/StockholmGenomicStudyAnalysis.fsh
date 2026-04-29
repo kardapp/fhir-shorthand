@@ -1,18 +1,18 @@
 Profile: StockholmGenomicStudyAnalysis
 Parent: GenomicStudyAnalysis
-Id: StockholmGenomicStudyAnalysis
+Id: stockholm-genomic-study-analysis
 Title: "Stockholm Genomic Study Analysis"
 Description: "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure."
 * ^status = #draft
+* ^version = "1.0.0-alpha.1"
 * extension[regions].extension[studied].value[x] only CodeableConcept or Reference($StockholmGenomicDataFile)
 * extension[device].valueReference only Reference($StockholmGenomicDevice) MS
-* extension[input] MS
+extension[input] MS
+* extension[input].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) MS
 * extension[output] MS
-  * ^comment = "Genomic Study Analysis Device - Kan användas istället för attributen titel och version som nu används för titeln/namnet på den bioinformatiska pipeline som körs samt versionen av den."
-* extension contains
-    $StockholmGenomicAnalysisPedigreeExtension named pedigree 0..* MS
-    * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."
-* instantiatesCanonical ..0
+* extension[output].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) MS
+* extension contains $StockholmGenomicAnalysisPedigreeExtension named pedigree 0..* MS
+    * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."* instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(Procedure or StockholmGenomicStudy)
 * status from StockholmGenomicProcedureStatusVS (required) MS

@@ -4,7 +4,7 @@
 Profile: StockholmGenomicDevice 
 Parent: Device
 Description: "A profile of the Device resource."
-Id: Stockholm-device
+Id: stockholm-genomic-device
 Description: "Device profile with strict element suppression except key fields."
 * ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicDevice"
 * ^version = "1.0.0-alpha.1"
@@ -27,7 +27,7 @@ Description: "Device profile with strict element suppression except key fields."
 * deviceName 0..* MS
 
 * type 0..1
-* type from DeviceTypeVS (required)
+* type from StockholmDeviceTypeVS (required)
 
 * version 0..* MS
 
