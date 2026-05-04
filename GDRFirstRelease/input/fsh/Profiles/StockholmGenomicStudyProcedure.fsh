@@ -34,9 +34,9 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^requirements = "No identified need for GDR"
 * basedOn ^comment = "Placeholder for future use. Can be used to point to a referral (serviceRequest instance), or to hold a logical reference (Referral ID) to link the case to the referral(s) and referral data."
   * ^requirements = "No current need identified for GDR. Placeholder for future use."
-* status from StockholmGenomicProcedureStatusVS (required) MS
+* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) MS
   * ^comment = "The following statuses can be used: in-progress, completed."
-* code from StockholmGenomicStudyTypeVS (required) MS
+* code from ValueSet(StockholmGenomicStudyTypeVS) (required) MS
   * ^comment = "Should be used to represent the type of Genomic study performed. Koder bör tas från StockholmGenomicStudyTypeVS (placeholder)."
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc" 
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."

@@ -6,7 +6,6 @@ Parent: Device
 Description: "A profile of the Device resource."
 Id: stockholm-genomic-device
 Description: "Device profile with strict element suppression except key fields."
-* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicDevice"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this devvice profile is to store structured information about devices used to perform the Genomic Test"
@@ -18,7 +17,7 @@ Description: "Device profile with strict element suppression except key fields."
 * udiCarrier 0..* MS
 
 * status 0..1
-* status from DeviceStatusVS (required)
+* status from StockholmGenomicDeviceStatusVS (required)
 
 * manufacturer 0..1 MS
 
@@ -27,7 +26,7 @@ Description: "Device profile with strict element suppression except key fields."
 * deviceName 0..* MS
 
 * type 0..1
-* type from StockholmDeviceTypeVS (required)
+* type from StockholmGenomicDeviceTypeVS (required)
 
 * version 0..* MS
 

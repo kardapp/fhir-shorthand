@@ -5,17 +5,21 @@ Title: "Stockholm Genomic Study Analysis"
 Description: "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure."
 * ^status = #draft
 * ^version = "1.0.0-alpha.1"
-* extension[regions].extension[studied].value[x] only CodeableConcept or Reference($StockholmGenomicDataFile)
-* extension[device].valueReference only Reference($StockholmGenomicDevice) MS
-extension[input] MS
-* extension[input].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) MS
+* extension[regions] MS 
+* extension[regions].extension[studied].valueReference only Reference(StockholmGenomicDataFile)
+* extension[device] MS
+* extension[device].extension[device].value[x] only Reference(StockholmGenomicDevice) 
+* extension[input] MS
+* extension[input].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) 
 * extension[output] MS
-* extension[output].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) MS
+* extension[output].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS)
 * extension contains $StockholmGenomicAnalysisPedigreeExtension named pedigree 0..* MS
-    * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."* instantiatesCanonical ..0
+    * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."
+* instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(Procedure or StockholmGenomicStudy)
-* status from StockholmGenomicProcedureStatusVS (required) MS
+* status MS
+* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * category.coding
   * system 1..
@@ -25,10 +29,10 @@ extension[input] MS
   * display 1..
   * display = "Gene mutation analysis (procedure)" (exactly)
 * code.coding ..0
-* * subject only Reference(Patient) MS
+* subject only Reference(Patient) MS
  * ^requirements = "A Genomic Study must be linked to a Patient resource. It must point to the same patient as the one linked from the Genomic Study procedure resource."
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
-performed[x] MS 
+* performed[x] MS 
   *^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
 * performer
   * actor MS
