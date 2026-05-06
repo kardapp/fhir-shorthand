@@ -9,9 +9,9 @@ Description: "Used to represent and hold together the laboratory process, includ
 * ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
 * extension 3..*
 * extension contains
-    $StockholmGenomicLibraryPreperationExtension named genomic-library-preperation 1..1 and
-    $StockholmGeneSequencingExtension named gene-sequencing 1..1 and
-    $StockholmFocusExtension named focus 1..1    
+    StockholmGenomicLibraryPreperationExtension named genomic-library-preperation 1..1 and
+    StockholmGeneSequencingExtension named gene-sequencing 1..1 and
+    StockholmFocusExtension named focus 1..1    
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(StockholmGenomicStudy or Procedure)

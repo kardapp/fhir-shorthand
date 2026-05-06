@@ -5,7 +5,6 @@ Profile: StockholmGenomicDevice
 Parent: Device
 Description: "A profile of the Device resource."
 Id: stockholm-genomic-device
-Description: "Device profile with strict element suppression except key fields."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this devvice profile is to store structured information about devices used to perform the Genomic Test"

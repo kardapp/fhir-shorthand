@@ -34,19 +34,22 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^requirements = "No identified need for GDR"
 * basedOn ^comment = "Placeholder for future use. Can be used to point to a referral (serviceRequest instance), or to hold a logical reference (Referral ID) to link the case to the referral(s) and referral data."
   * ^requirements = "No current need identified for GDR. Placeholder for future use."
-* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) MS
+* status MS
+* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
-* code from ValueSet(StockholmGenomicStudyTypeVS) (required) MS
+* code MS
+* code from ValueSet(StockholmGenomicStudyTypeVS) (required)
   * ^comment = "Should be used to represent the type of Genomic study performed. Koder bör tas från StockholmGenomicStudyTypeVS (placeholder)."
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc" 
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
-* subject only Reference(Patient) MS
+* subject MS
+* subject only Reference(Patient)
  * ^requirements = "A Genomic Study must be linked to a Patient resource"
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Stockholm PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
 * performed[x] MS 
-  *^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
+  * ^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
 * performer
   * actor MS
     * ^requirements = "The Genomic Study procedure must be linked to the organization that performed the analysis, typically a laboratory. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
