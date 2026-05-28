@@ -1,6 +1,6 @@
 Profile: StockholmGenomicPatientRelative
 Parent: StockholmGenomicPatient
-Id: StockholmGenomicPatientRelative
+Id: stockholm-genomic-patient-relative
 Title: "Stockholm Genomic Patient Relative"
 Description: "The patient profile is created to represent the patient and hold the identifier of the patient. It is referenced from several other resources within the genomic study domain to create a relation between procedures performed, specimen, the result files to the patient it belongs or relates to."
 * ^status = #draft

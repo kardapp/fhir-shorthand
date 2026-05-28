@@ -1,5 +1,5 @@
 
-Alias: $StockholmGenomicLaboratoryProcessExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicLaboratoryProcessExtension
+Alias: $StockholmGenomicProcedureLaboratoryProcessExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicProcedureLaboratoryProcessExtension
 Alias: $StockholmPatientGenomics = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmPatientGenomics
 Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
 
@@ -12,7 +12,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
-* extension contains $StockholmGenomicLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
+* extension contains StockholmGenomicProcedureLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
 * extension[genomic-laboratory-process] ^isModifier = false
 // Slicing identifier på type.coding.code för att särskilja olika identifierare
 * identifier ^slicing.discriminator.type = #value

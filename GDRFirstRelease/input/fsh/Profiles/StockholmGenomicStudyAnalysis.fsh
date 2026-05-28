@@ -1,7 +1,7 @@
-Profile: StockholmGenomicStudyAnalysis
+Profile: StockholmGenomicStudyAnalysisProcedure
 Parent: GenomicStudyAnalysis
-Id: stockholm-genomic-study-analysis
-Title: "Stockholm Genomic Study Analysis"
+Id: stockholm-genomic-study-analysis-procedure
+Title: "Stockholm Genomic Study Analysis Procedure"
 Description: "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure."
 * ^status = #draft
 * ^version = "1.0.0-alpha.1"
