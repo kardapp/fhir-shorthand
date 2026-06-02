@@ -9,7 +9,7 @@ Description: "A profile on the procedure resource. It is used to represent the N
 * extension contains
     StockholmGenomicProcedureExtensionNucleicAcidSequencingResult named nucleic-acid-sequencing-result 0..* and
     StockholmGenomicProcedureExtensionNucleicAcidSequencingNumberOfReads named nucleic-acid-sequencing-number-of-reads 0..1 and
-    StockholmGenomicProcedureExtensionFocus named focus 0..* and
+    StockholmGenomicProcedureExtensionFocus named focus 0..*
 * extension[nucleic-acid-sequencing-result] ^isModifier = false
   * value[x] only Reference(StockholmGenomicDocumentReference)
 * extension[nucleic-acid-sequencing-number-of-reads] ^definition = "Quality parameter. The number of reads of each sequence in the genome."

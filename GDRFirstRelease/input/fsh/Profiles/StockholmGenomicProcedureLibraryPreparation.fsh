@@ -1,6 +1,6 @@
-Profile: StockholmGenomicLibraryPreparation
+Profile: StockholmGenomicProcedureLibraryPreparation
 Parent: Procedure
-Id: StockholmGenomicLibraryPreparation
+Id: StockholmGenomicProcedureLibraryPreparation
 Title: "Stockholm Genomic Library Preparation"
 Description: "A profile on the procedure resource. It is used to represent the library preperation procedure. It is part of the Laboratory process of the genemoic study performed and containes detaild on what was performed on the sample/specimen during this procedure."
 * ^version = "1.0.0-alpha.1"
@@ -17,7 +17,7 @@ Description: "A profile on the procedure resource. It is used to represent the l
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * basedOn ..0
-* partOf only Reference(Procedure or $StockholmGenomicStudy)
+* partOf only Reference(Procedure or StockholmGenomicStudy)
 * status = #completed (exactly)
 * statusReason ..0
 * category.coding
@@ -27,7 +27,7 @@ Description: "A profile on the procedure resource. It is used to represent the l
   * code = #56245008 (exactly)
   * display 1..
   * display = "Specimen preparation (procedure)" (exactly)
-* subject only Reference($StockholmPatientGenomics)
+* subject only Reference(StockholmPatientGenomics)
 * encounter ..0
 * recorder ..0
 * asserter ..0

@@ -9,12 +9,12 @@ Description: "Used to represent and hold together the laboratory process, includ
 * ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
 * extension 3..*
 * extension contains
-    StockholmGenomicProcedureLibraryPreperationExtension named genomic-library-preperation 1..1 and
-    StockholmGenomicProcedureNucleicAcidSequencingExtension named nucleic-acid-sequencing 1..1 and
-    StockholmGenomicProcedureFocusExtension named focus 1..1    
+    StockholmGenomicProcedureExtensionLibraryPreparation named genomic-library-preparation 1..1 and
+    StockholmGenomicProcedureExtensionNucleicAcidSequencing named nucleic-acid-sequencing 1..1 and
+    StockholmGenomicProcedureExtensionFocus named focus 1..1    
 * instantiatesCanonical ..0
 * instantiatesUri ..0
-* partOf only Reference(StockholmGenomicStudy or Procedure)
+* partOf only Reference(StockholmGenomicStudyProcedure or Procedure)
 * status = #completed (exactly)
   * ^comment = "The following statuses can be used to represent the status of the procedure: \r\npreparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown"
 * statusReason ..0
@@ -38,12 +38,12 @@ Description: "Used to represent and hold together the laboratory process, includ
     * display 1..
     * ^comment = "Can be set automatically to the laboratory's organization when possible. Otherwise, it may be left blank."
   * onBehalfOf MS
+    * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
     * type = "Organization" (exactly)
-      * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
-      * identifier
-        * system 1..
-        * value 1..
-        * system 
-        * ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."
+    * identifier
+      * system 1..
+      * value 1..
+      * system 
+      * ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."
 
     

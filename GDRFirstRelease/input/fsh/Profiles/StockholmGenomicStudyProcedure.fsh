@@ -44,7 +44,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
 * subject MS
 * subject only Reference(Patient)
- * ^requirements = "A Genomic Study must be linked to a Patient resource"
+  * ^requirements = "A Genomic Study must be linked to a Patient resource"
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Stockholm PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
