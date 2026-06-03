@@ -9,48 +9,34 @@ Description: "A profile on the procedure resource. It is used to represent the l
 * extension contains
     StockholmGenomicProcedureExtensionPanelName named panel-name 0..* and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
-* extension[panel-name] ^definition = "The name of the panel used during the library preperation"
-  * ^isModifier = false
-* extension[focus] ^definition = "focus is used to reference the specimen in focus of the procedure"
-  * ^isModifier = false
-* identifier ..0
-* instantiatesCanonical ..0
-* instantiatesUri ..0
-* basedOn ..0
-* partOf only Reference(Procedure or $StockholmGenomicStudy)
-* status = #completed (exactly)
-* statusReason ..0
-* category.coding
+* extension[panel-name] MS
+  * ^definition = "The name of the panel used during the library preperation"
+* extension[focus] MS
+  * ^definition = "focus is used to reference the specimen in focus of the procedure"
+* partOf only Reference(Procedure or StockholmGenomicStudyProcedure) 
+* status MS
+* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
+  * ^comment = "The following statuses can be used: in-progress, completed."
+* category.coding MS
   * system 1..
   * system = "http://snomed.info/sct" (exactly)
-  * code 1..
+  * code 1..1
   * code = #56245008 (exactly)
-  * display 1..
+  * display 1..1
   * display = "Specimen preparation (procedure)" (exactly)
-* subject only Reference($StockholmPatientGenomics)
-* encounter ..0
-* recorder ..0
-* asserter ..0
-* performer ..1
-  * actor only Reference(Organization)
+* subject only Reference(Patient) MS
+* performer 
+  * actor MS
+    * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the library preparation  of the genomic analysis. It can be a different organisation than the one performing the genomic study analysis procedure." 
+    * type = "Organization" (exactly)
     * identifier
-      * system 1..
-      * system = "http://gmck.se/clarity-lims" (exactly)
-      * value 1..
-    * display = "GMCK" (exactly)
-  * onBehalfOf.identifier
-    * system 1..
-    * system = "http://gmck.se/clarity-lims" (exactly)
-    * value 1..
-* location ..0
-* reasonCode ..0
-* reasonReference ..0
-* bodySite ..0
-* outcome ..0
-* report ..0
-* complication ..0
-* complicationDetail ..0
-* followUp ..0
-* focalDevice ..0
-* usedReference ..0
-* usedCode ..0
+      * system 1..1
+      * value 1..1
+      * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
+  * onBehalfOf MS
+    * type = "Organization" (exactly)
+      * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer laboratory procedure is used. If that is also empty, then the perfomer Genomic Study profile is used."
+      * identifier
+        * system 1..1
+        * value 1..1
+        * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."

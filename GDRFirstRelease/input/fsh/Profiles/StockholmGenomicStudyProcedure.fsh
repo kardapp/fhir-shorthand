@@ -12,8 +12,8 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
-* extension contains StockholmGenomicProcedureLaboratoryProcessExtension named genomic-laboratory-process 0..* MS
-* extension[genomic-laboratory-process] ^isModifier = false
+* extension contains StockholmGenomicProcedureLaboratoryProcessExtension named genomic-laboratory-process 0..*
+* extension[genomic-laboratory-process] MS
 // Slicing identifier på type.coding.code för att särskilja olika identifierare
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "type.coding.code"
@@ -44,7 +44,7 @@ Description: "The core resource of the Genomic study which holds the genomic stu
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
 * subject MS
 * subject only Reference(Patient)
- * ^requirements = "A Genomic Study must be linked to a Patient resource"
+  * ^requirements = "A Genomic Study must be linked to a Patient resource"
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Stockholm PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
