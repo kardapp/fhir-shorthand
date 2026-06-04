@@ -1,26 +1,22 @@
+Alias: SCT = http://snomed.info/sct
 ValueSet: StockholmGenomicStudyTypeVS
 Id: Stockholm-genomic-study-type-vs
 Title: "Stockholm Genomic Study Type ValueSet"
+* ^url = "https://pub.regionstockholm.se/fhir/ValueSet/StockholmGenomicStudyTypeVS"
 Description: "Placeholder ValueSet för olika typer av genomiska analyser. Ska på sikt ersättas med SnomedCT-koder."
 * include codes from system StockholmGenomicStudyTypeCS
 * ^status = #draft
 * ^version = "1.0.0"
 * ^experimental = true
-* ^publisher = "Stockholm University Hospital"
-//* include codes from system "http://snomed.info/sct" where concept is one of:
-//    * WGS // Whole Genome Sequencing
-//    * WES // Whole Exome Sequencing
-//    * Panel // Panel Sequencing
-//    * WTS // Whole Transcriptome Sequencing
-//    * CMA // Clinical Micro Array
-//    * Methylation array // methylation array
-//    * OGM // Optical Genome Mapping
+* ^copyright = "This value set includes content from SNOMED CT, which is copyright © 2002+ International Health"
+* ^publisher = "Karolinska University Hospital"
+* include codes from system "http://snomed.info/sct" where concept is one of:
+* $SCT#12345-1 "Whole Genome Sequencing (procedure)"
+* $SCT#12345-2 "Whole Exome Sequencing (procedure)"
+* $SCT#12345-3 "Panel Sequencing (procedure)"
+* $SCT#12345-4 "Whole Transcriptome Sequencing (procedure)"
+* $SCT#12345-5 "Clinical Micro Array (procedure)"
+* $SCT#12345-6 "Methylation array (procedure)"
+* $SCT#12345-7 "Optical Genome Mapping (procedure)"
 // OBS! Byt ut ovanstående till riktiga SNOMED CT-koder när de finns tillgängliga.
 
-
-
-
-//Alias: SCT = http://snomed.info/sct
-//* SCT#87683000  "Left handed (finding)"
-//* SCT#46669005  "Right handed (finding)"
-//* SCT#23088002  "Ambidextrous (finding)"

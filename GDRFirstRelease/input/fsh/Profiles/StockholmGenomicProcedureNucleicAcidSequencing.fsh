@@ -10,44 +10,28 @@ Description: "A profile on the procedure resource. It is used to represent the N
     StockholmGenomicProcedureExtensionNucleicAcidSequencingResult named nucleic-acid-sequencing-result 0..* and
     StockholmGenomicProcedureExtensionNucleicAcidSequencingNumberOfReads named nucleic-acid-sequencing-number-of-reads 0..1 and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
-* extension[nucleic-acid-sequencing-result] ^isModifier = false
+* extension[nucleic-acid-sequencing-result] MS
   * value[x] only Reference(StockholmGenomicDocumentReference)
-* extension[nucleic-acid-sequencing-number-of-reads] ^definition = "Quality parameter. The number of reads of each sequence in the genome."
+* extension[nucleic-acid-sequencing-number-of-reads] MS
+  * ^definition = "Quality parameter. The number of reads of each sequence in the genome."
   * ^isModifier = false
-* extension[focus] ^definition = "focus is used to reference the specimen in focus of the procedure"
+* extension[focus] MS
+  * ^definition = "focus is used to reference the specimen in focus of the procedure"
   * ^isModifier = false
-* identifier ..0
-* instantiatesCanonical ..0
-* instantiatesUri ..0
-* basedOn ..0
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
-* status = #completed (exactly)
-* statusReason ..0
-* category 1..
+* status MS
+* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
+  * ^comment = "The following statuses can be used: in-progress, completed."
+* category 1..1
   * coding 1..1
-    * system 1..
+    * system 1..1
     * system = "http://snomed.info/sct" (exactly)
-    * code 1..
+    * code 1..1
     * code = #117040002 (exactly)
-    * display 1..
+    * display 1..1
     * display = "Nucleic acid sequencing (procedure)" (exactly)
-* subject only Reference($StockholmPatientGenomics)
-* encounter ..0
-* recorder ..0
-* asserter ..0
-* performer ..1
+* subject only Reference(Patient) 
+* subject MS
+* performer 0..1 MS
   * actor only Reference(Organization)
     * display = "GMCK" (exactly)
-* location ..0
-* reasonCode ..0
-* reasonReference ..0
-* bodySite ..0
-* outcome ..0
-* report ..0
-* complication ..0
-* complicationDetail ..0
-* followUp ..0
-* note ..1
-* focalDevice ..0
-* usedReference ..0
-* usedCode ..0
