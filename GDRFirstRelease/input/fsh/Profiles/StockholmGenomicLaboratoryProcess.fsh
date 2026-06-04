@@ -17,7 +17,7 @@ Description: "Used to represent and hold together the laboratory process, includ
 * extension[focus] MS
 * partOf only Reference(StockholmGenomicStudyProcedure or Procedure)
 * status MS
-* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
+* status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * category.coding MS
 //  * system 1..1
