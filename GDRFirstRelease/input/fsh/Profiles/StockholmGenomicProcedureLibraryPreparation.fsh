@@ -1,11 +1,11 @@
 Profile: StockholmGenomicProcedureLibraryPreparation
 Parent: Procedure
-Id: StockholmGenomicProcedureLibraryPreparation
+Id: stockholm-genomic-procedure-library-preparation
 Title: "Stockholm Genomic Library Preparation"
 Description: "A profile on the procedure resource. It is used to represent the library preperation procedure. It is part of the Laboratory process of the genemoic study performed and containes detaild on what was performed on the sample/specimen during this procedure."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
+* ^purpose = "The purpose is to represent the library preperation procedure, which is part of the laboratory process of the genomic study. It contains details on what was performed on the sample/specimen during this procedure."
 * extension contains
     StockholmGenomicProcedureExtensionPanelName named panel-name 0..* and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
@@ -24,20 +24,19 @@ Description: "A profile on the procedure resource. It is used to represent the l
   * code = #56245008 (exactly)
   * display 1..1
   * display = "Specimen preparation (procedure)" (exactly)
-* subject only Reference($StockholmPatientGenomics)
-* encounter ..0
-* recorder ..0
-* asserter ..0
-* performer ..1
+* subject only Reference(Patient)
+* subject MS
+* performer 1..1 MS
+  * actor MS
   * actor only Reference(Organization)
-    * identifier
+    * identifier 0..1
       * system 1..1
-      * value 1..1
-      * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
+      * ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
+      * value 1..1 
   * onBehalfOf MS
-    * type = "Organization" (exactly)
+  * onBehalfOf only Reference(Organization)
       * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer laboratory procedure is used. If that is also empty, then the perfomer Genomic Study profile is used."
-      * identifier
+      * identifier 0..1
         * system 1..1
         * value 1..1
         * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."

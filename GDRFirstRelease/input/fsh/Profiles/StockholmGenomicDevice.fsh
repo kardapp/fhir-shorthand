@@ -1,6 +1,3 @@
-// This is a simple example of a FSH file.
-// This file can be renamed, and additional FSH files can be added.
-// SUSHI will look for definitions in any file using the .fsh ending.
 Profile: StockholmGenomicDevice 
 Parent: Device
 Description: "A profile of the Device resource."
@@ -24,7 +21,7 @@ Id: stockholm-genomic-device
 
 * deviceName 0..* MS
 
-* type 0..1
+* type 0..1 MS
 * type from StockholmGenomicDeviceTypeVS (required)
 
 * version 0..* MS

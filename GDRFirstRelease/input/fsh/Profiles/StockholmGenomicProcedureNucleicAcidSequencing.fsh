@@ -5,7 +5,7 @@ Title: "Stockholm Nucleic Acid Sequencing"
 Description: "A profile on the procedure resource. It is used to represent the Nucleic Acid Sequencing procedure. It is part of the Laboratory process of the genomic study performed and contains detailed information on what was performed, and which tools and platform were used during this procedure."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
+* ^purpose = "The purpose is to represent the Nucleic Acid Sequencing procedure, which is part of the laboratory process of the genomic study. It contains detailed information on what was performed, and which tools and platform were used during this procedure."
 * extension contains
     StockholmGenomicProcedureExtensionNucleicAcidSequencingResult named nucleic-acid-sequencing-result 0..* and
     StockholmGenomicProcedureExtensionNucleicAcidSequencingNumberOfReads named nucleic-acid-sequencing-number-of-reads 0..1 and
@@ -14,10 +14,8 @@ Description: "A profile on the procedure resource. It is used to represent the N
   * value[x] only Reference(StockholmGenomicDocumentReference)
 * extension[nucleic-acid-sequencing-number-of-reads] MS
   * ^definition = "Quality parameter. The number of reads of each sequence in the genome."
-  * ^isModifier = false
 * extension[focus] MS
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
-  * ^isModifier = false
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
 * status MS
 * status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
@@ -32,6 +30,17 @@ Description: "A profile on the procedure resource. It is used to represent the N
     * display = "Nucleic acid sequencing (procedure)" (exactly)
 * subject only Reference(Patient) 
 * subject MS
-* performer 0..1 MS
+* performer 1..1 MS
+  * actor MS
   * actor only Reference(Organization)
-    * display = "GMCK" (exactly)
+    * identifier 0..1
+      * system 1..1
+      * ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
+      * value 1..1 
+  * onBehalfOf MS
+  * onBehalfOf only Reference(Organization)
+      * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer laboratory procedure is used. If that is also empty, then the perfomer Genomic Study profile is used."
+      * identifier 0..1
+        * system 1..1
+        * value 1..1
+        * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. The system URL is currently local and invented."

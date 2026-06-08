@@ -1,12 +1,11 @@
 Profile: StockholmGenomicLaboratoryProcess
 Parent: Procedure
-Id: StockholmGenomicLaboratoryProcess
+Id: stockholm-genomic-laboratory-process
 Title: "Stockholm Genomic Laboratory Process"
 Description: "Used to represent and hold together the laboratory process, including library preperation and the gene sequencing. Each GenomicStudy can include several laboratory processes, one for each sample connected to the genomic study.."
-* ^url = "https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicLaboratoryProcess"
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* ^purpose = "The purpose of this profile is to be part of the MVP-GDR project with the goal to evaluate FHIR as a standard to meet our needs for genomic data.\r\nIt should therefore be known that the information model itself has been created for the purpose of performing this evaluation. The information model is therefore NOT ready for implementation in a production environment to store resource data."
+* ^purpose = "The purpse of this profile is to link and represent the laboratory phase of the genomic study together, which includes the library preparation and Nucleic Acid Sequencing."
 * extension 3..*
 * extension contains
     StockholmGenomicProcedureExtensionLibraryPreparation named genomic-library-preparation 1..1 and
@@ -19,25 +18,17 @@ Description: "Used to represent and hold together the laboratory process, includ
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
-* category.coding MS
-//  * system 1..1
-//    StockholmGenomicProcedureExtensionLibraryPreparation named genomic-library-preparation 1..1 and
-//    StockholmGenomicProcedureExtensionNucleicAcidSequencing named nucleic-acid-sequencing 1..1 and
-//    StockholmGenomicProcedureExtensionFocus named focus 1..1    
-* instantiatesCanonical ..0
-* instantiatesUri ..0
+* instantiatesCanonical ..0 //This attribute is removed in future releases.
+* instantiatesUri ..0 //This attribute is removed in future releases.
 * partOf only Reference(StockholmGenomicStudyProcedure or Procedure)
-* status = #completed (exactly)
-  * ^comment = "The following statuses can be used to represent the status of the procedure: \r\npreparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown"
-* statusReason ..0
-* category.coding
+* category.coding MS
   * system 1..
   * system = "http://snomed.info/sct" (exactly)
   * code 1..1
   * code = #108252007 (exactly)
   * display 1..1
   * display = "Laboratory procedure (procedure)" (exactly)
-* subject only Reference(Patient)
+* subject only Reference(Patient) MS
 * performer 
   * actor MS
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the laborary process of the genomic analysis. It can be a different organisation than the one performing the genomic study analysis procedure." 
