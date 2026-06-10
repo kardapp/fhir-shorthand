@@ -6,15 +6,16 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
 * ^status = #draft
 * ^version = "1.0.0-alpha.1"
 * extension[regions] MS 
-* extension[regions].extension[studied].valueReference only Reference(StockholmGenomicDataFile)
+* extension[regions].extension[studied].valueReference only Reference(StockholmGenomicDocumentReference)
 * extension[device] MS
 * extension[device].extension[device].value[x] only Reference(StockholmGenomicDevice) 
 * extension[input] MS
 * extension[input].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) 
 * extension[output] MS
 * extension[output].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS)
-* extension contains $StockholmGenomicAnalysisPedigreeExtension named pedigree 0..* MS
+* extension contains $StockholmGenomicAnalysisPedigreeExtension named pedigree 
   * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."
+* extension[pedigree] 0..1 MS
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(Procedure or StockholmGenomicStudy)
@@ -41,10 +42,10 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the genomic analysis." 
     * type = "Organization" (exactly)
     * identifier
-    * ^comment = "Identifier must be used as long as a reference to an organisation resource is not possible"
+    * ^comment = "Identifier must be used when a reference to an organisation resource is not possible"
       * system 1..1
       * value 1..1
-      * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, urn:oid:1.2.752.29.4.71 should be used."
+      * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, e.g. urn:oid:1.2.752.29.4.71 should be used."
     * display ^comment = "Can be set automatically to the laboratory's organization when possible. Otherwise, it may be left blank."
   * onBehalfOf MS
     * ^requirements = "The Genomic Study procedure should be linked to the organization that requested the analysis, typically another diagnostic unit. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
@@ -52,7 +53,7 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
     * ^comment = "onBehalfOf should be used to point to the requester of the genomic analysis, as long as no structured referral is available. If there is a reference to a serviceRequest, then the requester should be described in the serviceRequest instead."
     * type = "Organization" (exactly)
     * identifier
-      * ^comment = "Identifier must be used as long as a reference to an organisation resource is not possible"
+      * ^comment = "Identifier must be used when a reference to an organisation resource is not possible"
       * system 1..1
       * value 1..1
       * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. A system URL representing the requester should be used"
