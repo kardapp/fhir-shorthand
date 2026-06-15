@@ -6,16 +6,19 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
 * ^status = #draft
 * ^version = "1.0.0-alpha.1"
 * extension[regions] MS 
-* extension[regions].extension[studied].valueReference only Reference(StockholmGenomicDocumentReference)
+* extension[regions].extension[studied].valueReference only Reference(StockholmGenomicDataFile)
 * extension[device] MS
 * extension[device].extension[device].value[x] only Reference(StockholmGenomicDevice) 
 * extension[input] MS
 * extension[input].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS) 
+* extension[input].extension[file].valueReference only Reference(StockholmGenomicDataFile)
 * extension[output] MS
 * extension[output].extension[type].value[x] from ValueSet(StockholmGenomicStudyDataFormatVS)
-* extension contains $StockholmGenomicAnalysisPedigreeExtension named pedigree 
+* extension[specimen] MS
+* extension[specimen].extension[type].valueReference only Reference(StockholmGenomicSpecimen)
+* extension contains StockholmGenomicAnalysisExtensionPedigree named pedigree 0..1 
+* extension[pedigree] MS
   * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."
-* extension[pedigree] 0..1 MS
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(Procedure or StockholmGenomicStudy)

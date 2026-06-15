@@ -28,7 +28,8 @@ Description: "Used to represent and hold together the laboratory process, includ
   * code = #108252007 (exactly)
   * display 1..1
   * display = "Laboratory procedure (procedure)" (exactly)
-* subject only Reference(Patient) MS
+* subject MS
+* subject only Reference(Patient)
 * performer
   * actor MS
     * ^requirements = "The procedure must be linked to the organization that performed the analysis, typically a laboratory. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
@@ -51,5 +52,5 @@ Description: "Used to represent and hold together the laboratory process, includ
       * value 1..1
       * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. A system URL representing the requester should be used"
     * display ^comment = "Can be used if a display name of the requester organisation is available"
-
+0
     
