@@ -1,5 +1,5 @@
 Profile: StockholmGenomicDataFile
-Parent: genomic-data-file
+Parent: DocumentReference
 Id: stockholm-genomic-data-file
 Title: "Stockholm Genomic Data File"
 Description: "Profile to store metadata about and point to the files included in the genomic study, This resource is referneced both from the StockholmGeneSequencing resource aswell as the StockholmGenomicStudyAnalysis."
@@ -8,9 +8,9 @@ Description: "Profile to store metadata about and point to the files included in
 * implicitRules ..0
 * language ..0
 * contained ..0
-* extension contains StockholmSpecimenExtension named specimen 0..*
+* extension contains StockholmGenomicExtensionSpecimen named specimen 0..*
 * extension[specimen] MS
-* extension[specimen].extension[type].valueReference only Reference(StockholmGenomicSpecimen)
+//* extension[specimen].extension[type].valueReference only Reference(StockholmGenomicSpecimen)
 * masterIdentifier ..0
 * identifier ..0
 * status = #current (exactly)

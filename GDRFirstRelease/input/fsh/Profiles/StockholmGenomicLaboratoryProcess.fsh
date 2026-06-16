@@ -52,5 +52,3 @@ Description: "Used to represent and hold together the laboratory process, includ
       * value 1..1
       * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. A system URL representing the requester should be used"
     * display ^comment = "Can be used if a display name of the requester organisation is available"
-0
-    
