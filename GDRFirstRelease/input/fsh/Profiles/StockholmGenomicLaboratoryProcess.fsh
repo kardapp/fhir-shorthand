@@ -35,8 +35,7 @@ Description: "Used to represent and hold together the laboratory process, includ
     * ^requirements = "The procedure must be linked to the organization that performed the analysis, typically a laboratory. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
     * ^definition = "The performer is the organization that is responsible for the procedure. In this case, the laboratory that performs the laboratory process." 
     * type = "Organization" (exactly)
-    * identifier
-    * ^comment = "Identifier must be used when a reference to an organisation resource is not possible"
+    * identifier ^comment = "Identifier must be used when a reference to an organisation resource is not possible"
       * system 1..1
       * value 1..1
       * system ^comment = "Currently, a local system URL (e.g. http://gmck.se/clarity-lims) is used as the identifier for the laboratory. When HSA-ID/kombika is available, e.g. urn:oid:1.2.752.29.4.71 should be used."

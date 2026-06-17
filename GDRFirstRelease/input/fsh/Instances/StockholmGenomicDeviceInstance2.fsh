@@ -1,5 +1,5 @@
 Instance: NanoporeSequencingPlatform-Example
-InstanceOf: StockholmDevice
+InstanceOf: StockholmGenomicDevice
 Usage: #example
 Title: "Nanopore sequencing platform - example"
 Description: "Example Device instance representing a nanopore-based gene sequencing platform used for genomic analysis in a clinical setting."

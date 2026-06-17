@@ -1,5 +1,5 @@
 Instance: BioinformaticsPipelineDevice-Example
-InstanceOf: StockholmDevice
+InstanceOf: StockholmGenomicDevice
 Usage: #example
 Title: "Bioinformatic pipeline device - example"
 Description: "Example Device instance representing a bioinformatic analysis pipeline used for genomic variant calling."
