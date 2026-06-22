@@ -1,7 +1,7 @@
-Profile: StockholmGenomicLaboratoryProcess
+Profile: StockholmGenomicProcedureLaboratoryProcess
 Parent: Procedure
-Id: stockholm-genomic-laboratory-process
-Title: "Stockholm Genomic Laboratory Process"
+Id: stockholm-genomic-procedure-laboratory-process
+Title: "Stockholm Genomic ProcedureLaboratory Process"
 Description: "Used to represent and hold together the laboratory process, including library preperation and the gene sequencing. Each GenomicStudy can include several laboratory processes, one for each sample connected to the genomic study.."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
