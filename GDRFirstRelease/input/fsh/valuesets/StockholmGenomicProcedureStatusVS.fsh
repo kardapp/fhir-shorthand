@@ -3,7 +3,6 @@ Id: Stockholm-genomic-procedure-status-vs
 Title: "Stockholm Genomic Procedure Status ValueSet"
 Description: "Begränsar status till endast 'completed' och 'in-progress' för Stockholm Genomic Procedure."
 
-* ^url = "https://pub.regionstockholm.se/fhir/ValueSet/StockholmGenomicProcedureStatusVS"
 * ^status = #active
 * ^version = "1.0.0"
 * ^experimental = false
