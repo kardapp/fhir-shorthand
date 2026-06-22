@@ -1,5 +1,5 @@
-Extension: StockholmGenomicProcedureLaboratoryProcessExtension 
-Id: stockholm-genomic-procedure-laboratory-process-extension
+Extension: StockholmGenomicProcedureExtensionLaboratoryProcess 
+Id: stockholm-genomic-procedure-extension-laboratory-process
 Description: "Extension"
 Context: Procedure
 * ^status = #draft

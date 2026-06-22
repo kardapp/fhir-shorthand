@@ -1,10 +1,7 @@
-Alias: $genomic-data-file = http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-data-file
-
-Extension: StockholmGeneSequencingResult
-Id: StockholmGeneSequencingResult
-Title: "Stockholm Gene Sequencing Result"
+Extension: StockholmGenomicsNucleicAcidSequencingExtensionResult
+Id: stockholm-genomic-nucleic-acid-sequencing-extension-result
+Description: "Extension"
+Title: "Stockholm Genomic Nucleic Acid Sequencing Result"
 Context: Procedure
-* ^url = "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGeneSequencingResultOld"
 * ^status = #draft
-* url = "https://Stockholmfhirserver.org/fhir/StructureDefinition/StockholmGeneSequencingResultOld" (exactly)
-* value[x] only Reference($genomic-data-file)
+* value[x] only Reference(DocumentReference)
