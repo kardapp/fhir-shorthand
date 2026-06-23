@@ -1,3 +1,4 @@
+Alias: $StockholmGenomicProcedureStatusVS = https://pub.regionstockholm.se/fhir/gdr/ValueSet/Stockholm-genomic-procedure-status-vs
 Profile: StockholmGenomicProcedureLibraryPreparation
 Parent: Procedure
 Id: stockholm-genomic-procedure-library-preparation
@@ -5,9 +6,9 @@ Title: "Stockholm Genomic Library Preparation"
 Description: "A profile on the procedure resource. It is used to represent the library preperation procedure. It is part of the Laboratory process of the genemoic study performed and containes detaild on what was performed on the sample/specimen during this procedure."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
-* ^purpose = "The purpose is to represent the library preperation procedure, which is part of the laboratory process of the genomic study. It contains details on what was performed on the sample/specimen during this procedure."
+* ^purpose = "The purpose is to represent the library preparation procedure, which is part of the laboratory process of the genomic study. It contains details on what was performed on the sample/specimen during this procedure."
 * extension contains
-    StockholmGenomicProcedureExtensionPanelName named panel-name 0..* and
+    StockholmGenomicLibraryPreparationExtensionPanelName named panel-name 0..* and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
 * extension[panel-name] MS
   * ^definition = "The name of the panel used during the library preperation"
@@ -15,7 +16,7 @@ Description: "A profile on the procedure resource. It is used to represent the l
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure) 
 * status MS
-* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
+* status from ValueSet($StockholmGenomicProcedureStatusVS) (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * category.coding MS
   * system 1..

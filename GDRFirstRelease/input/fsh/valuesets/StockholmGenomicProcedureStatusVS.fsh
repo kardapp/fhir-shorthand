@@ -1,5 +1,5 @@
 ValueSet: StockholmGenomicProcedureStatusVS
-Id: Stockholm-genomic-procedure-status-vs
+Id: stockholm-genomic-procedure-status-vs
 Title: "Stockholm Genomic Procedure Status ValueSet"
 Description: "Begränsar status till endast 'completed' och 'in-progress' för Stockholm Genomic Procedure."
 
