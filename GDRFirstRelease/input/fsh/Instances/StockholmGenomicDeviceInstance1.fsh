@@ -15,12 +15,12 @@ Description: "Example Device instance representing a bioinformatic analysis pipe
 * deviceName[0].name = "GDR Bioinformatic Variant Calling Pipeline"
 * deviceName[0].type = #modelname
 
-* type.coding[0].system = Canonical(DeviceTypeCS)
+* type.coding[0].system = Canonical(StockholmGenomicDeviceTypeCS)
 * type.coding[0].code = #bioinformatic-pipeline
 * type.coding[0].display = "Bioinformatic pipeline"
 * type.text = "Bioinformatic pipeline"
 
 * version[0].value = "v2.3.1"
 
-* extension[deviceDocumentation].valueUri = "https://myadlm.org/cln/articles/2020/march/next-generation-sequencing-bioinformatics-pipelines"
+* extension[documentation].valueUri = "https://myadlm.org/cln/articles/2020/march/next-generation-sequencing-bioinformatics-pipelines"
 

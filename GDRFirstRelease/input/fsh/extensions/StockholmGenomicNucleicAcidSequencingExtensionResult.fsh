@@ -1,7 +1,7 @@
 Extension: StockholmGenomicNucleicAcidSequencingExtensionResult
 Id: stockholm-genomic-nucleic-acid-sequencing-extension-result
 Description: "Extension"
-Title: "Stockholm Genomic Nucleic Acid Sequencing Result"
+Title: "Stockholm Genomic Procedure Nucleic Acid Sequencing Result"
 Context: Procedure
 * ^status = #draft
-* value[x] only Reference(DocumentReference)
+* value[x] only Reference(StockholmGenomicDataFile)

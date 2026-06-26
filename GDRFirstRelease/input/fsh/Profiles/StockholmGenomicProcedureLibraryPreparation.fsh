@@ -15,8 +15,10 @@ Description: "A profile on the procedure resource. It is used to represent the l
 * extension[focus] MS
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure) 
+* usedReference MS
+* usedReference only Reference(StockholmGenomicDevice)
 * status MS
-* status from ValueSet(StockholmGenomicProcedureStatusVS) (required) 
+* status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * category.coding MS
   * system 1..
