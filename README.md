@@ -65,3 +65,36 @@ FHIR Shorthand (FSH) is a domain-specific language for defining FHIR artifacts i
 ---
 
 > Denna README kan även kopieras till Confluence för vidare kunskapsdelning.
+
+## IG Publisher: lokal körning och felsökning
+
+### Vad som händer i kedjan
+1. SUSHI läser FSH-filerna och genererar FHIR-resurser i `output/`.
+2. IG Publisher läser `output/`, bygger HTML och validerar resurserna.
+3. QA-rapporten skrivs till `output/qa.html` och huvudsidan till `output/index.html`.
+
+### Så kör du IG Publisher lokalt
+Gå till `GDRFirstRelease` och kör:
+
+```powershell
+Set-Location "C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease"
+$env:JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF-8'
+java -jar input-cache\publisher.jar -ig . -tx n/a
+```
+
+Det här är den lokala/offline-varianten. Flaggan `-tx n/a` gör att Publisher inte försöker nå terminologiservern `tx.fhir.org`.
+
+### Var du öppnar resultatet
+- `output/index.html` för själva IG:t
+- `output/qa.html` för valideringsrapporten
+
+### Felbild vi såg senast
+- `package.tgz` misslyckades när paketet skulle konverteras till R4B.
+- Rotorsaken var `Device.deviceName[0].type` i `fsh-generated/resources/Device-BioinformaticsPipelineDevice-Example.json`.
+- Värdet `modelname` är inte giltigt för `DeviceNameType` i FHIR R4.
+- Det gav även `Errors: 16`, `Warnings: 62` och `Broken Links: 4` i QA-rapporten.
+
+### Vad som behöver göras
+- Ändra `Device.deviceName[0].type` från `modelname` till ett giltigt `DeviceNameType`-värde.
+- Kör IG Publisher igen lokalt.
+- Kontrollera `output/qa.html` tills felräkningen gått ner och de trasiga länkarna är utredda.

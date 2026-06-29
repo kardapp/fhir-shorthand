@@ -1,0 +1,10 @@
+{
+  "resourceType" : "Requirements",
+  "id" : "fromNarrative",
+  "url" : "https://pub.regionstockholm.se/fhir/gdr/Requirements/fromNarrative",
+  "name" : "FromNarrative",
+  "title" : "Berättande konformansuttalanden",
+  "status" : "active",
+  "experimental" : false,
+  "description" : "Konformansuttalanden som hittas genom hela IG-berättelsen konsoliderade till denna beräkningsbara resurs för spårbarhetsändamål"
+}

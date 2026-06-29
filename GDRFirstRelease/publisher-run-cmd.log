@@ -1,0 +1,57 @@
+FHIR IG Publisher Version 2.2.10 (Git# 37a39a2cca2d). Built 2026-06-25T21:40:25.53Z (11 hours old)  
+Detected Java version: 25.0.3 from C:\Users\fz71\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.3.9-hotspot on Windows 11/amd64 (64bit). 3922MB available
+dir = C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease, path = c:\Users\fz71\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\fz71\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\Program Files (x86)\Common Files\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Common Files\Pulse Secure\VC142.CRT\X86\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\SafeNet\Authentication\SAC\x32;C:\Program Files\SafeNet\Authentication\SAC\x64;C:\Users\fz71\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\Users\fz71\AppData\Local\Microsoft\WindowsApps;C:\Users\fz71\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\fz71\AppData\Local\Programs\Git\cmd;C:\Users\fz71\AppData\Roaming\npm;
+Parameters: -ig . -o output -tx n/a                                                                 
+Character encoding = UTF-8 / UTF-8                                                                  
+Start Clock @ fredag 26 juni 2026 11:20:39 centraleuropeisk sommartid (2026-06-26T11:20:39+02:00)   
+                                                                                                    
+Publishing Content Failed: 1 exception(s): [org.apache.commons.io.IOIndexedException: IOException #0: Cannot delete file: C:\Users\fz71\.fhir\packages\5edb2543-32c0-451e-94a1-8a9cbc0492f5\package] (00:00.160 / 00:00.161, 59Mb)
+                                                                                                     (00:00.007 / 00:00.168, 59Mb)
+Use -? to get command line help                                                                      (00:00.002 / 00:00.170, 59Mb)
+                                                                                                     (00:00.002 / 00:00.173, 59Mb)
+Stack Dump (for debugging):                                                                          (00:00.001 / 00:00.174, 59Mb)
+org.apache.commons.io.IOExceptionList: 1 exception(s): [org.apache.commons.io.IOIndexedException: IOException #0: Cannot delete file: C:\Users\fz71\.fhir\packages\5edb2543-32c0-451e-94a1-8a9cbc0492f5\package]
+	at org.apache.commons.io.IOExceptionList.checkEmpty(IOExceptionList.java:50)
+	at org.apache.commons.io.function.IOStream.forAll(IOStream.java:357)
+	at org.apache.commons.io.function.IOStreams.forAll(IOStreams.java:42)
+	at org.apache.commons.io.function.IOStreams.forAll(IOStreams.java:36)
+	at org.apache.commons.io.function.IOConsumer.forAll(IOConsumer.java:80)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:367)
+	at org.hl7.fhir.utilities.FileUtilities.clearDirectory(FileUtilities.java:485)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.deleteOldTempDirectories(FilesystemPackageCacheManager.java:279)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.lambda$prepareCacheFolder$0(FilesystemPackageCacheManager.java:233)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$CacheLock.doWriteWithLock(FilesystemPackageCacheManagerLocks.java:114)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.prepareCacheFolder(FilesystemPackageCacheManager.java:220)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.<init>(FilesystemPackageCacheManager.java:205)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager$Builder.build(FilesystemPackageCacheManager.java:195)
+	at org.hl7.fhir.igtools.publisher.PublisherBase.getFilesystemPackageCacheManager(PublisherBase.java:82)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.initialize(PublisherIGLoader.java:104)
+	at org.hl7.fhir.igtools.publisher.Publisher.execute(Publisher.java:223)
+	at org.hl7.fhir.igtools.publisher.Publisher.main(Publisher.java:1612)
+Caused by: org.apache.commons.io.IOIndexedException: IOException #0: Cannot delete file: C:\Users\fz71\.fhir\packages\5edb2543-32c0-451e-94a1-8a9cbc0492f5\package
+	at org.apache.commons.io.function.IOStream.lambda$forAll$11(IOStream.java:352)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:803)
+	at org.apache.commons.io.function.IOStream.forAll(IOStream.java:343)
+	... 15 more
+Caused by: java.io.IOException: Cannot delete file: C:\Users\fz71\.fhir\packages\5edb2543-32c0-451e-94a1-8a9cbc0492f5\package
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1392)
+	at org.apache.commons.io.function.IOStream.lambda$forAll$11(IOStream.java:345)
+	... 18 more
+Caused by: java.nio.file.FileSystemException: C:\Users\fz71\.fhir\packages\5edb2543-32c0-451e-94a1-8a9cbc0492f5\package\.index.db: Det går inte att komma åt filen eftersom den
+används av en annan process
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.implDelete(WindowsFileSystemProvider.java:269)
+	at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+	at java.base/java.nio.file.Files.deleteIfExists(Files.java:1087)
+	at org.apache.commons.io.file.DeletingPathVisitor.visitFile(DeletingPathVisitor.java:159)
+	at org.apache.commons.io.file.DeletingPathVisitor.visitFile(DeletingPathVisitor.java:37)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2543)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2609)
+	at org.apache.commons.io.file.PathUtils.visitFileTree(PathUtils.java:1730)
+	at org.apache.commons.io.file.PathUtils.deleteDirectory(PathUtils.java:518)
+	at org.apache.commons.io.file.PathUtils.delete(PathUtils.java:477)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1388)
+	... 19 more
