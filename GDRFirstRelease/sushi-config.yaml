@@ -6,8 +6,8 @@
 id: RegionStockholm
 canonical: https://pub.regionstockholm.se/fhir/gdr
 name: RegionStockholmGDR
-# title: Example Title
-# description: Example Implementation Guide for getting started with SUSHI
+title: Stockholm Genomic Data Repository Implementation Guide
+description: FHIR Implementation Guide for Stockholm Genomic Diagnostic Reporting (GDR) defining profiles, extensions, and value sets for genomic data representation in electronic patient records
 status: draft # draft | active | retired | unknown
 version: 0.0.1-alpha1
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html

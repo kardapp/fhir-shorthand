@@ -1,14 +1,16 @@
-# Stockholm Device Implementation Guide
+# Stockholm Genomic Diagnostic Report Implementation Guide
 
 ## Introduktion
 
-Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av medicinska enheter (devices) inom GDR-MVP (General Data Repository - Minimum Viable Product).
+Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av genomisk diagnostisk rapportering (GDR - Genomic Diagnostic Report) inom Stockholm sjukhuset.
 
-Specifikationen är utformad för användning inom Stockholm sjukhuset och säkerställer konsistent representation av devicedata i elektroniska patientjournaler och kliniska system.
+Specifikationen är utformad för att möjliggöra strukturerad rapportering av genetiska analyser, sekvensering, laboratorieprov och medicinska enheter enligt FHIR-standarden R4, med fokus på interoperabilitet och dataintegration i elektroniska patientjournaler.
 
 ## Omfattning
 
 Denna guide omfattar:
+
+### Artefakttyper
 
 - **Device-profiler**: Strukturerade definitioner för medicinska enheter
 - **Värdesets**: Standardiserade värden för device-status, typ och klassificering
@@ -16,6 +18,8 @@ Denna guide omfattar:
 - **Extensions**: Tilläggsfält för dokumentation och metadata
 
 ## Målgrupp
+
+### Primära användare
 
 - Systemarkitekter och IT-utvecklare
 - Klinisk IT-personal
@@ -27,14 +31,14 @@ Denna guide omfattar:
 - **FHIR Version**: 4.0.1
 - **Status**: Draft
 - **Version**: 0.1.2
-- **Canonical URL**: https://simplifier.net/gdr-mvp/Stockholmdevice
-- **Publisher**: Simplifier
+- **Canonical URL**: https://pub.regionstockholm.se/fhir/gdr
+- **Publisher**: Karolinska University Hospital
 
 ## Hur man använder denna guide
 
-1. **Börja med [Profiler](profiles.html)** för en översikt över alla definierade profiler
+1. **Börja med [Artifacts](artifacts.html)** för en översikt över alla definierade profiler, extensions, value sets och code systems
 2. **Se [Downloads](downloads.html)** för tekniska artefakter och paket
-3. **Kontakta** [Simplifier](https://simplifier.net/) för frågor och support
+3. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
 
 ## Versionshistorik
 

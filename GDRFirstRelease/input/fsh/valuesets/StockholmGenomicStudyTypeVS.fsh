@@ -4,7 +4,6 @@ Id: Stockholm-genomic-study-type-vs
 Title: "Stockholm Genomic Study Type ValueSet"
 Description: "Placeholder ValueSet för olika typer av genomiska analyser. Ska på sikt ersättas med SnomedCT-koder."
 
-* ^url = "https://pub.regionstockholm.se/fhir/ValueSet/StockholmGenomicStudyTypeVS"
 * include codes from system StockholmGenomicStudyTypeCS
 * ^status = #draft
 * ^version = "1.0.0"

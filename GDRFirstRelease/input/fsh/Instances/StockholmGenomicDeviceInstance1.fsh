@@ -13,7 +13,7 @@ Description: "Example Device instance representing a bioinformatic analysis pipe
 * serialNumber = "BIOINF-PIPELINE-0001"
 
 * deviceName[0].name = "GDR Bioinformatic Variant Calling Pipeline"
-* deviceName[0].type = #modelname
+* deviceName[0].type = #model-name
 
 * type.coding[0].system = Canonical(StockholmGenomicDeviceTypeCS)
 * type.coding[0].code = #bioinformatic-pipeline
