@@ -37,7 +37,7 @@ Denna guide omfattar:
 ## Hur man använder denna guide
 
 1. **Börja med [Artifacts](artifacts.html)** för en översikt över alla definierade profiler, extensions, value sets och code systems
-2. **Se [Downloads](downloads.html)** för tekniska artefakter och paket
+2. **Hämta artefakter** från [Artifacts](artifacts.html) sidan för implementering
 3. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
 
 ## Versionshistorik
