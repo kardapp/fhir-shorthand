@@ -1,7 +1,11 @@
 CodeSystem: StockholmGenomicStudyTypeCS
 Id: stockholm-genomic-study-type-cs
+Title: "Stockholm Genomic Study Type CodeSystem"
+Description: "Local Stockholm-specific genomic study type codes."
 
 * ^status = #draft
+* ^experimental = false
+* ^caseSensitive = false
 
 * #wgs "Whole Genome Sequencing"
 * #wes "Whole Exome Sequencing"
