@@ -1,13 +1,13 @@
-# TODO – Stockholm Genomic Diagnostic Report IG
+# TODO – Stockholm Genomic Data Repository IG
 
 ---
 
 ## 🔴 Högt prioritet
 
 ### Jobba med valideringsvarningar (från ISSUES-TODO-LIST.md)
-- [ ] CodeSystem metadata: lägg till `experimental`, `caseSensitive`, `title`, `description` i 3 CodeSystems (~30 min)
-- [ ] ValueSet metadata: lägg till `experimental` i 3 ValueSets (~15 min)
-- [ ] Specimen ValueSet-bindningar: lås versioner (v2-0487, v2-0916, v2-0371, v2-0493 → `|3.0.0`) (~10 min)
+- [ ] CodeSystem metadata: lägg till `experimental`, `caseSensitive`, `title`, `description` i 3 CodeSystems (~30 min) - Done
+- [ ] ValueSet metadata: lägg till `experimental` i 3 ValueSets (~15 min) - Done
+- [ ] Specimen ValueSet-bindningar: lås versioner (v2-0487, v2-0916, v2-0371, v2-0493 → `|3.0.0`) (~10 min) - Done
 - Se [ISSUES-TODO-LIST.md](ISSUES-TODO-LIST.md) för fullständig lista
 
 **Så gör du:**

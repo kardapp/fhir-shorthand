@@ -23,5 +23,9 @@ Description: "Profile to store the data about the specimen used in the genomic s
 * identifier[laboratory-sample-identifier].type = $v2-0203#FILL
 * identifier[laboratory-sample-identifier].type.coding.display = "Filler Identifier" (exactly)
 * identifier[laboratory-sample-identifier] ^definition = "Business identifiers assigned to this procedure by the performer/laboratory"
+* type from http://terminology.hl7.org/ValueSet/v2-0487|3.0.0
+* status from http://terminology.hl7.org/ValueSet/v2-0916|3.0.0
+* collection.bodySite from http://terminology.hl7.org/ValueSet/v2-0371|3.0.0
+* collection.method from http://terminology.hl7.org/ValueSet/v2-0493|3.0.0
 * subject 1.. MS
 * subject only Reference(Patient)
