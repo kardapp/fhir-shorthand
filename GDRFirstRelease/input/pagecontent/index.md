@@ -1,8 +1,8 @@
-# Stockholm Genomic Diagnostic Report Implementation Guide
+# Stockholm Genomic Data Repository Implementation Guide
 
 ## Introduktion
 
-Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av genomisk diagnostisk rapportering (GDR - Genomic Diagnostic Report) inom Stockholm sjukhuset.
+Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av genomisk data inom Stockholm sjukhuset.
 
 Specifikationen är utformad för att möjliggöra strukturerad rapportering av genetiska analyser, sekvensering, laboratorieprov och medicinska enheter enligt FHIR-standarden R4, med fokus på interoperabilitet och dataintegration i elektroniska patientjournaler.
 

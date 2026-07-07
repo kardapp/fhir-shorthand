@@ -1,4 +1,4 @@
-# Stockholm Genomic Diagnostic Report IG - Åtgärdslista
+# Stockholm Genomic Data Repository IG - Åtgärdslista
 
 **Byggtatus:** ✅ 16 errors → 1 error (94% minskning)  
 **Aktuella problem:** 1 kritiskt error + 52 varningar + 64 info-meddelanden
