@@ -17,14 +17,18 @@ Description: "Profile to store the data about the specimen used in the genomic s
 * identifier contains
     requester-sample-identifier 0..* and
     laboratory-sample-identifier 0..*
-* identifier[requester-sample-identifier].type = $v2-0203#PLAC
+* identifier[requester-sample-identifier].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[requester-sample-identifier].type.coding.code = #PLAC (exactly)
 * identifier[requester-sample-identifier].type.coding.display = "Placer Identifier" (exactly)
+* identifier[requester-sample-identifier] ^mustSupport = true
 * identifier[requester-sample-identifier] ^definition = "Business identifiers assigned to this procedure by the requester"
-* identifier[laboratory-sample-identifier].type = $v2-0203#FILL
+* identifier[laboratory-sample-identifier].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[laboratory-sample-identifier].type.coding.code = #FILL (exactly)
 * identifier[laboratory-sample-identifier].type.coding.display = "Filler Identifier" (exactly)
+* identifier[laboratory-sample-identifier] ^mustSupport = true
 * identifier[laboratory-sample-identifier] ^definition = "Business identifiers assigned to this procedure by the performer/laboratory"
 * type from http://terminology.hl7.org/ValueSet/v2-0487|3.0.0
-* status from http://terminology.hl7.org/ValueSet/v2-0916|3.0.0
+* status from http://hl7.org/fhir/ValueSet/specimen-status|4.0.1
 * collection.bodySite from http://terminology.hl7.org/ValueSet/v2-0371|3.0.0
 * collection.method from http://terminology.hl7.org/ValueSet/v2-0493|3.0.0
 * subject 1.. MS

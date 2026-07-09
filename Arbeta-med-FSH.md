@@ -582,6 +582,28 @@ fhir-shorthand/
 
 **Tumregel:** Versionshantera bara `input/` och konfigurationsfilerna. Allt annat genereras automatiskt.
 
+## How to generate the IG html page:
+
+Run this to open the generated IG site homepage:
+
+cd C:\Users\hc12\Desktop\fhir-shorthand\GDRFirstRelease
+start .\output\index.html
+
+Useful next commands:
+
+Rebuild after edits:
+
+.\_genonce.bat
+
+
+Open QA report:
+
+start .\output\qa.html
+
+Open a specific artifact page (example Specimen profile):
+
+start .\output\StructureDefinition-stockholm-genomic-specimen.html
+
 ---
 
 *Dokument skapat 2026-07-03 | Region Stockholm / Karolinska University Hospital*

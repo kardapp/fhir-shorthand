@@ -27,7 +27,7 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
-* code.coding ..0
+* code ..0
 * subject MS
 * subject only Reference(Patient) 
   * ^requirements = "A Genomic Study must be linked to a Patient resource. It must point to the same patient as the one linked from the Genomic Study procedure resource."
