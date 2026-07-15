@@ -9,7 +9,7 @@ Description: "Example Device instance representing a bioinformatic analysis pipe
 * identifier[0].system = "urn:ietf:rfc:3986"
 * identifier[0].value = "urn:uuid:1b6b25f0-1a1f-4b66-9c3e-9df2a9c6d0a1"
 
-* manufacturer = "Stockholm University Laboratory - Bioinformatics"
+* manufacturer = "Laboratory - Bioinformatics"
 * serialNumber = "BIOINF-PIPELINE-0001"
 
 * deviceName[0].name = "GDR Bioinformatic Variant Calling Pipeline"
@@ -21,6 +21,5 @@ Description: "Example Device instance representing a bioinformatic analysis pipe
 * type.text = "Bioinformatic pipeline"
 
 * version[0].value = "v2.3.1"
-
-* extension[documentation].valueUri = "https://myadlm.org/cln/articles/2020/march/next-generation-sequencing-bioinformatics-pipelines"
+* extension[documentation].valueUri = "urn:placeholder:device-documentation:bioinformatics-pipeline"
 

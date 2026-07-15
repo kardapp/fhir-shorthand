@@ -13,5 +13,5 @@ Description: "Example Device instance representing a nanopore-based gene sequenc
 * type.coding[0].code = #sequencing-platform
 * type.coding[0].display = "Gene sequencing platform"
 * version[0].value = "Instrument software v23.05.6"
-* extension[documentation].valueUri = "https://nanoporetech.com/"
+* extension[documentation].valueUri = "urn:placeholder:device-documentation:nanopore-platform"
 
