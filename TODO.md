@@ -74,10 +74,10 @@
 4. Testa och commit
 
 ### Sökparametrar
-- [ ] Se över vilka sökanrop GDR ska stödja per resurstyp
-- [ ] Identifiera vilka FHIR-sökparametrar som är relevanta (t.ex. `Patient?identifier=`, `Specimen?subject=`)
-- [ ] Skapa eventuellt egna SearchParameter-resurser i FSH om standardparametrar inte räcker
-- [ ] Dokumentera sökparametrar i CapabilityStatement (hänger ihop med CapabilityStatement-uppgiften)
+- [x] Se över vilka sökanrop GDR ska stödja per resurstyp
+- [x] Identifiera vilka FHIR-sökparametrar som är relevanta (t.ex. `Patient?identifier=`, `Specimen?subject=`)
+- [x] Skapa eventuellt egna SearchParameter-resurser i FSH om standardparametrar inte räcker (ej nödvändigt i denna version)
+- [x] Dokumentera sökparametrar i CapabilityStatement (hänger ihop med CapabilityStatement-uppgiften)
 
 **Så gör du:**
 1. **Gå igenom varje resurstyp och identifiera relevanta sökparametrar**

@@ -29,6 +29,12 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[0].interaction[1].code = #read
 * rest[0].resource[0].interaction[2].code = #update
 * rest[0].resource[0].interaction[3].code = #search-type
+* rest[0].resource[0].searchParam[0].name = "identifier"
+* rest[0].resource[0].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/Bundle-identifier"
+* rest[0].resource[0].searchParam[0].type = #token
+* rest[0].resource[0].searchParam[1].name = "type"
+* rest[0].resource[0].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/Bundle-type"
+* rest[0].resource[0].searchParam[1].type = #token
 
 * rest[0].resource[1].type = #Patient
 * rest[0].resource[1].supportedProfile[+] = Canonical(StockholmGenomicPatient)
@@ -36,6 +42,18 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[1].interaction[1].code = #read
 * rest[0].resource[1].interaction[2].code = #update
 * rest[0].resource[1].interaction[3].code = #search-type
+* rest[0].resource[1].searchParam[0].name = "identifier"
+* rest[0].resource[1].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/Patient-identifier"
+* rest[0].resource[1].searchParam[0].type = #token
+* rest[0].resource[1].searchParam[1].name = "family"
+* rest[0].resource[1].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/Patient-family"
+* rest[0].resource[1].searchParam[1].type = #string
+* rest[0].resource[1].searchParam[2].name = "given"
+* rest[0].resource[1].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/Patient-given"
+* rest[0].resource[1].searchParam[2].type = #string
+* rest[0].resource[1].searchParam[3].name = "birthdate"
+* rest[0].resource[1].searchParam[3].definition = "http://hl7.org/fhir/SearchParameter/Patient-birthdate"
+* rest[0].resource[1].searchParam[3].type = #date
 
 * rest[0].resource[2].type = #RelatedPerson
 * rest[0].resource[2].supportedProfile[+] = Canonical(StockholmGenomicRelatedPerson)
@@ -43,6 +61,15 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[2].interaction[1].code = #read
 * rest[0].resource[2].interaction[2].code = #update
 * rest[0].resource[2].interaction[3].code = #search-type
+* rest[0].resource[2].searchParam[0].name = "identifier"
+* rest[0].resource[2].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/RelatedPerson-identifier"
+* rest[0].resource[2].searchParam[0].type = #token
+* rest[0].resource[2].searchParam[1].name = "patient"
+* rest[0].resource[2].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/RelatedPerson-patient"
+* rest[0].resource[2].searchParam[1].type = #reference
+* rest[0].resource[2].searchParam[2].name = "name"
+* rest[0].resource[2].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/RelatedPerson-name"
+* rest[0].resource[2].searchParam[2].type = #string
 
 * rest[0].resource[3].type = #Specimen
 * rest[0].resource[3].supportedProfile[+] = Canonical(StockholmGenomicSpecimen)
@@ -50,6 +77,18 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[3].interaction[1].code = #read
 * rest[0].resource[3].interaction[2].code = #update
 * rest[0].resource[3].interaction[3].code = #search-type
+* rest[0].resource[3].searchParam[0].name = "subject"
+* rest[0].resource[3].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/Specimen-subject"
+* rest[0].resource[3].searchParam[0].type = #reference
+* rest[0].resource[3].searchParam[1].name = "accession"
+* rest[0].resource[3].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/Specimen-accession"
+* rest[0].resource[3].searchParam[1].type = #token
+* rest[0].resource[3].searchParam[2].name = "type"
+* rest[0].resource[3].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/Specimen-type"
+* rest[0].resource[3].searchParam[2].type = #token
+* rest[0].resource[3].searchParam[3].name = "collected"
+* rest[0].resource[3].searchParam[3].definition = "http://hl7.org/fhir/SearchParameter/Specimen-collected"
+* rest[0].resource[3].searchParam[3].type = #date
 
 * rest[0].resource[4].type = #Procedure
 * rest[0].resource[4].supportedProfile[+] = Canonical(StockholmGenomicStudyProcedure)
@@ -61,6 +100,21 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[4].interaction[1].code = #read
 * rest[0].resource[4].interaction[2].code = #update
 * rest[0].resource[4].interaction[3].code = #search-type
+* rest[0].resource[4].searchParam[0].name = "patient"
+* rest[0].resource[4].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/Procedure-patient"
+* rest[0].resource[4].searchParam[0].type = #reference
+* rest[0].resource[4].searchParam[1].name = "code"
+* rest[0].resource[4].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/Procedure-code"
+* rest[0].resource[4].searchParam[1].type = #token
+* rest[0].resource[4].searchParam[2].name = "date"
+* rest[0].resource[4].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/Procedure-date"
+* rest[0].resource[4].searchParam[2].type = #date
+* rest[0].resource[4].searchParam[3].name = "status"
+* rest[0].resource[4].searchParam[3].definition = "http://hl7.org/fhir/SearchParameter/Procedure-status"
+* rest[0].resource[4].searchParam[3].type = #token
+* rest[0].resource[4].searchParam[4].name = "identifier"
+* rest[0].resource[4].searchParam[4].definition = "http://hl7.org/fhir/SearchParameter/Procedure-identifier"
+* rest[0].resource[4].searchParam[4].type = #token
 
 * rest[0].resource[5].type = #DocumentReference
 * rest[0].resource[5].supportedProfile[+] = Canonical(StockholmGenomicDataFile)
@@ -68,6 +122,24 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[5].interaction[1].code = #read
 * rest[0].resource[5].interaction[2].code = #update
 * rest[0].resource[5].interaction[3].code = #search-type
+* rest[0].resource[5].searchParam[0].name = "patient"
+* rest[0].resource[5].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/clinical-patient"
+* rest[0].resource[5].searchParam[0].type = #reference
+* rest[0].resource[5].searchParam[1].name = "type"
+* rest[0].resource[5].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/clinical-type"
+* rest[0].resource[5].searchParam[1].type = #token
+* rest[0].resource[5].searchParam[2].name = "category"
+* rest[0].resource[5].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/clinical-category"
+* rest[0].resource[5].searchParam[2].type = #token
+* rest[0].resource[5].searchParam[3].name = "date"
+* rest[0].resource[5].searchParam[3].definition = "http://hl7.org/fhir/SearchParameter/clinical-date"
+* rest[0].resource[5].searchParam[3].type = #date
+* rest[0].resource[5].searchParam[4].name = "identifier"
+* rest[0].resource[5].searchParam[4].definition = "http://hl7.org/fhir/SearchParameter/DocumentReference-identifier"
+* rest[0].resource[5].searchParam[4].type = #token
+* rest[0].resource[5].searchParam[5].name = "status"
+* rest[0].resource[5].searchParam[5].definition = "http://hl7.org/fhir/SearchParameter/DocumentReference-status"
+* rest[0].resource[5].searchParam[5].type = #token
 
 * rest[0].resource[6].type = #Device
 * rest[0].resource[6].supportedProfile[+] = Canonical(StockholmGenomicDevice)
@@ -75,3 +147,15 @@ Description: "Server capability statement for the Stockholm Genomic Data Reposit
 * rest[0].resource[6].interaction[1].code = #read
 * rest[0].resource[6].interaction[2].code = #update
 * rest[0].resource[6].interaction[3].code = #search-type
+* rest[0].resource[6].searchParam[0].name = "identifier"
+* rest[0].resource[6].searchParam[0].definition = "http://hl7.org/fhir/SearchParameter/Device-identifier"
+* rest[0].resource[6].searchParam[0].type = #token
+* rest[0].resource[6].searchParam[1].name = "type"
+* rest[0].resource[6].searchParam[1].definition = "http://hl7.org/fhir/SearchParameter/Device-type"
+* rest[0].resource[6].searchParam[1].type = #token
+* rest[0].resource[6].searchParam[2].name = "location"
+* rest[0].resource[6].searchParam[2].definition = "http://hl7.org/fhir/SearchParameter/Device-location"
+* rest[0].resource[6].searchParam[2].type = #reference
+* rest[0].resource[6].searchParam[3].name = "organization"
+* rest[0].resource[6].searchParam[3].definition = "http://hl7.org/fhir/SearchParameter/Device-organization"
+* rest[0].resource[6].searchParam[3].type = #reference

@@ -93,6 +93,22 @@ Denna guide omfattar:
 4. **Läs [CapabilityStatement use case](capability-statement-use-case.html)** för serverns stöd för operationer och profiler
 5. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
 
+## Search Parameters
+
+GDR stöder ett urval av standardiserade FHIR-sökparametrar per resurstyp. Dessa anges i [CapabilityStatement](CapabilityStatement-GDRCapabilityStatement.html) och kan användas för att hitta resurser med `search-type`.
+
+Exempel på stödda sökanrop:
+
+- **Bundle**: `Bundle?identifier=` , `Bundle?type=`
+- **Patient**: `Patient?identifier=` , `Patient?family=` , `Patient?given=` , `Patient?birthdate=`
+- **RelatedPerson**: `RelatedPerson?identifier=` , `RelatedPerson?patient=` , `RelatedPerson?name=`
+- **Specimen**: `Specimen?subject=` , `Specimen?accession=` , `Specimen?type=` , `Specimen?collected=`
+- **Procedure**: `Procedure?patient=` , `Procedure?code=` , `Procedure?date=` , `Procedure?status=` , `Procedure?identifier=`
+- **DocumentReference**: `DocumentReference?patient=` , `DocumentReference?type=` , `DocumentReference?category=` , `DocumentReference?date=` , `DocumentReference?identifier=` , `DocumentReference?status=`
+- **Device**: `Device?identifier=` , `Device?type=` , `Device?location=` , `Device?organization=`
+
+I nuläget används enbart standardparametrar från FHIR R4. Egna `SearchParameter`-resurser behövs därför inte i denna version.
+
 ## Versionshistorik
 
 | Version | Datum | Ändringar |
