@@ -90,7 +90,8 @@ Denna guide omfattar:
 1. **Börja med [Artifacts](artifacts.html)** för en översikt över alla definierade profiler, extensions, value sets och code systems
 2. **Hämta artefakter** från [Artifacts](artifacts.html) sidan för implementering
 3. **Läs [Bundle use case](bundle-use-case.html)** för rekommenderat sätt att skicka flera resurser till GDR i en transaktion
-4. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
+4. **Läs [CapabilityStatement use case](capability-statement-use-case.html)** för serverns stöd för operationer och profiler
+5. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
 
 ## Versionshistorik
 
