@@ -7,7 +7,7 @@ Description: "Placeholder ValueSet för olika typer av genomiska analyser. Ska p
 * include codes from system StockholmGenomicStudyTypeCS
 * ^status = #draft
 * ^version = "1.0.0"
-* ^experimental = true
+* ^experimental = false
 * ^copyright = "This value set includes content from SNOMED CT, which is copyright © 2002+ International Health"
 * ^publisher = "Karolinska University Hospital"
 // * include codes from system "http://snomed.info/sct" where concept is one of:

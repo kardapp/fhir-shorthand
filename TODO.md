@@ -8,13 +8,13 @@
 - [ ] CodeSystem metadata: lägg till `experimental`, `caseSensitive`, `title`, `description` i 3 CodeSystems (~30 min) - Done
 - [ ] ValueSet metadata: lägg till `experimental` i 3 ValueSets (~15 min) - Done
 - [ ] Specimen ValueSet-bindningar: lås versioner (v2-0487, v2-0916, v2-0371, v2-0493 → `|3.0.0`) (~10 min) - Done
-- Se [ISSUES-TODO-LIST.md](ISSUES-TODO-LIST.md) för fullständig lista
+- Se [ISSUES-TODO-LIST.md](ISSUES-TODO-LIST.md) för fullständig lista done
 
 **Så gör du:**
 1. Öppna varje FSH-fil från ISSUES-TODO-LIST
 2. Lägg till metadata enligt instruktionerna i listans tabell
 3. Kör `./_genonce.bat` för att bygga och verifiera varningarna försvinner
-4. Commit och push ändringar
+4. Commit och push ändringar done
 
 ---
 
