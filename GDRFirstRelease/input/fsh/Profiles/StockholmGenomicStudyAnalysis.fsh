@@ -2,7 +2,7 @@ Profile: StockholmGenomicStudyAnalysisProcedure
 Parent: GenomicStudyAnalysis
 Id: stockholm-genomic-study-analysis-procedure
 Title: "Stockholm Genomic Study Analysis Procedure"
-Description: "Part of the GenomicStudy and used to represent the data analysis performed in the study. A Genomic Study containes of a genomic study analysis. This profile has bbeen created to store the resource data about the data analysis aswell as pointing to all the important files used and created in this procedure."
+Description: "GenomicStudyAnalysis profile that captures the analysis phase of a genomic case, including input files, output files, tools, and optional pedigree/region context."
 * ^status = #draft
 * ^version = "1.0.0-alpha.1"
 * extension[regions] MS 
@@ -10,29 +10,40 @@ Description: "Part of the GenomicStudy and used to represent the data analysis p
 * extension[device] MS
 * extension[device].extension[device].value[x] only Reference(StockholmGenomicDevice) 
 * extension[input] MS
+* extension[input] ^short = "Analysis input artifacts"
+* extension[input] ^definition = "Input files and related metadata used as analysis material for this genomic case."
 * extension[input].extension[type].value[x] from StockholmGenomicStudyDataFormatVS 
 * extension[input].extension[file].valueReference only Reference(http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-data-file)
 * extension[output] MS
+* extension[output] ^short = "Analysis output artifacts"
+* extension[output] ^definition = "Output files and related metadata produced by the genomic analysis workflow."
 * extension[output].extension[type].value[x] from StockholmGenomicStudyDataFormatVS
 * extension[specimen] MS
+* extension[specimen] ^short = "Specimen context for the analysis"
 * extension contains StockholmGenomicAnalysisExtensionPedigree named pedigree 0..1 and
     StockholmGenomicStudyAnalysisExtensionAnalysisPipeline named analysis-pipeline 0..1
 * extension[pedigree] MS
+  * ^short = "Optional pedigree document reference"
   * ^comment = "Can be used to link to a pedigree document used as input for the analysis. The pedigree document should be represented as a GenomicDataFile resource. Can also be linked from the input element if preferred."
 * extension[analysis-pipeline] MS
+  * ^short = "Pipeline or software used for analysis"
   * value[x] only Reference(Device)
 * instantiatesCanonical ..0
 * instantiatesUri ..0
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
+* partOf ^short = "Parent genomic study procedure"
+* partOf ^definition = "Links this analysis to the study-level procedure it belongs to."
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * code ..0
 * subject MS
 * subject only Reference(Patient) 
+  * ^short = "Proband/patient for the analysis"
   * ^requirements = "A Genomic Study must be linked to a Patient resource. It must point to the same patient as the one linked from the Genomic Study procedure resource."
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * performed[x] MS 
+  * ^short = "When analysis was performed"
   * ^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
 * performer
   * actor MS

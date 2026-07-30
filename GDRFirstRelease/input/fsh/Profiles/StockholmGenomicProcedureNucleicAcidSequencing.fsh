@@ -2,7 +2,7 @@ Profile: StockholmGenomicProcedureNucleicAcidSequencing
 Parent: Procedure
 Id: stockholm-genomic-procedure-nucleic-acid-sequencing
 Title: "Stockholm Nucleic Acid Sequencing"
-Description: "A profile on the procedure resource. It is used to represent the Nucleic Acid Sequencing procedure. It is part of the Laboratory process of the genomic study performed and contains detailed information on what was performed, and which tools and platform were used during this procedure."
+Description: "Procedure profile for nucleic acid sequencing performed within the laboratory process of a genomic case, including platform/tool traceability and produced result file links."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose is to represent the Nucleic Acid Sequencing procedure, which is part of the laboratory process of the genomic study. It contains detailed information on what was performed, and which tools and platform were used during this procedure."
@@ -11,14 +11,20 @@ Description: "A profile on the procedure resource. It is used to represent the N
     StockholmGenomicNucleicAcidSequencingExtensionNumberOfReads named nucleic-acid-sequencing-number-of-reads 0..1 and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
 * extension[nucleic-acid-sequencing-result] MS
+  * ^short = "References to sequencing result files"
+  * ^definition = "Links the sequencing procedure to generated data files represented as StockholmGenomicDataFile resources."
   * value[x] only Reference(StockholmGenomicDataFile)
 * extension[nucleic-acid-sequencing-number-of-reads] MS
+  * ^short = "Read count quality parameter"
   * ^definition = "Quality parameter. The number of reads of each sequence in the genome."
 * extension[focus] MS
+  * ^short = "Specimen in focus for sequencing"
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
 * usedReference MS
 * usedReference only Reference(StockholmGenomicDevice)
+* usedReference ^short = "Sequencing platforms and tools used"
+* usedReference ^definition = "References devices or software systems used to perform sequencing for this procedure."
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."

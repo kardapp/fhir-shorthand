@@ -2,7 +2,7 @@ Profile: StockholmGenomicProcedureLaboratoryProcess
 Parent: Procedure
 Id: stockholm-genomic-procedure-laboratory-process
 Title: "Stockholm Genomic ProcedureLaboratory Process"
-Description: "Used to represent and hold together the laboratory process, including library preperation and the gene sequencing. Each GenomicStudy can include several laboratory processes, one for each sample connected to the genomic study.."
+Description: "Represents the laboratory phase of a genomic case and ties together library preparation and nucleic acid sequencing for a specimen. A single genomic study can include multiple laboratory process instances."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpse of this profile is to link and represent the laboratory phase of the genomic study together, which includes the library preparation and Nucleic Acid Sequencing."
@@ -12,10 +12,18 @@ Description: "Used to represent and hold together the laboratory process, includ
     StockholmGenomicProcedureExtensionNucleicAcidSequencing named nucleic-acid-sequencing 1..1 and
     StockholmGenomicProcedureExtensionFocus named focus 1..1    
 * extension[genomic-library-preparation] MS
+  * ^short = "Reference to the linked library preparation procedure"
+  * ^definition = "Points to the procedure instance that describes library preparation for this laboratory process."
 * extension[nucleic-acid-sequencing] MS
+  * ^short = "Reference to the linked sequencing procedure"
+  * ^definition = "Points to the nucleic acid sequencing procedure associated with this laboratory process."
 * extension[focus] MS
+  * ^short = "Specimen in focus for this process"
+  * ^definition = "Identifies the specimen that this laboratory process applies to."
 * partOf only Reference(StockholmGenomicStudyProcedure or Procedure)
 * status MS
+  * ^short = "Lifecycle status of the laboratory process"
+  * ^definition = "Indicates whether the process is in progress or completed for reporting and follow-up."
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * instantiatesCanonical ..0 //This attribute is removed in future releases.

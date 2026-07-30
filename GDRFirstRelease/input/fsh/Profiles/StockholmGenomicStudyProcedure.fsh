@@ -7,12 +7,14 @@ Profile: StockholmGenomicStudyProcedure
 Parent: GenomicStudy
 Id: Stockholm-genomic-study-procedure
 Title: "Stockholm Genomic Study"
-Description: "The core resource of the Genomic study which holds the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
+Description: "Core GenomicStudy profile that represents a genomic case and connects patient, laboratory process steps, and analysis phase into one coherent clinical context."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "To store the genomic study and related profiles together. Its the main procedure resource to represent a Genomic Study.The genomic case includes both laboratory process(es) aswell as the data analysis which are both referenced from this profile."
 * extension contains StockholmGenomicProcedureExtensionLaboratoryProcess named genomic-laboratory-process 0..*
 * extension[genomic-laboratory-process] MS
+  * ^short = "Laboratory process links for this case"
+  * ^definition = "References one or more laboratory process procedures that belong to this genomic study case."
 // Slicing identifier på type.coding.code för att särskilja olika identifierare
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "type.coding.code"
@@ -21,6 +23,8 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * identifier contains
     requester-case-identifier 0..1 MS and
     laboratory-case-identifier 0..1 MS
+* identifier ^short = "Case identifiers from requester and laboratory"
+* identifier ^definition = "Business identifiers used to track one genomic case across requester and performing laboratory systems."
 * identifier[requester-case-identifier].type = $v2-0203#PLAC
 * identifier[requester-case-identifier].type.coding.display = "Placer Identifier" (exactly)
 * identifier[requester-case-identifier] ^definition = "Business identifiers assigned to this procedure by the requester"
@@ -34,20 +38,24 @@ Description: "The core resource of the Genomic study which holds the genomic stu
 * basedOn ^comment = "Placeholder for future use. Can be used to point to a referral (serviceRequest instance), or to hold a logical reference (Referral ID) to link the case to the referral(s) and referral data."
   * ^requirements = "No current need identified for GDR. Placeholder for future use."
 * status MS
+* status ^short = "Lifecycle status for the genomic case"
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
 * code MS
 * code from StockholmGenomicStudyTypeVS (required)
+  * ^short = "Type of genomic study performed"
   * ^comment = "Should be used to represent the type of Genomic study performed. Koder bör tas från StockholmGenomicStudyTypeVS (placeholder)."
   * ^requirements = "Used to specify the type of analysis. WGS, Exome, Panel etc" 
   * ^definition = "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Panel Sequencing\", Whole Genome Sequencing, Whole Exome Sequencing etc.)."
 * subject MS
 * subject only Reference(Patient)
+  * ^short = "Patient/proband for the genomic case"
   * ^requirements = "A Genomic Study must be linked to a Patient resource"
   * ^comment = "Should be used to point to the proband patient. Should be used to point to the patient resource in Stockholm demographic server if possible."
 * encounter ..1
   * ^comment = "Could be used to connect the analysis to the encounter(vårdkontakt) in which the analysis was ordered. Stockholm PAS-ID/kontaktID and at which unit and at which time the encounter occurred."
 * performed[x] MS 
+  * ^short = "When the genomic study was performed"
   * ^requirements = "It must be possible to record and read when the procedure was performed. This can be done with either a dateTime or a Period depending on the use case and the level of detail available."
 * performer
   * actor MS

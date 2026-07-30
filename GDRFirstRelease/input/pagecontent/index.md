@@ -57,6 +57,53 @@ Denna Implementation Guide definierar FHIR-profiler och artefakter för represen
 
 Specifikationen är utformad för att möjliggöra strukturerad rapportering av genetiska analyser, sekvensering, laboratorieprov och medicinska enheter enligt FHIR-standarden R4, med fokus på interoperabilitet och dataintegration i elektroniska patientjournaler.
 
+## GDR arkitektur
+
+### What is GDR?
+
+GDR (Genomic Data Repository) är ett FHIR-baserat informationslager för strukturerad genomikdata kopplad till patientvård. Målet är att kunna representera ett helt genomikfall med en gemensam modell där patient, prov, laboratorieprocess, analys och resultatfiler hänger ihop semantiskt.
+
+### Why does it exist?
+
+GDR finns för att lösa tre praktiska behov:
+
+- Standardiserad informationsmodell för genomik mellan laboratorier, kliniksystem och beslutsstöd.
+- Spårbarhet från beställning och prov till analyssteg, verktyg/plattform och resultatfiler.
+- Interoperabilitet över tid genom att bygga på FHIR R4-profiler, värdemängder och tydliga relationer mellan resurser.
+
+### How are the resources related?
+
+Ett genomikfall representeras av en studie-resurs som håller ihop hela flödet:
+
+- GenomicStudy är den övergripande case-resursen.
+- Patient är proband och länkas från studie och underliggande resurser.
+- Specimen representerar provet och kopplar laboratorie- och analyssteg till rätt material.
+- Procedure-profiler beskriver laboratorieprocess, library preparation och sekvensering.
+- GenomicStudyAnalysis beskriver bioinformatisk analys och koppling till input/output-filer.
+- DocumentReference (StockholmGenomicDataFile) representerar filmetadata för producerade/använda datafiler.
+- Device representerar plattformar och pipelines som använts i process och analys.
+- Bundle används för atomisk inskickning av ett helt fall i en transaktion.
+
+Förenklat samband:
+
+```mermaid
+flowchart TD
+	B[Bundle transaction] --> GS[GenomicStudy]
+	GS --> P[Patient]
+	GS --> LP[Procedure: Laboratory Process]
+	LP --> LPR[Procedure: Library Preparation]
+	LP --> NAS[Procedure: Nucleic Acid Sequencing]
+	GS --> GSA[GenomicStudyAnalysis]
+	LPR --> S[Specimen]
+	NAS --> S
+	GSA --> S
+	NAS --> DR[DocumentReference: Genomic Data File]
+	GSA --> DR
+	LPR --> D[Device]
+	NAS --> D
+	GSA --> D
+```
+
 ## Omfattning
 
 Denna guide omfattar:

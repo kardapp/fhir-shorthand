@@ -3,7 +3,7 @@ Profile: StockholmGenomicProcedureLibraryPreparation
 Parent: Procedure
 Id: stockholm-genomic-procedure-library-preparation
 Title: "Stockholm Genomic Library Preparation"
-Description: "A profile on the procedure resource. It is used to represent the library preperation procedure. It is part of the Laboratory process of the genemoic study performed and containes detaild on what was performed on the sample/specimen during this procedure."
+Description: "Procedure profile for library preparation performed as part of genomic laboratory workflow. It captures preparation details and links to specimen and devices used in this step."
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose is to represent the library preparation procedure, which is part of the laboratory process of the genomic study. It contains details on what was performed on the sample/specimen during this procedure."
@@ -11,12 +11,18 @@ Description: "A profile on the procedure resource. It is used to represent the l
     StockholmGenomicLibraryPreparationExtensionPanelName named panel-name 0..* and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
 * extension[panel-name] MS
+  * ^short = "Name of panel used during preparation"
   * ^definition = "The name of the panel used during the library preperation"
 * extension[focus] MS
+  * ^short = "Specimen in focus for library preparation"
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure) 
+* partOf ^short = "Parent laboratory or study procedure"
+* partOf ^definition = "Links this library preparation step to the larger laboratory process or study-level procedure."
 * usedReference MS
 * usedReference only Reference(StockholmGenomicDevice)
+* usedReference ^short = "Devices used during preparation"
+* usedReference ^definition = "References devices and software used when performing library preparation."
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
