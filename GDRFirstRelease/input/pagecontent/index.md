@@ -51,40 +51,40 @@ h4[id]:before {
 }
 </style>
 
-## Introduktion
+## Introduction
 
-Denna Implementation Guide definierar FHIR-profiler och artefakter för representation av genomisk data inom Stockholm sjukhuset.
+This Implementation Guide defines FHIR profiles and artifacts for representing genomic data within Stockholm healthcare.
 
-Specifikationen är utformad för att möjliggöra strukturerad rapportering av genetiska analyser, sekvensering, laboratorieprov och medicinska enheter enligt FHIR-standarden R4, med fokus på interoperabilitet och dataintegration i elektroniska patientjournaler.
+The specification is designed to support structured reporting of genetic analyses, sequencing, laboratory specimens, and medical devices according to the FHIR R4 standard, with a focus on interoperability and integration into electronic health records.
 
-## GDR arkitektur
+## GDR Architecture
 
 ### What is GDR?
 
-GDR (Genomic Data Repository) är ett FHIR-baserat informationslager för strukturerad genomikdata kopplad till patientvård. Målet är att kunna representera ett helt genomikfall med en gemensam modell där patient, prov, laboratorieprocess, analys och resultatfiler hänger ihop semantiskt.
+GDR (Genomic Data Repository) is a FHIR-based information repository for structured genomic data connected to patient care. Its goal is to represent a complete genomic case with a unified model where patient, specimen, laboratory process, analysis, and result files are semantically connected.
 
 ### Why does it exist?
 
-GDR finns för att lösa tre praktiska behov:
+GDR exists to address three practical needs:
 
-- Standardiserad informationsmodell för genomik mellan laboratorier, kliniksystem och beslutsstöd.
-- Spårbarhet från beställning och prov till analyssteg, verktyg/plattform och resultatfiler.
-- Interoperabilitet över tid genom att bygga på FHIR R4-profiler, värdemängder och tydliga relationer mellan resurser.
+- A standardized genomic information model across laboratories, clinical systems, and decision support.
+- Traceability from order and specimen to analysis steps, tools/platforms, and result files.
+- Long-term interoperability based on FHIR R4 profiles, value sets, and explicit resource relationships.
 
 ### How are the resources related?
 
-Ett genomikfall representeras av en studie-resurs som håller ihop hela flödet:
+A genomic case is represented by a study resource that ties the entire flow together:
 
-- GenomicStudy är den övergripande case-resursen.
-- Patient är proband och länkas från studie och underliggande resurser.
-- Specimen representerar provet och kopplar laboratorie- och analyssteg till rätt material.
-- Procedure-profiler beskriver laboratorieprocess, library preparation och sekvensering.
-- GenomicStudyAnalysis beskriver bioinformatisk analys och koppling till input/output-filer.
-- DocumentReference (StockholmGenomicDataFile) representerar filmetadata för producerade/använda datafiler.
-- Device representerar plattformar och pipelines som använts i process och analys.
-- Bundle används för atomisk inskickning av ett helt fall i en transaktion.
+- GenomicStudy is the top-level case resource.
+- Patient represents the proband and is linked from the study and related resources.
+- Specimen represents the sample and connects laboratory and analysis steps to the correct material.
+- Procedure profiles describe laboratory process, library preparation, and sequencing.
+- GenomicStudyAnalysis describes bioinformatics analysis and links to input/output files.
+- DocumentReference (StockholmGenomicDataFile) represents file metadata for produced/consumed data files.
+- Device represents platforms and pipelines used in process and analysis.
+- Bundle is used for atomic submission of a complete case in one transaction.
 
-Förenklat samband:
+Simplified relationship:
 
 ```mermaid
 flowchart TD
@@ -104,27 +104,27 @@ flowchart TD
 	GSA --> D
 ```
 
-## Omfattning
+## Scope
 
-Denna guide omfattar:
+This guide includes:
 
-### Artefakttyper
+### Artifact Types
 
-- **Device-profiler**: Strukturerade definitioner för medicinska enheter
-- **Värdesets**: Standardiserade värden för device-status, typ och klassificering
-- **Kodningssystem**: Standardiserade koder för device-klassificering
-- **Extensions**: Tilläggsfält för dokumentation och metadata
+- **Device profiles**: Structured definitions for medical devices
+- **Value sets**: Standardized values for device status, type, and classification
+- **Code systems**: Standardized codes for device classification
+- **Extensions**: Additional fields for documentation and metadata
 
-## Målgrupp
+## Target Audience
 
-### Primära användare
+### Primary Users
 
-- Systemarkitekter och IT-utvecklare
-- Klinisk IT-personal
-- FHIR-implementörer
-- Projektledare inom digitalisering av hälsovård
+- System architects and IT developers
+- Clinical IT staff
+- FHIR implementers
+- Project managers in healthcare digitalization
 
-## Tekniska detaljer
+## Technical Details
 
 - **FHIR Version**: 4.0.1
 - **Status**: Draft
@@ -132,19 +132,19 @@ Denna guide omfattar:
 - **Canonical URL**: https://pub.regionstockholm.se/fhir/gdr
 - **Publisher**: Karolinska University Hospital
 
-## Hur man använder denna guide
+## How to Use This Guide
 
-1. **Börja med [Artifacts](artifacts.html)** för en översikt över alla definierade profiler, extensions, value sets och code systems
-2. **Hämta artefakter** från [Artifacts](artifacts.html) sidan för implementering
-3. **Läs [Bundle use case](bundle-use-case.html)** för rekommenderat sätt att skicka flera resurser till GDR i en transaktion
-4. **Läs [CapabilityStatement use case](capability-statement-use-case.html)** för serverns stöd för operationer och profiler
-5. **Kontakta** [Region Stockholms IT-avdelning](https://www.regionstockholm.se/) för frågor och support
+1. **Start with [Artifacts](artifacts.html)** for an overview of all defined profiles, extensions, value sets, and code systems
+2. **Retrieve artifacts** from the [Artifacts](artifacts.html) page for implementation
+3. **Read [Bundle use case](bundle-use-case.html)** for the recommended way to submit multiple resources to GDR in one transaction
+4. **Read [CapabilityStatement use case](capability-statement-use-case.html)** for server-supported operations and profiles
+5. **Contact** [Region Stockholm IT Department](https://www.regionstockholm.se/) for questions and support
 
 ## Search Parameters
 
-GDR stöder ett urval av standardiserade FHIR-sökparametrar per resurstyp. Dessa anges i [CapabilityStatement](CapabilityStatement-GDRCapabilityStatement.html) och kan användas för att hitta resurser med `search-type`.
+GDR supports a set of standardized FHIR search parameters per resource type. These are listed in the [CapabilityStatement](CapabilityStatement-GDRCapabilityStatement.html) and can be used for `search-type` queries.
 
-Exempel på stödda sökanrop:
+Examples of supported queries:
 
 - **Bundle**: `Bundle?identifier=` , `Bundle?type=`
 - **Patient**: `Patient?identifier=` , `Patient?family=` , `Patient?given=` , `Patient?birthdate=`
@@ -154,14 +154,14 @@ Exempel på stödda sökanrop:
 - **DocumentReference**: `DocumentReference?patient=` , `DocumentReference?type=` , `DocumentReference?category=` , `DocumentReference?date=` , `DocumentReference?identifier=` , `DocumentReference?status=`
 - **Device**: `Device?identifier=` , `Device?type=` , `Device?location=` , `Device?organization=`
 
-I nuläget används enbart standardparametrar från FHIR R4. Egna `SearchParameter`-resurser behövs därför inte i denna version.
+At this stage, only standard FHIR R4 parameters are used. Custom `SearchParameter` resources are therefore not required in this version.
 
-## Versionshistorik
+## Version History
 
-| Version | Datum | Ändringar |
+| Version | Date | Changes |
 |---------|-------|-----------|
 | 0.1.2 | 2025-01-XX | Initial draft version |
 
 ---
 
-*Denna specifikation är under utveckling och kan ändras.*
+*This specification is under development and may change.*
