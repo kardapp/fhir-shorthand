@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">GDR Architecture</title>
+  <desc id="desc">Resource relationship diagram for Bundle, GenomicStudy, Patient, Specimen, Procedures, GenomicStudyAnalysis, Device, and DocumentReference.</desc>
+  <defs>
+    <style>
+      .box { fill: #f3f6fa; stroke: #1b6b9e; stroke-width: 2.2; rx: 10; ry: 10; }
+      .txt { font-family: Segoe UI, Arial, sans-serif; font-size: 24px; fill: #2b2f34; font-weight: 600; }
+      .txt-sm { font-family: Segoe UI, Arial, sans-serif; font-size: 22px; fill: #2b2f34; font-weight: 600; }
+      .arr { stroke: #1b6b9e; stroke-width: 2.8; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#1b6b9e" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="610" y="50" width="280" height="78" />
+  <text class="txt" x="750" y="99" text-anchor="middle">Bundle transaction</text>
+
+  <rect class="box" x="620" y="190" width="260" height="78" />
+  <text class="txt" x="750" y="239" text-anchor="middle">GenomicStudy</text>
+
+  <rect class="box" x="160" y="350" width="170" height="74" />
+  <text class="txt-sm" x="245" y="397" text-anchor="middle">Patient</text>
+
+  <rect class="box" x="500" y="350" width="500" height="74" />
+  <text class="txt-sm" x="750" y="397" text-anchor="middle">Procedure: Laboratory Process</text>
+
+  <rect class="box" x="1030" y="350" width="290" height="74" />
+  <text class="txt-sm" x="1175" y="397" text-anchor="middle">GenomicStudyAnalysis</text>
+
+  <rect class="box" x="390" y="530" width="380" height="78" />
+  <text class="txt-sm" x="580" y="579" text-anchor="middle">Procedure: Library Preparation</text>
+
+  <rect class="box" x="820" y="530" width="330" height="96" />
+  <text class="txt-sm" x="985" y="576" text-anchor="middle">Procedure: Nucleic Acid</text>
+  <text class="txt-sm" x="985" y="608" text-anchor="middle">Sequencing</text>
+
+  <rect class="box" x="420" y="700" width="190" height="74" />
+  <text class="txt-sm" x="515" y="747" text-anchor="middle">Specimen</text>
+
+  <rect class="box" x="760" y="700" width="170" height="74" />
+  <text class="txt-sm" x="845" y="747" text-anchor="middle">Device</text>
+
+  <rect class="box" x="980" y="690" width="430" height="96" />
+  <text class="txt-sm" x="1195" y="735" text-anchor="middle">DocumentReference: Genomic</text>
+  <text class="txt-sm" x="1195" y="767" text-anchor="middle">Data File</text>
+
+  <path class="arr" d="M750 128 L750 190"/>
+
+  <path class="arr" d="M700 268 C620 300, 420 318, 245 350"/>
+  <path class="arr" d="M750 268 L750 350"/>
+  <path class="arr" d="M800 268 C980 290, 1120 315, 1175 350"/>
+
+  <path class="arr" d="M720 424 C660 455, 620 485, 580 530"/>
+  <path class="arr" d="M840 424 C900 460, 950 492, 985 530"/>
+
+  <path class="arr" d="M540 608 C530 640, 522 668, 515 700"/>
+  <path class="arr" d="M650 608 C710 645, 780 675, 845 700"/>
+
+  <path class="arr" d="M930 626 C860 650, 850 672, 845 700"/>
+  <path class="arr" d="M1045 626 C1090 650, 1150 668, 1195 690"/>
+  <path class="arr" d="M1175 424 C1180 515, 1188 600, 1195 690"/>
+
+  <path class="arr" d="M1120 424 C980 500, 700 560, 515 700"/>
+  <path class="arr" d="M1090 424 C1060 560, 940 620, 845 700"/>
+
+</svg>

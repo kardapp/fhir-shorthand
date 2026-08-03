@@ -28,3 +28,7 @@ Denna fil sammanfattar arbetet som har genomförts från och med 7 juli 2026.
 ## Nuvarande publiceringsproblem
 
 genonce.bat fungerar inte och vi måste hoppa över terminologiservern genom att köra cmd /c "(echo.|_genonce.bat -tx n/a)". Tidigare fungerade det, men nu behöver vi åtgärda detta problem.
+
+## Update:
+
+Det verkar som att terminologiservern ibland inte fungerar eller ansluter, därför var jag tvungen att hoppa över det. Men nu fungerar det bra igen med koden.

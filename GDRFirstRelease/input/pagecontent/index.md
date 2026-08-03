@@ -86,23 +86,7 @@ A genomic case is represented by a study resource that ties the entire flow toge
 
 Simplified relationship:
 
-```mermaid
-flowchart TD
-	B[Bundle transaction] --> GS[GenomicStudy]
-	GS --> P[Patient]
-	GS --> LP[Procedure: Laboratory Process]
-	LP --> LPR[Procedure: Library Preparation]
-	LP --> NAS[Procedure: Nucleic Acid Sequencing]
-	GS --> GSA[GenomicStudyAnalysis]
-	LPR --> S[Specimen]
-	NAS --> S
-	GSA --> S
-	NAS --> DR[DocumentReference: Genomic Data File]
-	GSA --> DR
-	LPR --> D[Device]
-	NAS --> D
-	GSA --> D
-```
+![GDR Architecture](gdr-architecture.svg)
 
 ## Scope
 
