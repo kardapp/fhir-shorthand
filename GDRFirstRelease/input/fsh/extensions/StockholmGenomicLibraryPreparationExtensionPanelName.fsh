@@ -1,6 +1,7 @@
 Extension: StockholmGenomicLibraryPreparationExtensionPanelName
 Id: stockholm-genomic-library-preparation-extension-panel-name
 Title: "Stockholm Genomic Library Preparation Extension Panel Name"
+Description: "Extension that captures the panel name used during library preparation."
 Context: Procedure
 * ^status = #draft
 * value[x] 1..

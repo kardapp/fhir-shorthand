@@ -4,8 +4,6 @@ Title: "Genomic Study Analysis Extension Pedigree"
 Description: "Genomic Study Analysis Extension Pedigree"
 Context: Procedure
 * ^status = #draft
-* . ^short = "Genomic Study Analysis Extension Pedigree"
-  * ^definition = "Genomic Study Analysis Extension Pedigree"
 * extension contains
     file 0..1 and
     type 0..1 and

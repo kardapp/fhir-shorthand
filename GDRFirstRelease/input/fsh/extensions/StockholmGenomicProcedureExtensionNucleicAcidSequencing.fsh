@@ -1,6 +1,7 @@
 Extension: StockholmGenomicProcedureExtensionNucleicAcidSequencing
 Id: stockholm-genomic-procedure-extension-nucleic-acid-sequencing
-Description: "Extension"
+Title: "Stockholm Genomic Procedure Extension Nucleic Acid Sequencing"
+Description: "Extension that references the nucleic acid sequencing activity associated with a genomic procedure."
 Context: Procedure
 * ^status = #draft
 * value[x] 1..

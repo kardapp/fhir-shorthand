@@ -1,4 +1,7 @@
 Extension: StockholmGenomicExtensionDeviceDocumentation
 Id: stockholm-genomic-extension-device-documentation
-Description: "Extension that links device documentation (e.g., manual, PDF, URL)."
+Title: "Stockholm Genomic Extension Device Documentation"
+Description: "Extension that links device documentation such as manuals or URLs to a device."
+Context: Device
+* ^status = #draft
 * value[x] only uri

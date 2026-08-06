@@ -1,6 +1,7 @@
 Extension: StockholmGenomicProcedureExtensionLibraryPreparation
 Id: StockholmGenomicProcedureExtensionLibraryPreparation
-Description: "Extension"
+Title: "Stockholm Genomic Procedure Extension Library Preparation"
+Description: "Extension that references the library preparation activity associated with a genomic procedure."
 Context: Procedure
 * ^status = #draft
 * value[x] only Reference(StockholmGenomicProcedureLibraryPreparation)
