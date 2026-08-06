@@ -25,6 +25,7 @@ Denna fil sammanfattar arbetet som har genomförts från och med 7 juli 2026.
   - Normaliserade indentering/formattering i profilfiler.
   - Körde om IG-build och validering i offline-läge för terminologi.
   - Snomed CT
+  - Parameters oids.ini
 
 ## Nuvarande publiceringsproblem
 
