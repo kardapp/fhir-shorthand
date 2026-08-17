@@ -1,0 +1,5 @@
+# Local Jira secrets
+scripts/jira-sync.env
+
+# Local sync output
+jira-sync-preview.json
