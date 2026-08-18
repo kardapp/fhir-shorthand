@@ -141,4 +141,8 @@ Det är **inte ett blockerande fel** – bygget slutförs ändå och terminologi
 - Fellistor och to-do sparas i `GDRFirstRelease/docs/TODO.md`.
 - Regelbundna kodgranskningar för att sprida kunskap i teamet.
 
+### Jira och FSH-arbetsflöde
+- Se `GDRFirstRelease/docs/FSH-JIRA-WORKFLOW.md` för setup av Jira-synk mot GitHub och arbetssätt för branch/commit/PR kopplat till Jira.
+- Guiden innehåller även ett praktiskt flöde för att lyfta uppgifter från `TODO.md` till Jira tickets och följa dem till merge.
+
 > Denna README kan kopieras till Confluence för vidare kunskapsdelning.
