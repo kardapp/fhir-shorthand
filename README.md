@@ -142,7 +142,7 @@ Det är **inte ett blockerande fel** – bygget slutförs ändå och terminologi
 - Regelbundna kodgranskningar för att sprida kunskap i teamet.
 
 ### Handbok för onboarding och presentation
-- Samlad struktur för arbetssätt, FSH-grunder, verktyg och teamprocesser finns i `arbetsdokument/fsh-handbok/README.md`.
+- Samlad handbok för arbetssätt, FSH-grunder, verktyg och teamprocesser finns i `arbetsdokument/fsh-handbok/FSH-HANDBOK.md`.
 
 ### Jira och FSH-arbetsflöde
 - Se `GDRFirstRelease/docs/FSH-JIRA-WORKFLOW.md` för setup av Jira-synk mot GitHub och arbetssätt för branch/commit/PR kopplat till Jira.
