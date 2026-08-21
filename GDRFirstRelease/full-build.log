@@ -1,0 +1,140 @@
+Checking internet connection...
+We're online
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+FHIR IG Publisher Version 2.2.10 (Git# 37a39a2cca2d). Built 2026-06-25T21:40:25.53Z (52 days old)   
+Detected Java version: 25.0.3 from C:\Users\fz71\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.3.9-hotspot on Windows 11/amd64 (64bit). 3922MB available
+dir = C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease, path = c:\Users\fz71\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\fz71\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\Program Files (x86)\Common Files\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Common Files\Pulse Secure\VC142.CRT\X86\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\SafeNet\Authentication\SAC\x32;C:\Program Files\SafeNet\Authentication\SAC\x64;C:\Ruby40-x64\bin;C:\Users\fz71\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\Users\fz71\AppData\Local\Microsoft\WindowsApps;C:\Users\fz71\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\fz71\AppData\Local\Programs\Git\cmd;C:\Users\fz71\AppData\Roaming\npm;C:\Ruby40-x64\bin
+Parameters: -ig C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                                 
+Character encoding = UTF-8 / UTF-8                                                                  
+Start Clock @ måndag 17 augusti 2026 10:02:36 centraleuropeisk sommartid (2026-08-17T10:02:36+02:00)
+                                                                                                    
+[33mUnexpected FileNotFoundException while evaluating is a lock file: 
+[0;39mjava.io.FileNotFoundException: C:\Users\fz71\.fhir\packages\hl7.fhir.uv.extensions.r4#5.3.0-ballot-tc1.lock (Det går inte att komma åt filen eftersom den
+används av en annan process)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$CacheLock.lambda$canLockFileBeHeldByThisProcess$0(FilesystemPackageCacheManagerLocks.java:123)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$CacheLock.doWriteWithLock(FilesystemPackageCacheManagerLocks.java:114)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$CacheLock.canLockFileBeHeldByThisProcess(FilesystemPackageCacheManagerLocks.java:122)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.cleanUpCorruptPackages(FilesystemPackageCacheManager.java:247)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.lambda$prepareCacheFolder$0(FilesystemPackageCacheManager.java:234)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$CacheLock.doWriteWithLock(FilesystemPackageCacheManagerLocks.java:114)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.prepareCacheFolder(FilesystemPackageCacheManager.java:220)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.<init>(FilesystemPackageCacheManager.java:205)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager$Builder.build(FilesystemPackageCacheManager.java:195)
+	at org.hl7.fhir.igtools.publisher.PublisherBase.getFilesystemPackageCacheManager(PublisherBase.java:82)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.initialize(PublisherIGLoader.java:104)
+	at org.hl7.fhir.igtools.publisher.Publisher.execute(Publisher.java:223)
+	at org.hl7.fhir.igtools.publisher.Publisher.main(Publisher.java:1612)
+Build FHIR IG from C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                               (00:14.733 / 00:14.733, 42Mb)
+API keys loaded from C:\Users\fz71\.fhir\fhir-settings.json                                          (00:00.002 / 00:14.735, 42Mb)
+Package Cache: C:\Users\fz71\.fhir\packages                                                          (00:00.003 / 00:14.739, 42Mb)
+Run Sushi on C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                                     (00:00.014 / 00:14.754, 42Mb)
+Sushi: info  Running SUSHI v3.19.0 (implements FHIR Shorthand specification v3.0.0)                  (00:08.792 / 00:23.546, 44Mb)
+Sushi: info  Arguments:                                                                              (00:00.000 / 00:23.547, 44Mb)
+Sushi: info    --out C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                             (00:00.000 / 00:23.547, 44Mb)
+Sushi: info    C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                                   (00:00.000 / 00:23.548, 44Mb)
+Sushi: info  Using configuration file: C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease\sushi-config.yaml (00:03.244 / 00:26.792, 44Mb)
+Sushi: info  Importing FSH text...                                                                   (00:00.134 / 00:26.927, 44Mb)
+Sushi: info  Preprocessed 59 documents with 14 aliases.                                              (00:00.172 / 00:27.099, 44Mb)
+Sushi: info  Imported 32 definitions and 26 instances.                                               (00:00.049 / 00:27.149, 44Mb)
+Sushi: info  Loaded virtual package sushi-r5forR4#1.0.0 with 7 resources                             (00:00.152 / 00:27.301, 44Mb)
+Sushi: info  Resolved hl7.fhir.uv.tools.r4#latest to concrete version 1.1.2                          (00:00.204 / 00:27.506, 44Mb)
+Sushi: info  Loaded hl7.fhir.uv.tools.r4#1.1.2 with 119 resources                                    (00:00.310 / 00:27.816, 44Mb)
+Sushi: info  Resolved hl7.terminology.r4#latest to concrete version 7.3.0                            (00:00.051 / 00:27.868, 44Mb)
+Sushi: info  Loaded hl7.terminology.r4#7.3.0 with 4176 resources                                     (00:10.493 / 00:38.361, 44Mb)
+Sushi: info  Loaded hl7.fhir.us.core#9.0.0 with 213 resources                                        (00:00.766 / 00:39.128, 44Mb)
+Sushi: info  Loaded hl7.fhir.uv.genomics-reporting#3.0.0 with 93 resources                           (00:00.304 / 00:39.433, 44Mb)
+Sushi: info  Loaded hl7.fhir.r4.core#4.0.1 with 4581 resources                                       (00:09.933 / 00:49.366, 44Mb)
+Sushi: info  Resolved hl7.fhir.uv.extensions.r4#latest to concrete version 5.3.0                     (00:00.066 / 00:49.432, 44Mb)
+Sushi: info  Loaded hl7.fhir.uv.extensions.r4#5.3.0 with 885 resources                               (00:02.120 / 00:51.552, 44Mb)
+Sushi: info  Loaded virtual package sushi-local#LOCAL with 0 resources                               (00:00.013 / 00:51.566, 44Mb)
+Sushi: info  Converting FSH to FHIR resources...                                                     (00:00.022 / 00:51.588, 44Mb)
+Sushi: info  Converted 24 FHIR StructureDefinitions.                                                 (00:02.723 / 00:54.312, 44Mb)
+Sushi: info  Converted 3 FHIR CodeSystems.                                                           (00:00.050 / 00:54.362, 44Mb)
+Sushi: info  Converted 5 FHIR ValueSets.                                                             (00:00.158 / 00:54.521, 44Mb)
+Sushi: info  Converted 26 FHIR instances.                                                            (00:01.730 / 00:56.252, 44Mb)
+Sushi: info  Exporting FHIR resources as JSON...                                                     (00:00.001 / 00:56.253, 44Mb)
+Sushi: info  Exported 45 FHIR resources as JSON.                                                     (00:00.120 / 00:56.374, 44Mb)
+Sushi: info  Assembling Implementation Guide sources...                                              (00:00.005 / 00:56.379, 44Mb)
+Sushi: info  Generated ImplementationGuide-RegionStockholm.json                                      (00:00.069 / 00:56.449, 44Mb)
+Sushi: info  Assembled Implementation Guide sources; ready for IG Publisher.                         (00:00.001 / 00:56.450, 44Mb)
+Sushi: ========================= SUSHI RESULTS ===========================                           (00:00.001 / 00:56.451, 44Mb)
+Sushi: |  -------------------------------------------------------------  |                           (00:00.001 / 00:56.453, 44Mb)
+Sushi: | |    Profiles   |  Extensions  |   Logicals   |   Resources   | |                           (00:00.001 / 00:56.454, 44Mb)
+Sushi: | |-------------------------------------------------------------| |                           (00:00.001 / 00:56.455, 44Mb)
+Sushi: | |      11       |      13      |      0       |       0       | |                           (00:00.001 / 00:56.456, 44Mb)
+Sushi: |  -------------------------------------------------------------  |                           (00:00.000 / 00:56.457, 44Mb)
+Sushi: |  -------------------------------------------------------------  |                           (00:00.001 / 00:56.458, 44Mb)
+Sushi: | |      ValueSets     |    CodeSystems    |     Instances      | |                           (00:00.000 / 00:56.459, 44Mb)
+Sushi: | |-------------------------------------------------------------| |                           (00:00.001 / 00:56.460, 44Mb)
+Sushi: | |         5          |         3         |         26         | |                           (00:00.000 / 00:56.461, 44Mb)
+Sushi: |  -------------------------------------------------------------  |                           (00:00.000 / 00:56.462, 44Mb)
+Sushi: |                                                                 |                           (00:00.000 / 00:56.463, 44Mb)
+Sushi: ===================================================================                           (00:00.000 / 00:56.463, 44Mb)
+Sushi: | Why pun? Just for for the halibut.     0 Errors      0 Warnings |                           (00:00.000 / 00:56.464, 44Mb)
+Sushi: ===================================================================                           (00:00.000 / 00:56.465, 44Mb)
+Sushi: |    You are using SUSHI version 3.19.0, but the latest stable    |                           (00:00.000 / 00:56.466, 44Mb)
+Sushi: | release is version 3.20.0. To install the latest release, run:  |                           (00:00.000 / 00:56.467, 44Mb)
+Sushi: |                    npm install -g fsh-sushi                     |                           (00:00.000 / 00:56.467, 44Mb)
+Sushi: ===================================================================                           (00:00.000 / 00:56.468, 44Mb)
+Root directory: C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease                                  (00:00.068 / 00:56.537, 44Mb)
+Unable to load IG as an r5 IG - try R4 (property code is a class com.google.gson.JsonPrimitive looking for an object) (00:01.072 / 00:57.610, 53Mb)
+Load Template from fhir.base.template#0.8.1                                                          (00:01.221 / 00:58.832, 51Mb)
+[33mThis content depends on fhir.base.template which is no longer considered secure to use
+[0;39m[33mSee Security notification at https://www.fhir.org/guides/security-notices/2026-03-npm-dependencies.html
+[0;39mScanning directory: C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease\template
+======================================================================
+Terminology Cache is at C:\Users\fz71\github\fhir-shorthand\GDRFirstRelease\input-cache\txcache. 4 files in cache (00:11.335 / 01:10.168, 84Mb)
+Core Package hl7.fhir.r4.core#4.0.1                                                                  (00:00.001 / 01:10.169, 84Mb)
+Running Terminology Log: C:\Users\fz71\AppData\Local\Temp\ohfu-fhir-ig-8112556423607517239.html
+Connect to Terminology Server at http://tx.fhir.org                                                  (01:34.339 / 02:44.509, 200Mb)
+Unable to start a terminology cache on https://tx.fhir.org/r4 via $cache-control (Error from https://tx.fhir.org/r4: Error: $cache-control requires a 'mode' of 'start' or 'end' (got 'START_CACHE')); caching disabled for this server (00:02.398 / 02:46.907, 225Mb)
+[39mLoad Package hl7.fhir.pubpack#0.2.5
+[0;39m[39mLoad Package hl7.fhir.xver-extensions#0.1.0
+[0;39m[39mLoad Package hl7.terminology.r4#7.3.0
+[0;39m[39mLoad Package hl7.fhir.uv.extensions.r4#5.3.0
+[0;39m[39mLoad Package hl7.fhir.uv.extensions.r4#5.2.0
+[0;39m[39mLoad Package hl7.terminology.r4#7.1.0
+[0;39m[39mLoad Package hl7.fhir.uv.extensions.r4#5.1.0-snapshot1
+[0;39m[39mLoad Package hl7.fhir.uv.extensions.r4#1.0.0
+[0;39m[39mLoad Package hl7.terminology#5.5.0
+[0;39m[39mLoad Package hl7.fhir.uv.smart-app-launch#2.2.0
+[0;39m[39mLoad Package hl7.fhir.uv.xver-r5.r4#0.1.0
+[0;39m[39mLoad Package hl7.fhir.uv.tools.r4#1.1.2
+[0;39mIgnore Dependency on Core FHIR hl7.fhir.r4.examples#4.0.1, from package 'hl7.fhir.uv.sdc#4.0.0'      (01:29.862 / 04:16.770, 942Mb)
+[39mInstalling hl7.terminology.r4#6.5.0 to the package cache
+[0;39m[39m  Fetching:
+[0;39mPublishing Content Failed: Error loading hl7.fhir.uv.sdc#4.0.0: Error loading hl7.fhir.uv.extensions.r4#5.3.0-ballot-tc1: Package cache timed out waiting for lock. (01:02.656 / 05:19.426, 970Mb)
+                                                                                                     (00:00.000 / 05:19.427, 970Mb)
+Use -? to get command line help                                                                      (00:00.000 / 05:19.428, 970Mb)
+                                                                                                     (00:00.000 / 05:19.428, 970Mb)
+Stack Dump (for debugging):                                                                          (00:00.000 / 05:19.429, 970Mb)
+java.io.IOException: Error loading hl7.fhir.uv.sdc#4.0.0: Error loading hl7.fhir.uv.extensions.r4#5.3.0-ballot-tc1: Package cache timed out waiting for lock.
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadFromPackage(PublisherIGLoader.java:1737)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadIGPackage(PublisherIGLoader.java:1661)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadIg(PublisherIGLoader.java:1612)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.initializeFromIg(PublisherIGLoader.java:1052)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.initialize(PublisherIGLoader.java:151)
+	at org.hl7.fhir.igtools.publisher.Publisher.execute(Publisher.java:223)
+	at org.hl7.fhir.igtools.publisher.Publisher.main(Publisher.java:1612)
+Caused by: java.io.IOException: Error loading hl7.fhir.uv.extensions.r4#5.3.0-ballot-tc1: Package cache timed out waiting for lock.
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadFromPackage(PublisherIGLoader.java:1737)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadFromPackage(PublisherIGLoader.java:1735)
+	... 6 more
+Caused by: java.io.IOException: Package cache timed out waiting for lock.
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$PackageLock.waitForLockFileDeletion(FilesystemPackageCacheManagerLocks.java:214)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$PackageLock.getFileLock(FilesystemPackageCacheManagerLocks.java:345)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$PackageLock.doWriteWithLock(FilesystemPackageCacheManagerLocks.java:280)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.addPackageToCache(FilesystemPackageCacheManager.java:589)
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager.loadPackage(FilesystemPackageCacheManager.java:743)
+	at org.hl7.fhir.utilities.npm.BasePackageCacheManager.loadPackage(BasePackageCacheManager.java:195)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadFromPackage(PublisherIGLoader.java:1707)
+	at org.hl7.fhir.igtools.publisher.PublisherIGLoader.loadFromPackage(PublisherIGLoader.java:1735)
+	... 7 more
+Caused by: java.util.concurrent.TimeoutException: Timeout waiting for lock file deletion: hl7.terminology.r4#6.5.0.lock
+	at org.hl7.fhir.utilities.npm.FilesystemPackageCacheManagerLocks$PackageLock.waitForLockFileDeletion(FilesystemPackageCacheManagerLocks.java:192)
+	... 14 more
+Press any key to continue . . . 

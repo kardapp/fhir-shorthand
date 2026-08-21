@@ -417,7 +417,7 @@ I `sushi-config.yaml`:
 ```yaml
 dependencies:
   hl7.fhir.uv.genomics-reporting: 3.0.0   # Genomics Reporting IG
-  hl7.fhir.us.core: 3.1.0                 # US Core (basprofiler)
+  hl7.fhir.us.core: 9.0.0                 # US Core (basprofiler)
 ```
 
 ### Var de lagras
@@ -431,10 +431,35 @@ Alla publika FHIR-paket finns på: https://registry.fhir.org
 | Paket | Version | Innehåll |
 |-------|---------|---------|
 | `hl7.fhir.uv.genomics-reporting` | 3.0.0 | Genomikrelaterade profiler (GenomicStudy, GenomicReport, etc.) |
-| `hl7.fhir.us.core` | 3.1.0 | Basresurser (Patient, Practitioner, etc.) |
+| `hl7.fhir.us.core` | 9.0.0 | Basresurser (Patient, Practitioner, etc.) |
 | `hl7.fhir.r4.core` | 4.0.1 | FHIR R4 kärna (laddas automatiskt) |
-| `hl7.terminology.r4` | 7.2.0 | HL7 terminologi (LOINC, SNOMED mappningar) |
-| `fhir.base.template` | 0.8.0 | HTML-template för IG Publisher |
+| `hl7.terminology.r4` | 7.3.0 | HL7 terminologi (LOINC, SNOMED mappningar) |
+| `fhir2.base.template` | current | Rekommenderad HTML-template för IG Publisher |
+
+### Säkerhet: NPM dependency-varning (2026-03)
+
+Bakgrund: HL7 publicerade en security notice om ett potentiellt exploit-flöde om man installerar FHIR-paket via vanlig `npm`-klient.
+
+- Vårt normala IG-bygge kör via SUSHI + IG Publisher och använder FHIR-paketcachen (`~/.fhir/packages`), inte `npm install` för FHIR-paket.
+- Vi har migrerat från `fhir.base.template` till `fhir2.base.template` för att följa HL7:s rekommendation.
+- Teamregel: undvik att installera FHIR-paket med vanlig npm-klient.
+
+Mer detaljer finns i: `GDRFirstRelease/docs/NPM-DEPENDENCY-SECURITY-NOTICE.md`.
+
+### Vad händer för kollega som synkar projektet?
+
+När en kollega pullar senaste ändringarna:
+
+- `ig.ini` pekar nu på `fhir2.base.template`.
+- Vid första builden laddas den nya templaten ner till lokal FHIR-cache om den saknas.
+- Bygget kan ta lite längre första gången på grund av nedladdning, men därefter används cache.
+- Kollegan kan få något annorlunda varningsmönster om lokal cache/tooling skiljer sig, men ändringen är bakåtkompatibel för normal IG Publisher-körning.
+
+Rekommendation till kollega efter sync:
+
+1. Kör `_updatePublisher.bat`.
+2. Kör `_genonce.bat`.
+3. Kontrollera `output/qa.html`.
 
 ---
 
