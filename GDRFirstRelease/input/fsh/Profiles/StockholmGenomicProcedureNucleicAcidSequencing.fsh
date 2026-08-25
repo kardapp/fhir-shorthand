@@ -9,6 +9,7 @@ Description: "Procedure profile for nucleic acid sequencing performed within the
 * extension contains
     StockholmGenomicNucleicAcidSequencingExtensionResult named nucleic-acid-sequencing-result 0..* and
     StockholmGenomicNucleicAcidSequencingExtensionNumberOfReads named nucleic-acid-sequencing-number-of-reads 0..1 and
+  StockholmGenomicNucleicAcidSequencingExtensionReadCycle named nucleic-acid-sequencing-read-cycle 0..1 and
     StockholmGenomicProcedureExtensionFocus named focus 0..*
 * extension[nucleic-acid-sequencing-result] MS
   * ^short = "References to sequencing result files"
@@ -17,6 +18,9 @@ Description: "Procedure profile for nucleic acid sequencing performed within the
 * extension[nucleic-acid-sequencing-number-of-reads] MS
   * ^short = "Read count quality parameter"
   * ^definition = "Quality parameter. The number of reads of each sequence in the genome."
+* extension[nucleic-acid-sequencing-read-cycle] MS
+  * ^short = "Read cycle and read type"
+  * ^definition = "Quality parameter with cycle count and read type (paired-end or single-end)."
 * extension[focus] MS
   * ^short = "Specimen in focus for sequencing"
   * ^definition = "focus is used to reference the specimen in focus of the procedure"

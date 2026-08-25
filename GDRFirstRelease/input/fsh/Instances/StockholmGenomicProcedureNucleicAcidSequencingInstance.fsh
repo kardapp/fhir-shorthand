@@ -13,4 +13,9 @@ Description: "Example nucleic acid sequencing procedure."
 * partOf = Reference(StockholmGenomicProcedureLaboratoryProcessExample)
 * extension[nucleic-acid-sequencing-result].valueReference = Reference(StockholmGenomicDataFileExample)
 * extension[nucleic-acid-sequencing-number-of-reads].valueInteger = 100000
+* extension[nucleic-acid-sequencing-read-cycle].extension[cycle-count].valueInteger = 151
+* extension[nucleic-acid-sequencing-read-cycle].extension[read-type].valueCodeableConcept.coding.system = "https://pub.regionstockholm.se/fhir/gdr/CodeSystem/stockholm-genomic-read-type-cs"
+* extension[nucleic-acid-sequencing-read-cycle].extension[read-type].valueCodeableConcept.coding.code = #PE
+* extension[nucleic-acid-sequencing-read-cycle].extension[read-type].valueCodeableConcept.coding.display = "Paired-end read"
+* extension[nucleic-acid-sequencing-read-cycle].extension[read-type].valueCodeableConcept.text = "Paired-end read"
 * extension[focus].valueReference = Reference(StockholmGenomicSpecimenExample)
