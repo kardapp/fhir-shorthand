@@ -1,4 +1,4 @@
-# Stockholm Genomic Data Repository IG - Åtgärdslista
+﻿# Stockholm Genomic Data Repository IG - Åtgärdslista
 
 **Byggtatus:** ✅ 16 errors → 1 error (94% minskning)  
 **Aktuella problem:** 1 kritiskt error + 52 varningar + 64 info-meddelanden
@@ -174,19 +174,19 @@ Dessa är bara valideringsinformation, inte problem:
 ## 🗓️ REKOMMENDERAD PRIORITERING
 
 ### **Sprint 1 - MÅSTE GÖRAS**
-- [ ] CodeSystem metadata (grupp 1): **3 CodeSystems** - ~30 min
-- [ ] ValueSet metadata (grupp 2): **3 ValueSets** - ~15 min
-- [ ] Specimen ValueSet binding versioner (grupp 5): **4 bindningar** - ~10 min
+- [ ] CodeSystem metadata (grupp 1): **3 CodeSystems** - ~30 min [JIRA:KGIT-434]
+- [ ] ValueSet metadata (grupp 2): **3 ValueSets** - ~15 min [JIRA:KGIT-435]
+- [ ] Specimen ValueSet binding versioner (grupp 5): **4 bindningar** - ~10 min [JIRA:KGIT-436]
 
 ### **Sprint 2 - BÖR GÖRAS** 
-- [ ] Specimen slice must-support (grupp 6): ~5 min
-- [ ] Extension context review (grupp 7): ~10 min
-- [ ] IG dependency uppdatering (grupp 8): ~5 min
-- [ ] ValueSet experiment-status (grupp 9): ~5 min
+- [ ] Specimen slice must-support (grupp 6): ~5 min [JIRA:KGIT-437]
+- [ ] Extension context review (grupp 7): ~10 min [JIRA:KGIT-438]
+- [ ] IG dependency uppdatering (grupp 8): ~5 min [JIRA:KGIT-439]
+- [ ] ValueSet experiment-status (grupp 9): ~5 min [JIRA:KGIT-440]
 
 ### **Sprint 3 - NÅ GÖRAS**
-- [ ] Saknade exempel (grupp 3): **12 instanser** - valfritt för MVP, ~2-3 timmar om alla görs
-- [ ] Externa URL:er i testinstanser (grupp 4): ~5 min
+- [ ] Saknade exempel (grupp 3): **12 instanser** - valfritt för MVP, ~2-3 timmar om alla görs [JIRA:KGIT-441]
+- [ ] Externa URL:er i testinstanser (grupp 4): ~5 min [JIRA:KGIT-442]
 
 ### **ACCEPTERAR FÖR MVP**
 - ⚠️ Duplicate anchor ID error - bara HTML-dokumentation, påverkar inte FHIR-servrar
