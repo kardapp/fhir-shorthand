@@ -45,6 +45,9 @@ on:
       ig-version:
         description: The IG version from sushi-config.yaml.
         value: ${{ jobs.build.outputs.ig-version }}
+      ig-status:
+        description: The IG status from sushi-config.yaml (draft/active/retired/unknown).
+        value: ${{ jobs.build.outputs.ig-status }}
       artifact-name:
         description: Name of the uploaded build artifact.
         value: ${{ jobs.build.outputs.artifact-name }}
@@ -76,6 +79,7 @@ jobs:
     outputs:
       ig-id: ${{ steps.ig.outputs.id }}
       ig-version: ${{ steps.ig.outputs.version }}
+      ig-status: ${{ steps.ig.outputs.status }}
       artifact-name: ${{ inputs.artifact-name }}
       html-zip: ${{ steps.bundle.outputs.html-zip }}
       errors: ${{ steps.qa.outputs.errors }}
@@ -125,11 +129,14 @@ jobs:
           }
           id=$(read_key id)
           version=$(read_key version)
+          status=$(read_key status)
           : "${id:=ig}"
           : "${version:=0.0.0}"
+          : "${status:=unknown}"
           echo "id=$id" >> "$GITHUB_OUTPUT"
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "Building IG '$id' version '$version'"
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "Building IG '$id' version '$version' (status: $status)"
 
       - name: Resolve IG Publisher release
         id: publisher
