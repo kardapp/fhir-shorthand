@@ -1,0 +1,204 @@
+# Builds the HTML IG and publishes it as a GitHub release asset.
+#
+# Three ways in:
+#   * push to main    -> rolling release tagged "<status>-<version>" from
+#                        sushi-config.yaml (e.g. draft-0.1.2). Replaced on every
+#                        merge so the tag always points at main's head.
+#   * push of a v* tag -> permanent release at that tag, never replaced.
+#   * manual dispatch  -> release at a tag you choose.
+#
+# The release carries the zipped HTML IG, the FHIR npm package and the QA
+# reports. Publishing the site to a separate public repo is a later step; the
+# release assets are the hand-off point for that.
+name: IG release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'GDRFirstRelease/**'
+      - '.github/workflows/ig-release.yml'
+      - '.github/workflows/ig-publisher-build.yml'
+      - '.github/scripts/**'
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (default: v<ig-version>-build.<run number>)'
+        type: string
+        default: ''
+      prerelease:
+        description: Mark the release as a prerelease
+        type: boolean
+        default: true
+      draft:
+        description: Create the release as a draft
+        type: boolean
+        default: false
+      publisher-version:
+        description: 'IG Publisher release tag, or "latest"'
+        type: string
+        default: latest
+      fail-on-qa-errors:
+        description: Abort the release when the QA report contains errors
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ig-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Releases always run with full terminology validation, so `tx` is left at
+    # its default (tx.fhir.org) and never set to "n/a" here.
+    uses: ./.github/workflows/ig-publisher-build.yml
+    with:
+      ig-dir: GDRFirstRelease
+      publisher-version: ${{ inputs.publisher-version || 'latest' }}
+      fail-on-qa-errors: ${{ inputs.fail-on-qa-errors || false }}
+      artifact-name: ig-release-${{ github.run_id }}
+      artifact-retention-days: 90
+
+  release:
+    name: Publish GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: dist
+
+      - name: Determine release tag
+        id: meta
+        env:
+          EVENT: ${{ github.event_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          IG_STATUS: ${{ needs.build.outputs.ig-status }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          rolling=false
+          if [ "$EVENT" = "push" ] && [ "$REF_TYPE" = "tag" ]; then
+            # A v* tag is a deliberate, permanent release.
+            tag="$REF_NAME"
+          elif [ "$EVENT" = "push" ]; then
+            # Merge to main: derive the tag from the IG's own metadata so it
+            # tracks sushi-config.yaml rather than the commit.
+            tag="${IG_STATUS}-${IG_VERSION}"
+            rolling=true
+          elif [ -n "$INPUT_TAG" ]; then
+            tag="$INPUT_TAG"
+          else
+            tag="v${IG_VERSION}-build.${RUN_NUMBER}"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "rolling=$rolling" >> "$GITHUB_OUTPUT"
+          echo "Release tag: $tag (rolling: $rolling)"
+
+      - name: Write release notes
+        env:
+          IG_ID: ${{ needs.build.outputs.ig-id }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          HTML_ZIP: ${{ needs.build.outputs.html-zip }}
+          QA_SUMMARY: ${{ needs.build.outputs.qa-summary }}
+          ERRORS: ${{ needs.build.outputs.errors }}
+          WARNINGS: ${{ needs.build.outputs.warnings }}
+          BROKEN_LINKS: ${{ needs.build.outputs.broken-links }}
+          IG_STATUS: ${{ needs.build.outputs.ig-status }}
+          ROLLING: ${{ steps.meta.outputs.rolling }}
+        run: |
+          set -euo pipefail
+          {
+            echo "Implementation Guide **$IG_ID** version **$IG_VERSION** (status: $IG_STATUS), built by the HL7 IG Publisher with full terminology validation."
+            echo
+            if [ "$ROLLING" = "true" ]; then
+              echo "> This is a rolling release tracking \`main\`. It is replaced on every merge that touches the IG, so its assets and tag move. For a permanent, citable version, push a \`v*\` tag instead."
+              echo
+            fi
+            echo "## QA"
+            echo
+            echo "| Metric | Count |"
+            echo "| --- | --- |"
+            echo "| Errors | ${ERRORS:-unknown} |"
+            echo "| Warnings | ${WARNINGS:-unknown} |"
+            echo "| Broken links | ${BROKEN_LINKS:-unknown} |"
+            echo
+            echo "<sub>${QA_SUMMARY:-no QA summary}</sub>"
+            echo
+            echo "## Assets"
+            echo
+            echo "- \`$HTML_ZIP\` — the complete browsable HTML IG. Unzip and open \`index.html\`."
+            echo "- \`${IG_ID}-${IG_VERSION}-package.tgz\` — the FHIR npm package for downstream IGs."
+            echo "- \`qa.html\` / \`qa.min.html\` — full QA report and errors-only view."
+            echo
+            echo "Built from commit ${GITHUB_SHA}."
+          } > release-notes.md
+          cat release-notes.md
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          IG_ID: ${{ needs.build.outputs.ig-id }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          EVENT: ${{ github.event_name }}
+          INPUT_PRERELEASE: ${{ inputs.prerelease }}
+          INPUT_DRAFT: ${{ inputs.draft }}
+          IG_STATUS: ${{ needs.build.outputs.ig-status }}
+          ROLLING: ${{ steps.meta.outputs.rolling }}
+        run: |
+          set -euo pipefail
+
+          if [ "$ROLLING" = "true" ]; then
+            title="$IG_ID $IG_VERSION (main @ $(echo "$GITHUB_SHA" | cut -c1-7))"
+          else
+            title="$IG_ID $IG_VERSION ($TAG)"
+          fi
+          args=(--target "$GITHUB_SHA" --title "$title" --notes-file release-notes.md)
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            prerelease="$INPUT_PRERELEASE"
+            if [ "$INPUT_DRAFT" = "true" ]; then
+              args+=(--draft)
+            fi
+          elif [ "$ROLLING" = "true" ]; then
+            # Only an "active" IG is a real release; everything else is a preview.
+            if [ "$IG_STATUS" = "active" ]; then prerelease=false; else prerelease=true; fi
+          else
+            # Tag-driven release: pre-1.0 and alpha/beta/rc versions are prereleases.
+            case "$IG_VERSION" in
+              *alpha*|*beta*|*rc*|*draft*|*snapshot*|0.*) prerelease=true ;;
+              *) prerelease=false ;;
+            esac
+          fi
+          if [ "$prerelease" = "true" ]; then
+            args+=(--prerelease)
+          fi
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            if [ "$ROLLING" = "true" ]; then
+              # Recreate so the tag and the release both move to main's head.
+              echo "Replacing rolling release $TAG."
+              gh release delete "$TAG" --cleanup-tag --yes
+              gh release create "$TAG" "${args[@]}" dist/*
+            else
+              echo "Release $TAG already exists; replacing its assets only."
+              gh release upload "$TAG" dist/* --clobber
+            fi
+          else
+            gh release create "$TAG" "${args[@]}" dist/*
+          fi
+          gh release view "$TAG" --json tagName,isDraft,isPrerelease,assets

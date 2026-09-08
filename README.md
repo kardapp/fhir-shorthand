@@ -136,6 +136,64 @@ Det är **inte ett blockerande fel** – bygget slutförs ändå och terminologi
 
 ---
 
+## CI/CD – GitHub Actions
+
+IG:t byggs automatiskt av GitHub Actions med samma kedja som lokalt (SUSHI → IG Publisher → Jekyll). Ingenting behöver installeras lokalt för att få ett bygge.
+
+### Workflows
+
+| Fil | Trigger | Vad den gör |
+|---|---|---|
+| `.github/workflows/ig-ci.yml` | pull requests som rör `GDRFirstRelease/**`, samt manuellt | Bygger IG:t och laddar upp resultatet som en workflow-artefakt |
+| `.github/workflows/ig-release.yml` | merge till `main`, push av tagg `v*`, samt manuellt | Bygger IG:t och publicerar HTML-IG:t som en GitHub release |
+| `.github/workflows/ig-publisher-build.yml` | – | Återanvändbart bygge (`workflow_call`) som de två ovan anropar |
+| `.github/scripts/qa-summary.sh` | – | Läser ut `errors / warn / broken links` ur `qa.html` och skriver dem i jobbsammanfattningen |
+
+Runnern sätter upp Java 17 (Temurin), Node 20 + SUSHI, Ruby 3.3 + Jekyll, hämtar senaste `publisher.jar` från HL7 och kör `java -jar input-cache/publisher.jar -ig .`. Både `publisher.jar` och FHIR-paketcachen (`~/.fhir/packages`) cachas mellan körningar.
+
+En merge till `main` bygger bara *en* gång: `ig-ci.yml` körs på pull requests, `ig-release.yml` på `main`.
+
+### Resultat av ett bygge
+
+Varje körning laddar upp en artefakt som innehåller:
+
+- `RegionStockholm-<version>-ig-html.zip` – hela det browsbara IG:t (packa upp och öppna `index.html`)
+- `RegionStockholm-<version>-package.tgz` – FHIR npm-paketet för andra IG:n att bero på
+- `qa.html` / `qa.min.html` / `qa.txt` – QA-rapporterna
+
+QA-siffrorna visas direkt i jobbsammanfattningen i Actions-fliken. Misslyckas bygget laddas QA-rapporterna och `publisher-ci.log` upp ändå, så att felen kan läsas utan att köra om.
+
+### Releaser
+
+Det finns tre vägar till en release, alla via *IG release*:
+
+**1. Merge till `main` – rullande release.** Varje merge som rör IG:t bygger om och publicerar en release taggad `<status>-<version>` läst ur `sushi-config.yaml`. Med `status: draft` och `version: 0.1.2` blir taggen `draft-0.1.2`. Taggen och releasen *flyttas* vid varje merge, så de alltid pekar på huvudet av `main`. Bra som alltid-aktuell nedladdningslänk – men inte en permanent referens.
+
+> Versionen läses ur `sushi-config.yaml`, inte ur texten i `input/pagecontent/index.md`. Det är `sushi-config.yaml` som styr vad som hamnar i ImplementationGuide-resursen och FHIR-paketet – håll `index.md` i synk med den (eller ta bort de hårdkodade raderna där).
+
+**2. Push av en tagg `v*` – permanent release.** Den flyttas aldrig och är det som ska användas som citerbar version, t.ex. vid publicering till `pub.regionstockholm.se`:
+
+```bash
+git tag v0.1.2
+git push origin v0.1.2
+```
+
+**3. Manuellt** från Actions-fliken (*IG release* → *Run workflow*), där tagg, prerelease och draft kan anges; utan tagg används `v<ig-version>-build.<körningsnummer>`.
+
+Releaser märks som *prerelease* när IG:t inte är `status: active` (rullande releaser) respektive för `0.x`- och `alpha`/`beta`/`rc`-versioner (taggade releaser).
+
+> Nästa steg (inte implementerat än): en workflow som tar HTML-IG:t från releasen och publicerar det till ett publikt repo. Release-assetsen är avsedda som överlämningspunkt för det.
+
+### Terminologiserver i CI
+
+Release-bygget kör **alltid** med full terminologivalidering mot `tx.fhir.org` – `-tx n/a` kan inte sättas där. CI-bygget kan vid manuell körning få en annan terminologiserver via `tx`-inputen (t.ex. `n/a` för att felsöka ett bygge när `tx.fhir.org` ligger nere).
+
+### QA-fel som blockerande
+
+Båda workflowsen tar en input `fail-on-qa-errors` (default `false`). Sätt den till `true` – i inputen vid manuell körning, eller som default i `ig-ci.yml` / `ig-release.yml` – när IG:t är nere på noll fel och vi vill hålla det där.
+
+---
+
 ## Samarbete och kunskapsdelning
 - Dokumentation, arbetsflöden och lärdomar sparas i denna README eller i `docs/`.
 - Fellistor och to-do sparas i `arbetsdokument/TODO.md`.
