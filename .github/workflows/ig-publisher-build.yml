@@ -1,0 +1,292 @@
+# Reusable workflow: runs the full SUSHI + HL7 IG Publisher chain for one IG and
+# uploads the resulting HTML IG as a build artifact.
+#
+# The chain mirrors the local flow described in README.md:
+#   1. SUSHI compiles input/fsh/*.fsh -> fsh-generated/resources/*.json
+#   2. IG Publisher validates the resources and builds the HTML site via Jekyll
+#   3. Results land in output/ (index.html = the IG, qa.html = the QA report)
+name: IG Publisher build
+
+on:
+  workflow_call:
+    inputs:
+      ig-dir:
+        description: Directory holding ig.ini and sushi-config.yaml.
+        type: string
+        default: GDRFirstRelease
+      publisher-version:
+        description: >-
+          IG Publisher release tag to use (e.g. 1.8.14), or "latest".
+        type: string
+        default: latest
+      tx:
+        description: >-
+          Terminology server URL. Leave empty to use the publisher default
+          (tx.fhir.org). Setting "n/a" disables terminology validation and must
+          not be used for releases.
+        type: string
+        default: ''
+      fail-on-qa-errors:
+        description: Fail the job when the QA report reports errors > 0.
+        type: boolean
+        default: false
+      artifact-name:
+        description: Name of the uploaded build artifact.
+        type: string
+        default: ig-build
+      artifact-retention-days:
+        description: How long to keep the build artifact.
+        type: number
+        default: 30
+    outputs:
+      ig-id:
+        description: The IG id from sushi-config.yaml.
+        value: ${{ jobs.build.outputs.ig-id }}
+      ig-version:
+        description: The IG version from sushi-config.yaml.
+        value: ${{ jobs.build.outputs.ig-version }}
+      artifact-name:
+        description: Name of the uploaded build artifact.
+        value: ${{ jobs.build.outputs.artifact-name }}
+      html-zip:
+        description: File name of the zipped HTML IG inside the artifact.
+        value: ${{ jobs.build.outputs.html-zip }}
+      errors:
+        description: QA error count.
+        value: ${{ jobs.build.outputs.errors }}
+      warnings:
+        description: QA warning count.
+        value: ${{ jobs.build.outputs.warnings }}
+      broken-links:
+        description: QA broken link count.
+        value: ${{ jobs.build.outputs.broken-links }}
+      qa-summary:
+        description: The raw QA summary line.
+        value: ${{ jobs.build.outputs.qa-summary }}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build HTML IG
+    runs-on: ubuntu-latest
+    # A cold build (package downloads + Jekyll) takes roughly 10-20 minutes.
+    timeout-minutes: 90
+    outputs:
+      ig-id: ${{ steps.ig.outputs.id }}
+      ig-version: ${{ steps.ig.outputs.version }}
+      artifact-name: ${{ inputs.artifact-name }}
+      html-zip: ${{ steps.bundle.outputs.html-zip }}
+      errors: ${{ steps.qa.outputs.errors }}
+      warnings: ${{ steps.qa.outputs.warnings }}
+      broken-links: ${{ steps.qa.outputs.broken_links }}
+      qa-summary: ${{ steps.qa.outputs.summary }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java (IG Publisher runtime)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Node.js (SUSHI runtime)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up Ruby (Jekyll runtime)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Install SUSHI and Jekyll
+        run: |
+          npm install -g fsh-sushi
+          gem install jekyll bundler --no-document
+          sushi --version
+          jekyll --version
+
+      - name: Read IG metadata
+        id: ig
+        env:
+          IG_DIR: ${{ inputs.ig-dir }}
+        run: |
+          set -euo pipefail
+          config="$IG_DIR/sushi-config.yaml"
+          test -f "$config" || { echo "::error::$config not found"; exit 1; }
+          # Top-level scalars only; enough for id/version and avoids a YAML dep.
+          read_key() {
+            sed -nE "s/^$1:[[:space:]]*([^#]*).*/\1/p" "$config" \
+              | head -1 \
+              | sed -E 's/[[:space:]]+$//; s/^["'"'"']//; s/["'"'"']$//'
+          }
+          id=$(read_key id)
+          version=$(read_key version)
+          : "${id:=ig}"
+          : "${version:=0.0.0}"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Building IG '$id' version '$version'"
+
+      - name: Resolve IG Publisher release
+        id: publisher
+        env:
+          REQUESTED: ${{ inputs.publisher-version }}
+        run: |
+          set -euo pipefail
+          if [ "$REQUESTED" = "latest" ] || [ -z "$REQUESTED" ]; then
+            tag=$(
+              curl -sSL -H 'Accept: application/vnd.github+json' \
+                https://api.github.com/repos/HL7/fhir-ig-publisher/releases/latest \
+                | sed -nE 's/.*"tag_name"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/p' \
+                | head -1
+            )
+            if [ -z "$tag" ]; then
+              echo "Could not resolve the latest release tag; using the 'latest' download URL."
+              tag=latest
+              url=https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
+            else
+              url="https://github.com/HL7/fhir-ig-publisher/releases/download/$tag/publisher.jar"
+            fi
+          else
+            tag="$REQUESTED"
+            url="https://github.com/HL7/fhir-ig-publisher/releases/download/$tag/publisher.jar"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "IG Publisher $tag ($url)"
+
+      - name: Cache publisher.jar
+        id: publisher-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ inputs.ig-dir }}/input-cache/publisher.jar
+          key: ig-publisher-${{ steps.publisher.outputs.tag }}
+
+      - name: Download publisher.jar
+        if: steps.publisher-cache.outputs.cache-hit != 'true'
+        env:
+          IG_DIR: ${{ inputs.ig-dir }}
+          PUBLISHER_URL: ${{ steps.publisher.outputs.url }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$IG_DIR/input-cache"
+          curl -sSL --retry 3 --retry-delay 5 \
+            -o "$IG_DIR/input-cache/publisher.jar" "$PUBLISHER_URL"
+          # A tiny file means we downloaded an error page, not the jar.
+          size=$(wc -c < "$IG_DIR/input-cache/publisher.jar")
+          if [ "$size" -lt 1000000 ]; then
+            echo "::error::Downloaded publisher.jar is only $size bytes"
+            exit 1
+          fi
+
+      - name: Cache FHIR package cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.fhir/packages
+          key: fhir-packages-${{ hashFiles(format('{0}/sushi-config.yaml', inputs.ig-dir)) }}
+          restore-keys: |
+            fhir-packages-
+
+      - name: Run SUSHI
+        working-directory: ${{ inputs.ig-dir }}
+        run: sushi .
+
+      - name: Run IG Publisher
+        id: publish
+        working-directory: ${{ inputs.ig-dir }}
+        env:
+          JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+          TX: ${{ inputs.tx }}
+        run: |
+          set -euo pipefail
+          args=(-jar input-cache/publisher.jar -ig .)
+          if [ -n "$TX" ]; then
+            args+=(-tx "$TX")
+            if [ "$TX" = "n/a" ]; then
+              echo "::warning::Terminology validation is disabled (-tx n/a)."
+            fi
+          fi
+          # Keep the log even when the publisher fails, so QA/diagnostics survive.
+          set +e
+          java "${args[@]}" 2>&1 | tee publisher-ci.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+
+      - name: Summarise QA report
+        id: qa
+        if: always() && steps.publish.outcome != 'skipped'
+        env:
+          IG_DIR: ${{ inputs.ig-dir }}
+        run: |
+          .github/scripts/qa-summary.sh "$IG_DIR/output" "$IG_DIR/publisher-ci.log"
+
+      - name: Bundle HTML IG
+        id: bundle
+        if: always() && steps.publish.outcome == 'success'
+        env:
+          IG_DIR: ${{ inputs.ig-dir }}
+          IG_ID: ${{ steps.ig.outputs.id }}
+          IG_VERSION: ${{ steps.ig.outputs.version }}
+        run: |
+          set -euo pipefail
+          test -f "$IG_DIR/output/index.html" \
+            || { echo "::error::No output/index.html - the IG was not built"; exit 1; }
+
+          dist="$PWD/dist"
+          mkdir -p "$dist"
+          html_zip="${IG_ID}-${IG_VERSION}-ig-html.zip"
+
+          # The whole browsable site, so the zip can be unpacked and served as-is.
+          ( cd "$IG_DIR/output" && zip -q -r "$dist/$html_zip" . )
+
+          # The publisher's own FHIR npm package, handy for downstream consumers.
+          if [ -f "$IG_DIR/output/package.tgz" ]; then
+            cp "$IG_DIR/output/package.tgz" "$dist/${IG_ID}-${IG_VERSION}-package.tgz"
+          fi
+
+          for report in qa.html qa.min.html qa.txt; do
+            if [ -f "$IG_DIR/output/$report" ]; then
+              cp "$IG_DIR/output/$report" "$dist/$report"
+            fi
+          done
+
+          echo "html-zip=$html_zip" >> "$GITHUB_OUTPUT"
+          ls -lh "$dist"
+
+      - name: Collect QA reports after a failed build
+        if: failure()
+        env:
+          IG_DIR: ${{ inputs.ig-dir }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          for f in qa.html qa.min.html qa.txt publisher-ci.log; do
+            for dir in "$IG_DIR/output" "$IG_DIR"; do
+              if [ -f "$dir/$f" ]; then
+                cp "$dir/$f" dist/
+                break
+              fi
+            done
+          done
+          ls -lh dist || true
+
+      - name: Upload build artifact
+        if: always() && hashFiles('dist/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: dist
+          retention-days: ${{ inputs.artifact-retention-days }}
+          if-no-files-found: error
+
+      - name: Enforce QA error budget
+        if: inputs.fail-on-qa-errors && steps.qa.outcome == 'success' && steps.qa.outputs.errors != '0'
+        run: |
+          echo "::error::QA reports errors = ${{ steps.qa.outputs.errors }} (${{ steps.qa.outputs.summary }})"
+          exit 1

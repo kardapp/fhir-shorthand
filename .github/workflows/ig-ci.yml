@@ -1,0 +1,51 @@
+# Builds the HTML IG on every change to the IG sources so problems surface in a
+# PR instead of during a release. The build artifact (zipped HTML IG + QA
+# reports) is attached to the workflow run.
+name: IG build (CI)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'GDRFirstRelease/**'
+      - '.github/workflows/ig-ci.yml'
+      - '.github/workflows/ig-publisher-build.yml'
+      - '.github/scripts/**'
+  pull_request:
+    paths:
+      - 'GDRFirstRelease/**'
+      - '.github/workflows/ig-ci.yml'
+      - '.github/workflows/ig-publisher-build.yml'
+      - '.github/scripts/**'
+  workflow_dispatch:
+    inputs:
+      publisher-version:
+        description: 'IG Publisher release tag, or "latest"'
+        type: string
+        default: latest
+      tx:
+        description: 'Terminology server URL (empty = tx.fhir.org, "n/a" = skip validation)'
+        type: string
+        default: ''
+      fail-on-qa-errors:
+        description: Fail the run when the QA report contains errors
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ig-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/ig-publisher-build.yml
+    with:
+      ig-dir: GDRFirstRelease
+      publisher-version: ${{ inputs.publisher-version || 'latest' }}
+      tx: ${{ inputs.tx || '' }}
+      fail-on-qa-errors: ${{ inputs.fail-on-qa-errors || false }}
+      artifact-name: ig-html-${{ github.sha }}
+      artifact-retention-days: 14

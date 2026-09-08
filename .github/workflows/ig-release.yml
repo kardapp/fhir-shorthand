@@ -1,0 +1,158 @@
+# Builds the HTML IG and publishes it as a GitHub release asset.
+#
+# Triggered by pushing a tag like v0.0.1-alpha1, or manually via the Actions
+# tab. The release carries the zipped HTML IG, the FHIR npm package and the QA
+# reports. Publishing the site to a separate public repo is a later step; the
+# release assets are the hand-off point for that.
+name: IG release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (default: v<ig-version>-build.<run number>)'
+        type: string
+        default: ''
+      prerelease:
+        description: Mark the release as a prerelease
+        type: boolean
+        default: true
+      draft:
+        description: Create the release as a draft
+        type: boolean
+        default: false
+      publisher-version:
+        description: 'IG Publisher release tag, or "latest"'
+        type: string
+        default: latest
+      fail-on-qa-errors:
+        description: Abort the release when the QA report contains errors
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ig-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Releases always run with full terminology validation, so `tx` is left at
+    # its default (tx.fhir.org) and never set to "n/a" here.
+    uses: ./.github/workflows/ig-publisher-build.yml
+    with:
+      ig-dir: GDRFirstRelease
+      publisher-version: ${{ inputs.publisher-version || 'latest' }}
+      fail-on-qa-errors: ${{ inputs.fail-on-qa-errors || false }}
+      artifact-name: ig-release-${{ github.run_id }}
+      artifact-retention-days: 90
+
+  release:
+    name: Publish GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: dist
+
+      - name: Determine release tag
+        id: meta
+        env:
+          EVENT: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "push" ]; then
+            tag="$REF_NAME"
+          elif [ -n "$INPUT_TAG" ]; then
+            tag="$INPUT_TAG"
+          else
+            tag="v${IG_VERSION}-build.${RUN_NUMBER}"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Release tag: $tag"
+
+      - name: Write release notes
+        env:
+          IG_ID: ${{ needs.build.outputs.ig-id }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          HTML_ZIP: ${{ needs.build.outputs.html-zip }}
+          QA_SUMMARY: ${{ needs.build.outputs.qa-summary }}
+          ERRORS: ${{ needs.build.outputs.errors }}
+          WARNINGS: ${{ needs.build.outputs.warnings }}
+          BROKEN_LINKS: ${{ needs.build.outputs.broken-links }}
+        run: |
+          set -euo pipefail
+          {
+            echo "Implementation Guide **$IG_ID** version **$IG_VERSION**, built by the HL7 IG Publisher with full terminology validation."
+            echo
+            echo "## QA"
+            echo
+            echo "| Metric | Count |"
+            echo "| --- | --- |"
+            echo "| Errors | ${ERRORS:-unknown} |"
+            echo "| Warnings | ${WARNINGS:-unknown} |"
+            echo "| Broken links | ${BROKEN_LINKS:-unknown} |"
+            echo
+            echo "<sub>${QA_SUMMARY:-no QA summary}</sub>"
+            echo
+            echo "## Assets"
+            echo
+            echo "- \`$HTML_ZIP\` — the complete browsable HTML IG. Unzip and open \`index.html\`."
+            echo "- \`${IG_ID}-${IG_VERSION}-package.tgz\` — the FHIR npm package for downstream IGs."
+            echo "- \`qa.html\` / \`qa.min.html\` — full QA report and errors-only view."
+            echo
+            echo "Built from commit ${GITHUB_SHA}."
+          } > release-notes.md
+          cat release-notes.md
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          IG_ID: ${{ needs.build.outputs.ig-id }}
+          IG_VERSION: ${{ needs.build.outputs.ig-version }}
+          EVENT: ${{ github.event_name }}
+          INPUT_PRERELEASE: ${{ inputs.prerelease }}
+          INPUT_DRAFT: ${{ inputs.draft }}
+        run: |
+          set -euo pipefail
+          args=(--target "$GITHUB_SHA" --title "$IG_ID $IG_VERSION ($TAG)" --notes-file release-notes.md)
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            prerelease="$INPUT_PRERELEASE"
+            if [ "$INPUT_DRAFT" = "true" ]; then
+              args+=(--draft)
+            fi
+          else
+            # Tag-driven release: pre-1.0 and alpha/beta/rc versions are prereleases.
+            case "$IG_VERSION" in
+              *alpha*|*beta*|*rc*|*draft*|*snapshot*|0.*) prerelease=true ;;
+              *) prerelease=false ;;
+            esac
+          fi
+          if [ "$prerelease" = "true" ]; then
+            args+=(--prerelease)
+          fi
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; replacing its assets."
+            gh release upload "$TAG" dist/* --clobber
+          else
+            gh release create "$TAG" "${args[@]}" dist/*
+          fi
+          gh release view "$TAG" --json tagName,isDraft,isPrerelease,assets
