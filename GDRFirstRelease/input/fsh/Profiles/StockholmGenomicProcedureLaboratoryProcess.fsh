@@ -21,6 +21,8 @@ Description: "Represents the laboratory phase of a genomic case and ties togethe
   * ^short = "Specimen in focus for this process"
   * ^definition = "Identifies the specimen that this laboratory process applies to."
 * partOf only Reference(StockholmGenomicStudyProcedure or Procedure)
+* identifier.system 1..1
+* identifier.value 1..1
 * status MS
   * ^short = "Lifecycle status of the laboratory process"
   * ^definition = "Indicates whether the process is in progress or completed for reporting and follow-up."

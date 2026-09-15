@@ -84,6 +84,8 @@ A genomic case is represented by a study resource that ties the entire flow toge
 - Device represents platforms and pipelines used in process and analysis.
 - Bundle is used for atomic submission of a complete case in one transaction.
 
+### MS Definition
+
 Simplified relationship:
 
 ```mermaid

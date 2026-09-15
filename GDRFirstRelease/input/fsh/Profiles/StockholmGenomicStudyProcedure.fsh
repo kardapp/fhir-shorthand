@@ -25,9 +25,13 @@ Description: "Core GenomicStudy profile that represents a genomic case and conne
     laboratory-case-identifier 0..1 MS
 * identifier ^short = "Case identifiers from requester and laboratory"
 * identifier ^definition = "Business identifiers used to track one genomic case across requester and performing laboratory systems."
+* identifier[requester-case-identifier].system 1..1
+* identifier[requester-case-identifier].value 1..1
 * identifier[requester-case-identifier].type = $v2-0203#PLAC
 * identifier[requester-case-identifier].type.coding.display = "Placer Identifier" (exactly)
 * identifier[requester-case-identifier] ^definition = "Business identifiers assigned to this procedure by the requester"
+* identifier[laboratory-case-identifier].system 1..1
+* identifier[laboratory-case-identifier].value 1..1
 * identifier[laboratory-case-identifier].type = $v2-0203#FILL
 * identifier[laboratory-case-identifier].type.coding.display = "Filler Identifier" (exactly)
 * identifier[laboratory-case-identifier] ^definition = "Business identifiers assigned to this procedure by the performer/laboratory"
@@ -72,7 +76,7 @@ Description: "Core GenomicStudy profile that represents a genomic case and conne
   * onBehalfOf MS
   * onBehalfOf only Reference(Organization)
     * ^requirements = "The Genomic Study procedure should be linked to the organization that requested the analysis, typically another diagnostic unit. This can be done with a reference to an Organization resource or with an identifier for the organization if a reference is not possible."
-    * ^definition = "The organization the device or practitioner was acting on behalf of. Note that if this element is empty, the perfomer Genomic Study profile is used."
+    * ^definition = "The organization the performer is acting on behalf of."
     * ^comment = "onBehalfOf should be used to point to the requester of the genomic analysis, as long as no structured referral is available. If there is a reference to a serviceRequest, then the requester should be described in the serviceRequest instead."
     * type = "Organization" (exactly)
     * identifier
@@ -81,3 +85,5 @@ Description: "Core GenomicStudy profile that represents a genomic case and conne
       * value 1..1
       * system ^comment = "The requester is assigned a serial number (cust001 and upwards) which is specified as text. A system URL representing the requester should be used"
     * display ^comment = "Can be used if a display name of the requester organisation is available"
+  
+

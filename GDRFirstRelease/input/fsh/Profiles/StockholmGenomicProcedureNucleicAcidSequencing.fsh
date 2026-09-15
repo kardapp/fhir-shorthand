@@ -25,6 +25,8 @@ Description: "Procedure profile for nucleic acid sequencing performed within the
   * ^short = "Specimen in focus for sequencing"
   * ^definition = "focus is used to reference the specimen in focus of the procedure"
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
+* identifier.system 1..1
+* identifier.value 1..1
 * usedReference MS
 * usedReference only Reference(StockholmGenomicDevice)
 * usedReference ^short = "Sequencing platforms and tools used"

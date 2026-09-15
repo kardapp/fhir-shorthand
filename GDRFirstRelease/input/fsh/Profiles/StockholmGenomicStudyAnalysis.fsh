@@ -33,6 +33,8 @@ Description: "GenomicStudyAnalysis profile that captures the analysis phase of a
 * partOf only Reference(Procedure or StockholmGenomicStudyProcedure)
 * partOf ^short = "Parent genomic study procedure"
 * partOf ^definition = "Links this analysis to the study-level procedure it belongs to."
+* identifier.system 1..1
+* identifier.value 1..1
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."
