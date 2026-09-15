@@ -3,3 +3,6 @@ scripts/jira-sync.env
 
 # Local sync output
 jira-sync-preview.json
+
+# CI build bundle
+/dist
