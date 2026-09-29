@@ -34,7 +34,7 @@ Description: "Transaction bundle used to submit a coherent genomic case to GDR i
 * entry[stockholmGenomicDataFile].resource only StockholmGenomicDataFile
 * entry[stockholmGenomicDevice].resource only StockholmGenomicDevice
 * entry[stockholmGenomicRelatedPerson].resource only StockholmGenomicRelatedPerson
-* entry 1..* MS
+* entry MS
   * ^short = "Entries that together describe one genomic case"
   * ^definition = "Each entry contributes one resource in the submitted genomic case and is required for coherent case ingestion in GDR."
 * entry.fullUrl 1..1 MS
