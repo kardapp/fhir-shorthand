@@ -9,6 +9,10 @@ Description: "Transaction bundle used to submit a coherent genomic case to GDR i
 * type = #transaction (exactly)
   * ^short = "Atomic genomic case submission bundle type"
   * ^definition = "The bundle type is fixed to transaction so all included resources for one genomic case are processed atomically."
+* entry ^slicing.discriminator.type = #profile
+* entry ^slicing.discriminator.path = "resource"
+* entry ^slicing.rules = #open
+* entry ^slicing.description = "Entries are sliced by the profile of the contained resource."
 * entry contains
     stockholmGenomicStudyProcedure 1..1 and
     stockholmGenomicPatient 1..1 and

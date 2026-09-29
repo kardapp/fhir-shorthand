@@ -6,37 +6,42 @@ Description: "Example transaction bundle for submitting a genomic case to GDR."
 
 * type = #transaction
 
-* entry[0].fullUrl = "https://example.org/fhir/Patient/StockholmGenomicPatientExample"
-* entry[0].resource = StockholmGenomicPatientExample
-* entry[0].request.method = #POST
-* entry[0].request.url = "Patient"
+* entry[stockholmGenomicPatient].fullUrl = "https://example.org/fhir/Patient/StockholmGenomicPatientExample"
+* entry[stockholmGenomicPatient].resource = StockholmGenomicPatientExample
+* entry[stockholmGenomicPatient].request.method = #POST
+* entry[stockholmGenomicPatient].request.url = "Patient"
 
-* entry[1].fullUrl = "https://example.org/fhir/Specimen/StockholmGenomicSpecimenExample"
-* entry[1].resource = StockholmGenomicSpecimenExample
-* entry[1].request.method = #POST
-* entry[1].request.url = "Specimen"
+* entry[stockholmGenomicSpecimen].fullUrl = "https://example.org/fhir/Specimen/StockholmGenomicSpecimenExample"
+* entry[stockholmGenomicSpecimen].resource = StockholmGenomicSpecimenExample
+* entry[stockholmGenomicSpecimen].request.method = #POST
+* entry[stockholmGenomicSpecimen].request.url = "Specimen"
 
-* entry[2].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicStudyProcedureExample"
-* entry[2].resource = StockholmGenomicStudyProcedureExample
-* entry[2].request.method = #POST
-* entry[2].request.url = "Procedure"
+* entry[stockholmGenomicStudyProcedure].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicStudyProcedureExample"
+* entry[stockholmGenomicStudyProcedure].resource = StockholmGenomicStudyProcedureExample
+* entry[stockholmGenomicStudyProcedure].request.method = #POST
+* entry[stockholmGenomicStudyProcedure].request.url = "Procedure"
 
-* entry[3].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureLaboratoryProcessExample"
-* entry[3].resource = StockholmGenomicProcedureLaboratoryProcessExample
-* entry[3].request.method = #POST
-* entry[3].request.url = "Procedure"
+* entry[stockholmGenomicProcedureLaboratoryProcess].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureLaboratoryProcessExample"
+* entry[stockholmGenomicProcedureLaboratoryProcess].resource = StockholmGenomicProcedureLaboratoryProcessExample
+* entry[stockholmGenomicProcedureLaboratoryProcess].request.method = #POST
+* entry[stockholmGenomicProcedureLaboratoryProcess].request.url = "Procedure"
 
-* entry[4].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureLibraryPreparationExample"
-* entry[4].resource = StockholmGenomicProcedureLibraryPreparationExample
-* entry[4].request.method = #POST
-* entry[4].request.url = "Procedure"
+* entry[stockholmGenomicProcedureLibraryPreparation].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureLibraryPreparationExample"
+* entry[stockholmGenomicProcedureLibraryPreparation].resource = StockholmGenomicProcedureLibraryPreparationExample
+* entry[stockholmGenomicProcedureLibraryPreparation].request.method = #POST
+* entry[stockholmGenomicProcedureLibraryPreparation].request.url = "Procedure"
 
-* entry[5].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureNucleicAcidSequencingExample"
-* entry[5].resource = StockholmGenomicProcedureNucleicAcidSequencingExample
-* entry[5].request.method = #POST
-* entry[5].request.url = "Procedure"
+* entry[stockholmGenomicProcedureNucleicAcidSequencing].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicProcedureNucleicAcidSequencingExample"
+* entry[stockholmGenomicProcedureNucleicAcidSequencing].resource = StockholmGenomicProcedureNucleicAcidSequencingExample
+* entry[stockholmGenomicProcedureNucleicAcidSequencing].request.method = #POST
+* entry[stockholmGenomicProcedureNucleicAcidSequencing].request.url = "Procedure"
 
-* entry[6].fullUrl = "https://example.org/fhir/DocumentReference/StockholmGenomicDataFileExample"
-* entry[6].resource = StockholmGenomicDataFileExample
-* entry[6].request.method = #POST
-* entry[6].request.url = "DocumentReference"
+* entry[stockholmGenomicStudyAnalysisProcedure].fullUrl = "https://example.org/fhir/Procedure/StockholmGenomicStudyAnalysisProcedureExample"
+* entry[stockholmGenomicStudyAnalysisProcedure].resource = StockholmGenomicStudyAnalysisProcedureExample
+* entry[stockholmGenomicStudyAnalysisProcedure].request.method = #POST
+* entry[stockholmGenomicStudyAnalysisProcedure].request.url = "Procedure"
+
+* entry[stockholmGenomicDataFile].fullUrl = "https://example.org/fhir/DocumentReference/StockholmGenomicDataFileExample"
+* entry[stockholmGenomicDataFile].resource = StockholmGenomicDataFileExample
+* entry[stockholmGenomicDataFile].request.method = #POST
+* entry[stockholmGenomicDataFile].request.url = "DocumentReference"
