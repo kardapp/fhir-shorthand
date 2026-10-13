@@ -29,6 +29,9 @@ Description: "Profile for metadata and links to genomic data files included in a
       * ^definition = "URL points to the file location where the referenced genomic data can be retrieved."
     * title 1..1 MS
     * creation MS
+    * size MS
+      * ^short = "File size in bytes"
+      * ^definition = "Size indicates the size of the referenced genomic data file in bytes."
 * context.related only Reference(Procedure)
   * type = "Procedure" (exactly)
 * context.related ^short = "Related procedure context"
