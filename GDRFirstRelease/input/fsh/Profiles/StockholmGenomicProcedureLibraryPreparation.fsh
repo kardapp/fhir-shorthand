@@ -23,8 +23,6 @@ Description: "Procedure profile for library preparation performed as part of gen
 * usedReference only Reference(StockholmGenomicDevice)
 * usedReference ^short = "Devices used during preparation"
 * usedReference ^definition = "References devices and software used when performing library preparation."
-* identifier.system 1..1
-* identifier.value 1..1
 * status MS
 * status from StockholmGenomicProcedureStatusVS (required) 
   * ^comment = "The following statuses can be used: in-progress, completed."

@@ -8,6 +8,9 @@ Description: "Minimal Patient profile for genomic studies. Exposes only the key 
 * identifier MS
   * ^short = "Patient identifiers used in genomic workflows"
   * ^definition = "Identifiers required to safely link genomic case resources to the correct patient context."
+* identifier.system 1..1
+* identifier.value 1..1
+* identifier.type MS
 * gender MS
   * ^short = "Administrative gender"
   * ^definition = "Administrative gender recorded for the patient according to FHIR core semantics."
