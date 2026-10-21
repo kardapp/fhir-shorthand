@@ -8,3 +8,4 @@ Alias: $StockholmGenomicStudyAnalysisVersion = https://pub.regionstockholm.se/fh
 Alias: $StockholmGenomicAnalysisPedigreeExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicAnalysisPedigreeExtension
 Alias: $StockholmLaboratoryProcess = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmLaboratoryProcess
 Alias: $StockholmGenomicProcedureLaboratoryProcessExtension = https://pub.regionstockholm.se/fhir/StructureDefinition/StockholmGenomicProcedureLaboratoryProcessExtension
+Alias: $SCT = http://snomed.info/sct
