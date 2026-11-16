@@ -1,4 +1,4 @@
-ValueSet: StockholmGenomicReadTypeVS
+ValueSet: StockholmGenomicNucleicAcidSequencingReadTypeVS
 Id: stockholm-genomic-read-type-vs
 Title: "Stockholm Genomic Read Type ValueSet"
 Description: "Allowed read types for sequencing parameters."

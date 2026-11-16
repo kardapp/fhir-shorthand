@@ -6,4 +6,4 @@ Description: "Tumour or non-tumour (germline or normal) classification of the sp
 * ^status = #draft
 * ^experimental = true
 * StockholmGenomicDraftCS#tumour-specimen
-* StockholmGenomicDraftCS#germline-specimen
+* StockholmGenomicDraftCS#normal-specimen
