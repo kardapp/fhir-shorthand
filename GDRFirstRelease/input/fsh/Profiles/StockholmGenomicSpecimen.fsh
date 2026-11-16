@@ -6,10 +6,15 @@ Description: "Profile to store the data about the specimen used in the genomic s
 * ^version = "1.0.0-alpha.1"
 * ^status = #draft
 * ^purpose = "The purpose of this profile is to represent the specimen used in the genomic study. It is used to relate patients, procedures and result files to a certain specimen."
-* extension contains StockholmGenomicSpecimenExtensionSource named specimen-source 0..*
+* extension contains 
+    StockholmGenomicSpecimenExtensionSource named specimen-source 0..*
+    StockholmGenomicSpecimenExtensionTumourSpecimen named tumour-specimen 0..1
 * extension[specimen-source] MS
   * ^short = "Clinical source of the specimen"
   * ^definition = "Optional The specimen source - What type of specimen the sample is taken from. E.g tissue, blood etc"
+* extension[tumour-specimen] MS
+  * ^short = "Tumour status of the specimen"
+  * ^definition = "Indicates whether the specimen is tumour or non-tumour for the purpose of data analysis."
 * identifier 1..* MS
   * ^short = "Requester and laboratory specimen identifiers"
   * ^definition = "The identifier of the specimen. This is a required element and should always be populated when using this profile."
@@ -34,8 +39,8 @@ Description: "Profile to store the data about the specimen used in the genomic s
 * type ^short = "Specimen material/type"
 * type ^definition = "Specifies the specimen type using HL7 V2 specimen type coding."
 * status from http://hl7.org/fhir/ValueSet/specimen-status|4.0.1
-* collection.bodySite from http://terminology.hl7.org/ValueSet/v2-0371|3.0.0
-* collection.method from http://terminology.hl7.org/ValueSet/v2-0493|3.0.0
+// Body site of the specimen is not determined if it should be used for now * collection.bodySite from http://terminology.hl7.org/ValueSet/v2-0371|3.0.0 
+// same as body site * collection.method from http://terminology.hl7.org/ValueSet/v2-0493|3.0.0
 * subject 1.. MS
 * subject only Reference(Patient)
 * subject ^short = "Patient from whom specimen was collected"
